@@ -16,4 +16,25 @@ public class FavoritePet extends CommonModel {
     public FavoritePet() {
         // ORMLite needs a no-arg constructor
     }
+
+    public FavoritePet(Pet pet, User user) {
+        this.pet = pet;
+        this.user = user;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

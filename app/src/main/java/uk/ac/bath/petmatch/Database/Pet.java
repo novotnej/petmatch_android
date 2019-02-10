@@ -21,4 +21,43 @@ public class Pet extends CommonModel {
     public Pet() {
         // ORMLite needs a no-arg constructor
     }
+
+    public Pet(String title, String description, Shelter shelter, PetBreed breed) {
+        this.title = title;
+        this.description = description;
+        this.shelter = shelter;
+        this.breed = breed;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Shelter getShelter() {
+        return shelter;
+    }
+
+    public void setShelter(Shelter shelter) {
+        this.shelter = shelter;
+    }
+
+    public PetBreed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(PetBreed breed) {
+        this.breed = breed;
+    }
 }

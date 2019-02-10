@@ -25,4 +25,60 @@ public class Shelter extends CommonModel {
         // ORMLite needs a no-arg constructor
     }
 
+    public Shelter(String title, String description, String charityNumber, String address, String gps, String email) {
+        this.title = title;
+        this.description = description;
+        this.charityNumber = charityNumber;
+        this.address = address;
+        this.gps = gps;
+        this.email = email;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCharityNumber() {
+        return charityNumber;
+    }
+
+    public void setCharityNumber(String charityNumber) {
+        this.charityNumber = charityNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGps() {
+        return gps;
+    }
+
+    public void setGps(String gps) {
+        this.gps = gps;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
