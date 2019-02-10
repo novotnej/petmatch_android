@@ -13,9 +13,9 @@ public class Pet extends CommonModel {
     @DatabaseField
     private String description;
 
-    @DatabaseField(foreign = true, canBeNull = false)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 3, canBeNull = false)
     private Shelter shelter;
-    @DatabaseField(foreign = true, canBeNull = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 3, canBeNull = true)
     private PetBreed breed;
 
     public Pet() {
@@ -23,10 +23,20 @@ public class Pet extends CommonModel {
     }
 
     public Pet(String title, String description, Shelter shelter, PetBreed breed) {
+        this.id = generateId();
         this.title = title;
         this.description = description;
         this.shelter = shelter;
         this.breed = breed;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {

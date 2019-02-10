@@ -20,7 +20,7 @@ public class UserProperties extends CommonModel {
     private int accommodation;
     @DatabaseField
     private int greenAreas;
-    @DatabaseField(foreign = true, canBeNull = false)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private User user;
 
     public UserProperties() {
@@ -28,6 +28,7 @@ public class UserProperties extends CommonModel {
     }
 
     public UserProperties(boolean hasDogAllergies, boolean hasCatAllergies, boolean hasKids, int workHours, int accommodation, int greenAreas, User user) {
+        this.id = generateId();
         this.hasDogAllergies = hasDogAllergies;
         this.hasCatAllergies = hasCatAllergies;
         this.hasKids = hasKids;
@@ -35,6 +36,15 @@ public class UserProperties extends CommonModel {
         this.accommodation = accommodation;
         this.greenAreas = greenAreas;
         this.user = user;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean hasDogAllergies() {

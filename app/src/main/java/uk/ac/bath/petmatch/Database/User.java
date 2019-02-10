@@ -14,7 +14,7 @@ public class User extends CommonModel {
     private String email;
     @DatabaseField
     private String password;
-    @DatabaseField(foreign = true, canBeNull = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = true)
     private Shelter shelter;
 
     public User() {
@@ -22,10 +22,21 @@ public class User extends CommonModel {
     }
 
     public User(String name, String email, String password, Shelter shelter) {
+        this.id = generateId();
         this.name = name;
         this.email = email;
         this.password = password;
         this.shelter = shelter;
+    }
+
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

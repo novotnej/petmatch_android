@@ -3,6 +3,7 @@ package uk.ac.bath.petmatch;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,9 +12,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import uk.ac.bath.petmatch.Adapters.DummyPetsListAdapter;
+import uk.ac.bath.petmatch.Database.Pet;
+import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Utils.ToastAdapter;
+import uk.ac.bath.petmatch.Utils.UIUtils;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ArrayList<Pet> dummyPetList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +52,32 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        loadDummyPetList();
+    }
+
+    private void loadDummyPetList() {
+        PetDao pets = getHelper().pets;
+        dummyPetList = pets.getDummy();
+        if (dummyPetList.size() == 0) {
+            ToastAdapter.toastMessage(this, "Databse is empty");
+        } else {
+            this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);
+        }
+    }
+
+    private void createDummyPetsListView(final ListView listView, ArrayList<Pet> assets) {
+        DummyPetsListAdapter adapter = new DummyPetsListAdapter(this, R.layout.list_adapter_dummy_pets, assets);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Pet petClicked = (Pet) adapterView.getItemAtPosition(position);
+                petClicked = getHelper().pets.queryForId(petClicked.getId());
+                Log.i("Clicked pet", "" + petClicked.getTitle());
+                //TODO - perhaps open a new activity or something
+            }
+        });
+        UIUtils.setListViewHeightBasedOnItems(listView);
     }
 
     @Override

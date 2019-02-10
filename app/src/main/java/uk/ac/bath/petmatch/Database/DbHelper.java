@@ -24,7 +24,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -65,10 +65,46 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
     public void generateSampleData() {
         Log.i("DBHelper", "generating sample data");
-        /*Country countryGhana = new Country("Ghana", "GH₵");
+        Shelter bath, dummyBath;
+        dummyBath = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456789", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com");
+        bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk");
 
-        CountryDao countryDao = getCountryDao();
-        countryDao.create(countryGhana);*/
+        PetBreed tabby, russianBlue, husky, labrador;
+        tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT);
+        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT);
+        husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG);
+        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG);
+
+        User user, shelterUser; //TODO - when Login process created, add encrypted password here
+        user = new User("Dummy user", "spam@tobedeleted.com", null, null);
+        shelterUser = new User("Shelter user", "spam@tobedeleted.com", null, dummyBath);
+
+        Pet goodBoy, mcGonagall;
+        goodBoy = new Pet("Good boy", "He's the goodest boy", dummyBath, labrador);
+        mcGonagall = new Pet("Minerva McGonagall", "Have a biscuit, Potter.", bath, tabby);
+
+        FavoritePet favoritePet = new FavoritePet(goodBoy, user);
+
+        try {
+            shelters.create(bath);
+            shelters.create(dummyBath);
+
+            users.create(user);
+            users.create(shelterUser);
+
+            petBreeds.create(tabby);
+            petBreeds.create(russianBlue);
+            petBreeds.create(husky);
+            petBreeds.create(labrador);
+
+            pets.create(goodBoy);
+            pets.create(mcGonagall);
+
+            favoritePets.create(favoritePet);
+
+        } catch (Exception e) {
+            Log.e(DbHelper.class.getName(), e.getMessage());
+        }
     }
 
     public void dropTables(ConnectionSource connectionSource) {

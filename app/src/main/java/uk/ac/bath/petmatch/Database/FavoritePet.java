@@ -8,9 +8,9 @@ public class FavoritePet extends CommonModel {
 
     @DatabaseField(id = true)
     private String id;
-    @DatabaseField(foreign = true, canBeNull = false)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private Pet pet;
-    @DatabaseField(foreign = true, canBeNull = false)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private User user;
 
     public FavoritePet() {
@@ -18,8 +18,18 @@ public class FavoritePet extends CommonModel {
     }
 
     public FavoritePet(Pet pet, User user) {
+        this.id = generateId();
         this.pet = pet;
         this.user = user;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Pet getPet() {

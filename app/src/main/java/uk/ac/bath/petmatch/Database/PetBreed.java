@@ -5,7 +5,6 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "pet_breeds")
 public class PetBreed extends CommonModel {
-
     public static final String  TYPE_CAT = "cat",
                                 TYPE_DOG = "dog";
 
@@ -21,8 +20,19 @@ public class PetBreed extends CommonModel {
     }
 
     public PetBreed(String title, String type) {
+        this.id = generateId();
         this.title = title;
         this.type = type;
+    }
+
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
