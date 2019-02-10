@@ -1,6 +1,53 @@
 #
-# generated on 2019/02/08 02:01:41
+# generated on 2019/02/10 02:38:15
 #
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.FavoritePet
+tableName=favorite_pets
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=pet
+canBeNull=false
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=user
+canBeNull=false
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.Pet
+tableName=pets
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=shelter
+canBeNull=false
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=breed
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
 # --table-start--
 dataClass=uk.ac.bath.petmatch.Database.PetBreed
 tableName=pet_breeds
@@ -48,26 +95,24 @@ fieldName=email
 # --table-end--
 #################################
 # --table-start--
-dataClass=uk.ac.bath.petmatch.Database.Pet
-tableName=pets
+dataClass=uk.ac.bath.petmatch.Database.User
+tableName=users
 # --table-fields-start--
 # --field-start--
 fieldName=id
 id=true
 # --field-end--
 # --field-start--
-fieldName=title
+fieldName=name
 # --field-end--
 # --field-start--
-fieldName=description
+fieldName=email
+# --field-end--
+# --field-start--
+fieldName=password
 # --field-end--
 # --field-start--
 fieldName=shelter
-canBeNull=false
-foreign=true
-# --field-end--
-# --field-start--
-fieldName=breed
 foreign=true
 # --field-end--
 # --table-fields-end--
@@ -98,51 +143,6 @@ fieldName=accommodation
 # --field-end--
 # --field-start--
 fieldName=greenAreas
-# --field-end--
-# --field-start--
-fieldName=user
-canBeNull=false
-foreign=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.User
-tableName=users
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=name
-# --field-end--
-# --field-start--
-fieldName=email
-# --field-end--
-# --field-start--
-fieldName=password
-# --field-end--
-# --field-start--
-fieldName=shelter
-foreign=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.FavoritePet
-tableName=favorite_pets
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=pet
-canBeNull=false
-foreign=true
 # --field-end--
 # --field-start--
 fieldName=user
