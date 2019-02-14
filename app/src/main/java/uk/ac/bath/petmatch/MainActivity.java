@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity
 
             // handles user capabilities settings
             Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                    SetUserCapabilitiesActivity.class);
+                    UserCapabilitiesActivity.class);
             startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {
