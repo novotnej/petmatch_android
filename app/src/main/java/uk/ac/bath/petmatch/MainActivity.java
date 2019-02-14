@@ -125,7 +125,7 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_userCapabilities) {
+        } else if (id == R.id.nav_settings) {
 
             // handles user capabilities settings
             Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
