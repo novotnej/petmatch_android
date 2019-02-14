@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UserCapabilitiesActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_user_capabilities"
             android:parentActivityName=".MainActivity">
             <meta-data

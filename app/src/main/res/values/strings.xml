@@ -21,12 +21,12 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
-    <string name="pref_do_you_have_any_other_pets">Do you have any other pets?</string>
-    <string-array name="pref_do_you_have_any_other_pets_titles">
+    <string name="pref_do_you_have_any_other_pets">Do you own other cats or dogs?</string>
+    <string-array name="pref_do_you_own_other_cats_or_dogs_titles">
         <item>Yes</item>
         <item>No</item>
     </string-array>
-    <string-array name="pref_do_you_have_any_other_pets_values">
+    <string-array name="pref_do_you_own_other_cats_or_dogs_values">
         <item>1</item>
         <item>0</item>
     </string-array>
@@ -39,6 +39,19 @@
     </string-array>
 
     <string-array name="pref_do_you_have_a_garden_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_how_active_are_you">How physically active are you?</string>
+    <string-array name="pref_how_active_are_you_titles">
+        <item>Very</item>
+        <item>Reasonably</item>
+        <item>Not very</item>
+    </string-array>
+
+    <string-array name="pref_how_active_are_you_values">
         <item>1</item>
         <item>0</item>
         <item>-1</item>

@@ -1,7 +1,9 @@
 package uk.ac.bath.petmatch;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -127,10 +129,10 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_settings) {
 
-            // handles user capabilities settings
-            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                    UserCapabilitiesActivity.class);
-            startActivity(startUserCapabilitiesIntent);
+            // handles settings
+            Intent startSettingsIntent = new Intent(getApplicationContext(),
+                    SettingsActivity.class);
+            startActivity(startSettingsIntent);
 
         } else if (id == R.id.nav_share) {
 
