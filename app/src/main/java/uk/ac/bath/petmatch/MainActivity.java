@@ -2,18 +2,20 @@ package uk.ac.bath.petmatch;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.content.Intent;
+
 
 import java.util.ArrayList;
 
@@ -75,6 +77,8 @@ public class MainActivity extends BaseActivity
                 petClicked = getHelper().pets.queryForId(petClicked.getId());
                 Log.i("Clicked pet", "" + petClicked.getTitle());
                 //TODO - perhaps open a new activity or something
+                Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
+                startActivity(petProfIntent);
             }
         });
         UIUtils.setListViewHeightBasedOnItems(listView);
