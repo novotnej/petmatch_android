@@ -84,6 +84,7 @@ public class MainActivity extends BaseActivity
         UIUtils.setListViewHeightBasedOnItems(listView);
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
