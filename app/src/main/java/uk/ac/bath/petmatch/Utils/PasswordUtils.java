@@ -1,3 +1,8 @@
+/*
+  Created by Sergey Kargopolov on March 29, 2017
+  Source: http://appsdeveloperblog.com/encrypt-user-password-example-java/
+ */
+
 package uk.ac.bath.petmatch.Utils;
 
 import android.os.Build;
