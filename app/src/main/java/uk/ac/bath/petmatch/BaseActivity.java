@@ -9,6 +9,7 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 
 import uk.ac.bath.petmatch.Database.DbHelper;
+import uk.ac.bath.petmatch.Services.LoginService;
 
 /**
  * Base class to use for activities in Android.
@@ -16,6 +17,8 @@ import uk.ac.bath.petmatch.Database.DbHelper;
 public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends AppCompatActivity {
 
     protected volatile DbHelper db;
+
+    protected volatile LoginService loginService;
 
     /**
      * Get a helper for this action.
@@ -29,6 +32,13 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createDbHelper();
+        createLoginService();
+    }
+
+    protected void createLoginService() {
+        if (loginService == null) {
+            loginService = new LoginService(db.users);
+        }
     }
 
     protected void createDbHelper() {
