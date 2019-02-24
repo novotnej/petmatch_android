@@ -70,10 +70,10 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk");
 
         PetBreed tabby, russianBlue, husky, labrador;
-        tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT);
-        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT);
-        husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG);
-        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG);
+        tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT, true, false, true, false);
+        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT, false, false, false, true);
+        husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG, false, false, true, false);
+        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG, false, true, false, true);
 
         User user, shelterUser; //TODO - when Login process created, add encrypted password here
         user = new User("Dummy user", "spam@tobedeleted.com", null, null);
