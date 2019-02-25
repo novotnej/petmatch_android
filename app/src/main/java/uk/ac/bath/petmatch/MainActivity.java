@@ -1,5 +1,6 @@
 package uk.ac.bath.petmatch;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -147,9 +148,11 @@ public class MainActivity extends BaseActivity
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onLoginButtonClicked(View view) {
         Log.d("Login", "attempt");
-        if (loginService.login("user@petmatch.com", "1234") != null) {
+        /*if (loginService.login("user@petmatch.com", "1234") != null) {
             generateLoggedUserView();
-        }
+        }*/
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
