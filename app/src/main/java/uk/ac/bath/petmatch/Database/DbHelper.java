@@ -2,6 +2,8 @@ package uk.ac.bath.petmatch.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -12,6 +14,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import uk.ac.bath.petmatch.R;
+import uk.ac.bath.petmatch.Utils.PasswordUtils;
 
 
 /**
@@ -24,7 +27,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -42,6 +45,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
      * This is called when the database is first created. Usually you should call createTable statements here to create
      * the tables that will store your data.
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         Log.i("DBHelper", "starting onCreate");
@@ -54,6 +58,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
      * This is called when your application is upgraded and it has a higher version number. This allows you to adjust
      * the various data to match the new version number.
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         if (oldVersion != newVersion) { //not greater than, because if by some mistake we downgrade the version, it should still regenerate
@@ -63,6 +68,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void generateSampleData() {
         Log.i("DBHelper", "generating sample data");
         Shelter bath, dummyBath;
@@ -75,9 +81,10 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG);
         labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG);
 
+        String password = PasswordUtils.generateSecurePassword("1234", PasswordUtils.getSalt(40));
         User user, shelterUser; //TODO - when Login process created, add encrypted password here
-        user = new User("Dummy user", "spam@tobedeleted.com", null, null);
-        shelterUser = new User("Shelter user", "spam@tobedeleted.com", null, dummyBath);
+        user = new User("Dummy user", "user@petmatch.com", password, null);
+        shelterUser = new User("Shelter user", "shelter@petmatch.com", password, dummyBath);
 
         Pet goodBoy, mcGonagall;
         goodBoy = new Pet("Good boy", "He's the goodest boy", dummyBath, labrador);

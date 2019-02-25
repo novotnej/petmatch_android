@@ -1,15 +1,21 @@
 package uk.ac.bath.petmatch;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 
 import uk.ac.bath.petmatch.Database.DbHelper;
 import uk.ac.bath.petmatch.Services.LoginService;
+import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
 /**
  * Base class to use for activities in Android.
