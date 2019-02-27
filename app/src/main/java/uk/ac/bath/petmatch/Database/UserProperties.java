@@ -15,11 +15,9 @@ public class UserProperties extends CommonModel {
     @DatabaseField
     private boolean hasKids;
     @DatabaseField
-    private int workHours;
+    private boolean freeTime;
     @DatabaseField
-    private int accommodation;
-    @DatabaseField
-    private int greenAreas;
+    private boolean greenAreas;
     @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private User user;
 
@@ -27,13 +25,12 @@ public class UserProperties extends CommonModel {
         // ORMLite needs a no-arg constructor
     }
 
-    public UserProperties(boolean hasDogAllergies, boolean hasCatAllergies, boolean hasKids, int workHours, int accommodation, int greenAreas, User user) {
+    public UserProperties(boolean hasDogAllergies, boolean hasCatAllergies, boolean hasKids, boolean freeTime, boolean greenAreas, User user) {
         this.id = generateId();
         this.hasDogAllergies = hasDogAllergies;
         this.hasCatAllergies = hasCatAllergies;
         this.hasKids = hasKids;
-        this.workHours = workHours;
-        this.accommodation = accommodation;
+        this.freeTime = freeTime;
         this.greenAreas = greenAreas;
         this.user = user;
     }
@@ -71,27 +68,19 @@ public class UserProperties extends CommonModel {
         this.hasKids = hasKids;
     }
 
-    public int getWorkHours() {
-        return workHours;
+    public boolean getFreeTime() {
+        return freeTime;
     }
 
-    public void setWorkHours(int workHours) {
-        this.workHours = workHours;
+    public void setFreeTime(boolean freeTime) {
+        this.freeTime = freeTime;
     }
 
-    public int getAccommodation() {
-        return accommodation;
-    }
-
-    public void setAccommodation(int accommodation) {
-        this.accommodation = accommodation;
-    }
-
-    public int getGreenAreas() {
+    public boolean getGreenAreas() {
         return greenAreas;
     }
 
-    public void setGreenAreas(int greenAreas) {
+    public void setGreenAreas(boolean greenAreas) {
         this.greenAreas = greenAreas;
     }
 
@@ -101,5 +90,9 @@ public class UserProperties extends CommonModel {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean hasFreeTime() {
+        return freeTime;
     }
 }
