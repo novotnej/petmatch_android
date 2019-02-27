@@ -1,9 +1,9 @@
 package uk.ac.bath.petmatch;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -16,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -56,7 +58,34 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         loadDummyPetList();
+        generateLoggedUserView();
     }
+
+    protected void generateLoggedUserView() {
+        ImageView loginButton = (ImageView) findViewById(R.id.loginButton);
+        ImageView logoutButton = (ImageView) findViewById(R.id.logoutButton);
+
+        TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
+        TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
+
+        if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
+
+            if (loginService.isUserLoggedIn()) {
+                logoutButton.setVisibility(View.VISIBLE);
+                loginButton.setVisibility(View.GONE);
+                loggedUserName.setVisibility(View.VISIBLE);
+                loggedUserName.setText(loginService.getLoggedInUser().getName());
+                loggedUserEmail.setVisibility(View.VISIBLE);
+                loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
+            } else {
+                loginButton.setVisibility(View.VISIBLE);
+                logoutButton.setVisibility(View.GONE);
+                loggedUserEmail.setVisibility(View.GONE);
+                loggedUserName.setVisibility(View.GONE);
+            }
+        }
+    }
+
 
     private void loadDummyPetList() {
         PetDao pets = getHelper().pets;
@@ -97,6 +126,7 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        generateLoggedUserView();
         return true;
     }
 
@@ -115,11 +145,30 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void onLoginButtonClicked(View view) {
+        Log.d("Login", "attempt");
+        /*if (loginService.login("user@petmatch.com", "1234") != null) {
+            generateLoggedUserView();
+        }*/
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void onLogoutButtonClicked(View view) {
+        loginService.logout();
+        Log.d("Logout", "sd");
+        generateLoggedUserView();
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
