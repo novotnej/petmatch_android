@@ -11,6 +11,15 @@ public class UserDao extends RuntimeExceptionDao {
         super(dao);
     }
 
+    public User findByEmail(String email) {
+        List<User> results = this.queryForEq("email", email);
+        if (results.size() == 0) {
+            return null;
+        } else {
+            return results.get(0);
+        }
+    }
+
     private ArrayList<User> convertListToArrayList(List<User> list) {
         ArrayList<User> arrayList = new ArrayList<>(list.size());
         arrayList.addAll(list);
