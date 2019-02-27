@@ -27,7 +27,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -76,10 +76,10 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk");
 
         PetBreed tabby, russianBlue, husky, labrador;
-        tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT);
-        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT);
-        husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG);
-        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG);
+        tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT, true, false, true, false, false);
+        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT, false, false, false, true, true);
+        husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG, false, false, true, false, true);
+        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG, false, true, false, true, true);
 
         String password = PasswordUtils.generateSecurePassword("1234", PasswordUtils.getSalt(40));
         User user, shelterUser; //TODO - when Login process created, add encrypted password here
