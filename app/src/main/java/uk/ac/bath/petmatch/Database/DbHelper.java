@@ -75,11 +75,26 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         dummyBath = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456789", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com");
         bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk");
 
-        PetBreed tabby, russianBlue, husky, labrador;
+        PetBreed tabby, russianBlue, ragdoll, siamese, japbobtail, britishshorthair, burmilla, colorhair, husky, labrador, lhasa, pekinese, beagle, airedale, chihuahua, dachshund;
+        // the cats
         tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT, true, false, true, false, false);
-        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT, false, false, false, true, true);
+        russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT, false, false, false, false, false);
+        ragdoll = new PetBreed("Ragdoll", PetBreed.TYPE_CAT, true, false, true, true, false);
+        siamese = new PetBreed("Siamese Cat", PetBreed.TYPE_CAT, false, false, false, true, false);
+        japbobtail = new PetBreed("Japanese Bobtail", PetBreed.TYPE_CAT, false, false, true, false, false);
+        britishshorthair = new PetBreed("British Shorthair", PetBreed.TYPE_CAT, true, false, true, false, false);
+        burmilla = new PetBreed("Burmilla", PetBreed.TYPE_CAT, true, false, true, false, false);
+        colorhair = new PetBreed("Colorpoint Shorthair", PetBreed.TYPE_CAT, false, false, false, false, false);
+        // the dogs
         husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG, false, false, true, false, true);
-        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG, false, true, false, true, true);
+        labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG, false, true, true, true, true);
+        lhasa = new PetBreed("Lhasa Apso", PetBreed.TYPE_DOG, false, true, false, false, false);
+        pekinese = new PetBreed("Pekingese", PetBreed.TYPE_DOG, false, false, false, false, false);
+        beagle = new PetBreed("Beagle", PetBreed.TYPE_DOG, false, false, true, true, true);
+        airedale = new PetBreed("Airedale Terrier", PetBreed.TYPE_DOG, false, true, false, true, true);
+        chihuahua = new PetBreed("Chihuahua", PetBreed.TYPE_DOG, false, false, true, false, false);
+        dachshund = new PetBreed("Dachshund", PetBreed.TYPE_DOG, false, false, false, true, false);
+
 
         String password = PasswordUtils.generateSecurePassword("1234", PasswordUtils.getSalt(40));
         User user, shelterUser; //TODO - when Login process created, add encrypted password here
@@ -99,10 +114,24 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             users.create(user);
             users.create(shelterUser);
 
+            // the cats
             petBreeds.create(tabby);
             petBreeds.create(russianBlue);
+            petBreeds.create(ragdoll);
+            petBreeds.create(siamese);
+            petBreeds.create(japbobtail);
+            petBreeds.create(britishshorthair);
+            petBreeds.create(burmilla);
+            petBreeds.create(colorhair);
+            // the dogs
             petBreeds.create(husky);
             petBreeds.create(labrador);
+            petBreeds.create(lhasa);
+            petBreeds.create(pekinese);
+            petBreeds.create(beagle);
+            petBreeds.create(airedale);
+            petBreeds.create(chihuahua);
+            petBreeds.create(dachshund);
 
             pets.create(goodBoy);
             pets.create(mcGonagall);
