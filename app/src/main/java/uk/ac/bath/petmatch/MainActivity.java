@@ -125,6 +125,8 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+            startActivity(petAddIntent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

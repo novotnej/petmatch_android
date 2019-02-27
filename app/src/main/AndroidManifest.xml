@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Utils.AddPetActivity"
-            android:label="@string/title_activity_add_pet"
+            android:name=".PetAddActivity"
+            android:label="@string/title_activity_pet_add"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".PetProfileActivity" />
         <activity
