@@ -21,6 +21,16 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
+    <string name="pref_title_do_you_have_children">Do you have any children living at home?</string>
+    <string-array name="pref_do_you_have_children_living_at_home_titles">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="pref_do_you_have_children_living_at_home_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
     <string name="pref_do_you_have_any_other_pets">Do you own other cats or dogs?</string>
     <string-array name="pref_do_you_own_other_cats_or_dogs_titles">
         <item>Yes</item>

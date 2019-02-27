@@ -193,6 +193,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("key_other_pets_yes_no"));
             bindPreferenceSummaryToValue(findPreference("key_garden_yes_no"));
             bindPreferenceSummaryToValue(findPreference("key_how_active_are_you"));
+            bindPreferenceSummaryToValue(findPreference("key_do_you_have_children"));
         }
 
         @Override

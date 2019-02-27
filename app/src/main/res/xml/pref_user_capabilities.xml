@@ -16,6 +16,13 @@
         android:summary="current value is %s"
         android:title="@string/pref_do_you_have_any_other_pets" />
     <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_do_you_have_children_living_at_home_titles"
+        android:entryValues="@array/pref_do_you_have_children_living_at_home_values"
+        android:key="key_do_you_have_children"
+        android:summary="current value is %s"
+        android:title="@string/pref_title_do_you_have_children" />
+    <ListPreference
         android:defaultValue="0"
         android:entries="@array/pref_do_you_have_a_garden_titles"
         android:entryValues="@array/pref_do_you_have_a_garden_values"
