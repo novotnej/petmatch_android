@@ -190,8 +190,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("key_other_pets_yes_no"));
-            bindPreferenceSummaryToValue(findPreference("key_garden_yes_no"));
+            bindPreferenceSummaryToValue(findPreference("key_cat_allergies"));
+            bindPreferenceSummaryToValue(findPreference("key_dog_allergies"));
+            bindPreferenceSummaryToValue(findPreference("key_garden"));
             bindPreferenceSummaryToValue(findPreference("key_how_active_are_you"));
             bindPreferenceSummaryToValue(findPreference("key_do_you_have_children"));
         }

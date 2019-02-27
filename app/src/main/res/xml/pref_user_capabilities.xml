@@ -7,14 +7,25 @@
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:defaultValue="0"
-        android:entries="@array/pref_do_you_own_other_cats_or_dogs_titles"
-        android:entryValues="@array/pref_do_you_own_other_cats_or_dogs_values"
-        android:key="key_other_pets_yes_no"
+        android:entries="@array/pref_do_you_have_any_cat_allergies_titles"
+        android:entryValues="@array/pref_do_you_have_any_cat_allergies_values"
+        android:key="key_cat_allergies"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:summary="current value is %s"
-        android:title="@string/pref_do_you_have_any_other_pets" />
+        android:title="@string/pref_do_you_have_any_cat_allergies" />
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_do_you_have_any_dog_allergies_titles"
+        android:entryValues="@array/pref_do_you_have_any_dog_allergies_values"
+        android:key="key_dog_allergies"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="current value is %s"
+        android:title="@string/pref_do_you_have_any_dog_allergies" />
     <ListPreference
         android:defaultValue="1"
         android:entries="@array/pref_do_you_have_children_living_at_home_titles"
@@ -26,7 +37,7 @@
         android:defaultValue="0"
         android:entries="@array/pref_do_you_have_a_garden_titles"
         android:entryValues="@array/pref_do_you_have_a_garden_values"
-        android:key="key_garden_yes_no"
+        android:key="key_garden"
         android:summary="current value is %s"
         android:title="@string/pref_do_you_have_a_garden" />
     <ListPreference

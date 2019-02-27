@@ -31,12 +31,22 @@
         <item>0</item>
     </string-array>
 
-    <string name="pref_do_you_have_any_other_pets">Do you own other cats or dogs?</string>
-    <string-array name="pref_do_you_own_other_cats_or_dogs_titles">
+    <string name="pref_do_you_have_any_cat_allergies">Are you allergic to cats?</string>
+    <string-array name="pref_do_you_have_any_cat_allergies_titles">
         <item>Yes</item>
         <item>No</item>
     </string-array>
-    <string-array name="pref_do_you_own_other_cats_or_dogs_values">
+    <string-array name="pref_do_you_have_any_cat_allergies_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string name="pref_do_you_have_any_dog_allergies">Are you allergic to dogs?</string>
+    <string-array name="pref_do_you_have_any_dog_allergies_titles">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="pref_do_you_have_any_dog_allergies_values">
         <item>1</item>
         <item>0</item>
     </string-array>
@@ -45,26 +55,22 @@
     <string-array name="pref_do_you_have_a_garden_titles">
         <item>Yes</item>
         <item>No</item>
-        <item>Communal</item>
     </string-array>
 
     <string-array name="pref_do_you_have_a_garden_values">
         <item>1</item>
         <item>0</item>
-        <item>-1</item>
     </string-array>
 
-    <string name="pref_how_active_are_you">How physically active are you?</string>
+    <string name="pref_how_active_are_you">Do you have time to exercise the pet?</string>
     <string-array name="pref_how_active_are_you_titles">
-        <item>Very</item>
-        <item>Reasonably</item>
-        <item>Not very</item>
+        <item>Yes</item>
+        <item>No</item>
     </string-array>
 
     <string-array name="pref_how_active_are_you_values">
         <item>1</item>
         <item>0</item>
-        <item>-1</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
