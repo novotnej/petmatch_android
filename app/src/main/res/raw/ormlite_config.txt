@@ -1,27 +1,63 @@
 #
-# generated on 2019/02/24 09:11:57
+# generated on 2019/02/27 11:04:34
 #
 # --table-start--
-dataClass=uk.ac.bath.petmatch.Database.FavoritePet
-tableName=favorite_pets
+dataClass=uk.ac.bath.petmatch.Database.PetBreed
+tableName=pet_breeds
 # --table-fields-start--
 # --field-start--
 fieldName=id
 id=true
 # --field-end--
 # --field-start--
-fieldName=pet
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
+fieldName=title
 # --field-end--
 # --field-start--
-fieldName=user
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=causesCatAllergies
+# --field-end--
+# --field-start--
+fieldName=causesDogAllergies
+# --field-end--
+# --field-start--
+fieldName=childrenFriendly
+# --field-end--
+# --field-start--
+fieldName=laborIntensive
+# --field-end--
+# --field-start--
+fieldName=spaceIntensive
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.Shelter
+tableName=shelters
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=charityNumber
+# --field-end--
+# --field-start--
+fieldName=address
+# --field-end--
+# --field-start--
+fieldName=gps
+# --field-end--
+# --field-start--
+fieldName=email
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -57,59 +93,37 @@ maxForeignAutoRefreshLevel=3
 # --table-end--
 #################################
 # --table-start--
-dataClass=uk.ac.bath.petmatch.Database.PetBreed
-tableName=pet_breeds
+dataClass=uk.ac.bath.petmatch.Database.UserProperties
+tableName=user_properties
 # --table-fields-start--
 # --field-start--
 fieldName=id
 id=true
 # --field-end--
 # --field-start--
-fieldName=title
+fieldName=hasDogAllergies
 # --field-end--
 # --field-start--
-fieldName=type
+fieldName=hasCatAllergies
 # --field-end--
 # --field-start--
-fieldName=causesCatAllergies
+fieldName=hasKids
 # --field-end--
 # --field-start--
-fieldName=causesDogAllergies
+fieldName=workHours
 # --field-end--
 # --field-start--
-fieldName=childrenFriendly
+fieldName=accommodation
 # --field-end--
 # --field-start--
-fieldName=laborIntensive
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.Shelter
-tableName=shelters
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
+fieldName=greenAreas
 # --field-end--
 # --field-start--
-fieldName=title
-# --field-end--
-# --field-start--
-fieldName=description
-# --field-end--
-# --field-start--
-fieldName=charityNumber
-# --field-end--
-# --field-start--
-fieldName=address
-# --field-end--
-# --field-start--
-fieldName=gps
-# --field-end--
-# --field-start--
-fieldName=email
+fieldName=user
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -141,30 +155,19 @@ maxForeignAutoRefreshLevel=2
 # --table-end--
 #################################
 # --table-start--
-dataClass=uk.ac.bath.petmatch.Database.UserProperties
-tableName=user_properties
+dataClass=uk.ac.bath.petmatch.Database.FavoritePet
+tableName=favorite_pets
 # --table-fields-start--
 # --field-start--
 fieldName=id
 id=true
 # --field-end--
 # --field-start--
-fieldName=hasDogAllergies
-# --field-end--
-# --field-start--
-fieldName=hasCatAllergies
-# --field-end--
-# --field-start--
-fieldName=hasKids
-# --field-end--
-# --field-start--
-fieldName=workHours
-# --field-end--
-# --field-start--
-fieldName=accommodation
-# --field-end--
-# --field-start--
-fieldName=greenAreas
+fieldName=pet
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
 # --field-end--
 # --field-start--
 fieldName=user

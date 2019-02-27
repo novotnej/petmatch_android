@@ -22,12 +22,14 @@ public class PetBreed extends CommonModel {
     private boolean childrenFriendly;
     @DatabaseField
     private boolean laborIntensive;
+    @DatabaseField
+    private boolean spaceIntensive;
 
     public PetBreed() {
         // ORMLite needs a no-arg constructor
     }
 
-    public PetBreed(String title, String type, boolean causesCatAllergies, boolean causesDogAllergies, boolean childrenFriendly, boolean laborIntensive) {
+    public PetBreed(String title, String type, boolean causesCatAllergies, boolean causesDogAllergies, boolean childrenFriendly, boolean laborIntensive, boolean spaceIntensive) {
         this.id = generateId();
         this.title = title;
         this.type = type;
@@ -35,6 +37,7 @@ public class PetBreed extends CommonModel {
         this.causesDogAllergies = causesDogAllergies;
         this.childrenFriendly = childrenFriendly;
         this.laborIntensive = laborIntensive;
+        this.spaceIntensive = spaceIntensive;
     }
 
     @Override
@@ -44,6 +47,14 @@ public class PetBreed extends CommonModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isSpaceIntensive() {
+        return spaceIntensive;
+    }
+
+    public void setSpaceIntensive(boolean spaceIntensive) {
+        this.spaceIntensive = spaceIntensive;
     }
 
     public String getTitle() {
