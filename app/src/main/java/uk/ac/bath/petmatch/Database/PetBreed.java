@@ -14,17 +14,31 @@ public class PetBreed extends CommonModel {
     private String title;
     @DatabaseField
     private String type;
+    @DatabaseField
+    private boolean causesCatAllergies;
+    @DatabaseField
+    private boolean causesDogAllergies;
+    @DatabaseField
+    private boolean childrenFriendly;
+    @DatabaseField
+    private boolean laborIntensive;
+    @DatabaseField
+    private boolean spaceIntensive;
 
     public PetBreed() {
         // ORMLite needs a no-arg constructor
     }
 
-    public PetBreed(String title, String type) {
+    public PetBreed(String title, String type, boolean causesCatAllergies, boolean causesDogAllergies, boolean childrenFriendly, boolean laborIntensive, boolean spaceIntensive) {
         this.id = generateId();
         this.title = title;
         this.type = type;
+        this.causesCatAllergies = causesCatAllergies;
+        this.causesDogAllergies = causesDogAllergies;
+        this.childrenFriendly = childrenFriendly;
+        this.laborIntensive = laborIntensive;
+        this.spaceIntensive = spaceIntensive;
     }
-
 
     @Override
     public String getId() {
@@ -33,6 +47,14 @@ public class PetBreed extends CommonModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isSpaceIntensive() {
+        return spaceIntensive;
+    }
+
+    public void setSpaceIntensive(boolean spaceIntensive) {
+        this.spaceIntensive = spaceIntensive;
     }
 
     public String getTitle() {
@@ -49,5 +71,37 @@ public class PetBreed extends CommonModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean causesCatAllergies() {
+        return causesCatAllergies;
+    }
+
+    public void setCausesCatAllergies(boolean causesCatAllergies) {
+        this.causesCatAllergies = causesCatAllergies;
+    }
+
+    public boolean causesDogAllergies() {
+        return causesDogAllergies;
+    }
+
+    public void setCausesDogAllergies(boolean causesDogAllergies) {
+        this.causesDogAllergies = causesDogAllergies;
+    }
+
+    public boolean isChildrenFriendly() {
+        return childrenFriendly;
+    }
+
+    public void setChildrenFriendly(boolean childrenFriendly) {
+        this.childrenFriendly = childrenFriendly;
+    }
+
+    public boolean isLaborIntensive() {
+        return laborIntensive;
+    }
+
+    public void setLaborIntensive(boolean laborIntensive) {
+        this.laborIntensive = laborIntensive;
     }
 }
