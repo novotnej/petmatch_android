@@ -8,6 +8,18 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_user_capabilities">My Settings</string>
 
+    <!-- Strings related to Shelter Profile -->
+    <string name="shelter_dummy_introduction">We at the Bath Cats and Dogs Home would love to help you
+    find your next pet. Please contact us on the following contact details.</string>
+    <string name="shelter_dummy_profile">Bath Cats and Dogs Home</string>
+    <string name="shelter_dummy_picture">Picture of dog</string>
+    <string name="shelter_dummy_address">Claverton Down, The Avenue, Bath BA2 7AZ</string>
+    <string name="shelter_dummy_phone">01225 787321</string>
+    <string name="shelter_dummy_email">rehoming@bcdh.org.uk</string>
+    <string name="shelter_dummy_phone_hint">enter phone number here</string>
+    <string name="shelter_dummy_address_hint">enter address here</string>
+    <string name="shelter_dummy_email_hint">enter email here</string>
+
     <!-- Strings related to Settings -->
 
     <!-- My Capabilities Settings -->
