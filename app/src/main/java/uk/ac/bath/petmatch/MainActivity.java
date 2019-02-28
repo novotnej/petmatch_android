@@ -178,10 +178,10 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_settings) {
 
-            // handles settings
-            Intent startSettingsIntent = new Intent(getApplicationContext(),
-                    SettingsActivity.class);
-            startActivity(startSettingsIntent);
+            // handles user capabilities
+            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
+                    UserCapabilitiesActivity.class);
+            startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {
 
