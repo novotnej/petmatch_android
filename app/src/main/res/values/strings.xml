@@ -8,7 +8,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_user_capabilities">My Settings</string>
 
-    <!-- Strings related to My Capabilities Settings -->
+    <!-- Strings related to user capabilities settings -->
 
     <string name="user_capabilities_title">Please fill in the following questions honestly.
         Your answers will be used to find the perfect match for you and the pet.</string>
@@ -39,6 +39,7 @@
         them on regular walks.
     </string>
 
+    <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
