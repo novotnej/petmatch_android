@@ -1,17 +1,9 @@
 #
-<<<<<<< HEAD
-# generated on 2019/02/27 11:04:34
-#
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.PetBreed
-tableName=pet_breeds
-=======
-# generated on 2019/02/27 10:57:52
+# generated on 2019/02/28 10:04:58
 #
 # --table-start--
 dataClass=uk.ac.bath.petmatch.Database.Pet
 tableName=pets
->>>>>>> PA-8
 # --table-fields-start--
 # --field-start--
 fieldName=id
@@ -19,7 +11,116 @@ id=true
 # --field-end--
 # --field-start--
 fieldName=title
-<<<<<<< HEAD
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=shelter
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=3
+# --field-end--
+# --field-start--
+fieldName=breed
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=3
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.User
+tableName=users
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=email
+# --field-end--
+# --field-start--
+fieldName=password
+# --field-end--
+# --field-start--
+fieldName=shelter
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.FavoritePet
+tableName=favorite_pets
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=pet
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=user
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.Shelter
+tableName=shelters
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=charityNumber
+# --field-end--
+# --field-start--
+fieldName=address
+# --field-end--
+# --field-start--
+fieldName=gps
+# --field-end--
+# --field-start--
+fieldName=email
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.PetBreed
+tableName=pet_breeds
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=title
 # --field-end--
 # --field-start--
 fieldName=type
@@ -38,115 +139,6 @@ fieldName=laborIntensive
 # --field-end--
 # --field-start--
 fieldName=spaceIntensive
-=======
-# --field-end--
-# --field-start--
-fieldName=description
-# --field-end--
-# --field-start--
-fieldName=shelter
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=3
-# --field-end--
-# --field-start--
-fieldName=breed
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=3
->>>>>>> PA-8
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-<<<<<<< HEAD
-dataClass=uk.ac.bath.petmatch.Database.Shelter
-tableName=shelters
-=======
-dataClass=uk.ac.bath.petmatch.Database.User
-tableName=users
->>>>>>> PA-8
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=name
-# --field-end--
-# --field-start--
-fieldName=email
-# --field-end--
-# --field-start--
-<<<<<<< HEAD
-fieldName=charityNumber
-# --field-end--
-# --field-start--
-fieldName=address
-# --field-end--
-# --field-start--
-fieldName=gps
-# --field-end--
-# --field-start--
-fieldName=email
-=======
-fieldName=password
-# --field-end--
-# --field-start--
-fieldName=shelter
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
->>>>>>> PA-8
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-<<<<<<< HEAD
-dataClass=uk.ac.bath.petmatch.Database.Pet
-tableName=pets
-=======
-dataClass=uk.ac.bath.petmatch.Database.FavoritePet
-tableName=favorite_pets
->>>>>>> PA-8
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=pet
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
-# --field-end--
-# --field-start--
-<<<<<<< HEAD
-fieldName=description
-# --field-end--
-# --field-start--
-fieldName=shelter
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=3
-# --field-end--
-# --field-start--
-fieldName=breed
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=3
-=======
-fieldName=user
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
->>>>>>> PA-8
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -169,71 +161,10 @@ fieldName=hasCatAllergies
 fieldName=hasKids
 # --field-end--
 # --field-start--
-fieldName=workHours
-# --field-end--
-# --field-start--
-fieldName=accommodation
-# --field-end--
-# --field-start--
-fieldName=greenAreas
-# --field-end--
-# --field-start--
-fieldName=user
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.PetBreed
-tableName=pet_breeds
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=title
-# --field-end--
-# --field-start--
-fieldName=type
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.FavoritePet
-tableName=favorite_pets
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-<<<<<<< HEAD
-fieldName=pet
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
-=======
-fieldName=hasDogAllergies
-# --field-end--
-# --field-start--
-fieldName=hasCatAllergies
-# --field-end--
-# --field-start--
-fieldName=hasKids
-# --field-end--
-# --field-start--
 fieldName=freeTime
 # --field-end--
 # --field-start--
 fieldName=greenAreas
->>>>>>> PA-8
 # --field-end--
 # --field-start--
 fieldName=user
