@@ -175,6 +175,8 @@ public class MainActivity extends BaseActivity
         Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_camera) {
+            Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+            startActivity(petAddIntent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -192,4 +194,6 @@ public class MainActivity extends BaseActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

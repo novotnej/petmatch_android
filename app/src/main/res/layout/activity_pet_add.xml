@@ -9,13 +9,13 @@
     tools:showIn="@layout/activity_pet_add">
 
     <Button
-        android:id="@+id/imButton"
-        android:layout_width="fill_parent"
-        android:layout_height="200px"
-        android:layout_marginTop="36dp"
-        android:text="Add an image of your pet"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:id="@+id/imButton"
+    android:layout_width="fill_parent"
+    android:layout_height="200px"
+    android:layout_marginTop="36dp"
+    android:text="Add an image of your pet"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/nameText"
@@ -36,5 +36,14 @@
         android:hint="Describe your pet"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="fill_parent"
+        android:layout_height="200px"
+        android:layout_marginBottom="36dp"
+        android:text="Add pet to db"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
