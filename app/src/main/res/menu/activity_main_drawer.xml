@@ -17,9 +17,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Shelter Profile" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_user_capabilities"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:title="My Capabilities" />
     </group>
 
     <item android:title="Communicate">

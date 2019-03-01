@@ -181,7 +181,7 @@ public class MainActivity extends BaseActivity
                     ShelterProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_user_capabilities) {
 
             // handles user capabilities
             Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
