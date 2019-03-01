@@ -10,6 +10,7 @@
 
     <!-- Strings related to user capabilities settings -->
 
+    <string name="pref_header_general">My Capabilities</string>
     <string name="user_capabilities_title">Please fill in the following questions honestly.
         Your answers will be used to find the perfect match for you and the pet.</string>
 
@@ -39,8 +40,20 @@
         them on regular walks.
     </string>
 
-    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to Shelter Profile -->
+    <string name="shelter_dummy_introduction">We at the Bath Cats and Dogs Home would love to help you
+    find your next pet. Please contact us on the following contact details.</string>
+    <string name="shelter_dummy_profile">Bath Cats and Dogs Home</string>
+    <string name="shelter_dummy_picture">Picture of dog</string>
+    <string name="shelter_dummy_address">Claverton Down, The Avenue, Bath BA2 7AZ</string>
+    <string name="shelter_dummy_phone">01225 787321</string>
+    <string name="shelter_dummy_email">rehoming@bcdh.org.uk</string>
+    <string name="shelter_dummy_phone_hint">enter phone number here</string>
+    <string name="shelter_dummy_address_hint">enter address here</string>
+    <string name="shelter_dummy_email_hint">enter email here</string>
+
     <!-- Strings related to login -->
+    <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
