@@ -110,6 +110,7 @@ public class MainActivity extends BaseActivity
                 Log.i("Clicked pet", "" + petClicked.getTitle());
                 //TODO - perhaps open a new activity or something
                 Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
+                petProfIntent.putExtra("The Pet", petClicked);
                 startActivity(petProfIntent);
             }
         });
@@ -177,7 +178,6 @@ public class MainActivity extends BaseActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
         } else if (id == R.id.nav_shelter_profile) {
 
             // handles settings
