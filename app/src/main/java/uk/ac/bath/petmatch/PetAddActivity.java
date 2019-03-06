@@ -1,5 +1,6 @@
 package uk.ac.bath.petmatch;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,11 +22,10 @@ public class PetAddActivity extends BaseActivity {
 
     int RESULT_LOAD_IMAGE = 1;
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet_add);
-
+        super.onCreate(savedInstanceState, R.layout.activity_pet_add);
 
 
         Button buttonLoadImage = (Button) findViewById(R.id.imButton);

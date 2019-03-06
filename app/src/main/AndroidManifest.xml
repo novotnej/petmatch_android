@@ -19,18 +19,18 @@
         <activity
             android:name=".PetAddActivity"
             android:label="Add pet"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.bath.petmatch.BaseActivity"/>
+                android:value="uk.ac.bath.petmatch.MainActivity"/>
         </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.bath.petmatch.BaseActivity" />
+                android:value="uk.ac.bath.petmatch.MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"

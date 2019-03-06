@@ -1,11 +1,20 @@
 package uk.ac.bath.petmatch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +29,7 @@ import uk.ac.bath.petmatch.Utils.ToastAdapter;
 /**
  * Base class to use for activities in Android.
  */
-public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends AppCompatActivity {
+public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected volatile DbHelper db;
 
@@ -33,13 +42,120 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
         return db;
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState, int layoutResID) {
         super.onCreate(savedInstanceState);
+        setContentView(layoutResID);
         createDbHelper();
         createLoginService();
+        generateLoggedUserView();
+
+        setUpMenu();
     }
+
+    protected void setUpMenu() {
+        LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View sidebarView = mInflater.inflate(R.id.cont, null);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer != null) {
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+        }
+    }
+
+    protected void generateLoggedUserView() {
+        ImageView loginButton = (ImageView) findViewById(R.id.loginButton);
+        ImageView logoutButton = (ImageView) findViewById(R.id.logoutButton);
+
+        TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
+        TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
+
+        if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
+
+            if (loginService.isUserLoggedIn()) {
+                logoutButton.setVisibility(View.VISIBLE);
+                loginButton.setVisibility(View.GONE);
+                loggedUserName.setVisibility(View.VISIBLE);
+                loggedUserName.setText(loginService.getLoggedInUser().getName());
+                loggedUserEmail.setVisibility(View.VISIBLE);
+                loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
+            } else {
+                loginButton.setVisibility(View.VISIBLE);
+                logoutButton.setVisibility(View.GONE);
+                loggedUserEmail.setVisibility(View.GONE);
+                loggedUserName.setVisibility(View.GONE);
+            }
+        }
+    }
+
+
+    /**
+     * MENU
+     */
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void onLoginButtonClicked(View view) {
+        Log.d("Login", "attempt");
+        /*if (loginService.login("user@petmatch.com", "1234") != null) {
+            generateLoggedUserView();
+        }*/
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void onLogoutButtonClicked(View view) {
+        loginService.logout();
+        Log.d("Logout", "sd");
+        generateLoggedUserView();
+    }
+
+    public void menuPetAddClicked(View view) {
+        Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+        startActivity(petAddIntent);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    public void menuShelterProfileClicked(View view) {
+        Intent startShelterProfileIntent = new Intent(getApplicationContext(),
+                ShelterProfileActivity.class);
+        startActivity(startShelterProfileIntent);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    public void menuUserCapabilitiesClicked(View view) {
+        Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
+                UserCapabilitiesActivity.class);
+        startActivity(startUserCapabilitiesIntent);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    public boolean onNavigationItemSelected(MenuItem var1) {
+        Log.d("NAV_Click", var1.toString());
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    /**
+     * SERVICES
+     */
 
     protected void createLoginService() {
         if (loginService == null) {
@@ -53,6 +169,9 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
         }
     }
 
+    /**
+     * DATABASE
+     */
 
     @Override
     protected void onDestroy() {

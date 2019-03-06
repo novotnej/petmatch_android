@@ -1,5 +1,6 @@
 package uk.ac.bath.petmatch;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,64 +30,26 @@ import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 import uk.ac.bath.petmatch.Utils.UIUtils;
 
-public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
 
     ArrayList<Pet> dummyPetList;
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        super.onCreate(savedInstanceState, R.layout.activity_main);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+                startActivity(petAddIntent);
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         loadDummyPetList();
-        generateLoggedUserView();
+
     }
-
-    protected void generateLoggedUserView() {
-        ImageView loginButton = (ImageView) findViewById(R.id.loginButton);
-        ImageView logoutButton = (ImageView) findViewById(R.id.logoutButton);
-
-        TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
-        TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
-
-        if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
-
-            if (loginService.isUserLoggedIn()) {
-                logoutButton.setVisibility(View.VISIBLE);
-                loginButton.setVisibility(View.GONE);
-                loggedUserName.setVisibility(View.VISIBLE);
-                loggedUserName.setText(loginService.getLoggedInUser().getName());
-                loggedUserEmail.setVisibility(View.VISIBLE);
-                loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
-            } else {
-                loginButton.setVisibility(View.VISIBLE);
-                logoutButton.setVisibility(View.GONE);
-                loggedUserEmail.setVisibility(View.GONE);
-                loggedUserName.setVisibility(View.GONE);
-            }
-        }
-    }
-
 
     private void loadDummyPetList() {
         PetDao pets = getHelper().pets;
@@ -115,92 +78,4 @@ public class MainActivity extends BaseActivity
         UIUtils.setListViewHeightBasedOnItems(listView);
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        generateLoggedUserView();
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void onLoginButtonClicked(View view) {
-        Log.d("Login", "attempt");
-        /*if (loginService.login("user@petmatch.com", "1234") != null) {
-            generateLoggedUserView();
-        }*/
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void onLogoutButtonClicked(View view) {
-        loginService.logout();
-        Log.d("Logout", "sd");
-        generateLoggedUserView();
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        Log.d("navigClick", "" + id);
-
-        if (id == R.id.nav_camera) {
-            Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
-            startActivity(petAddIntent);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_shelter_profile) {
-
-            // handles settings
-            Intent startShelterProfileIntent = new Intent(getApplicationContext(),
-                    ShelterProfileActivity.class);
-            startActivity(startShelterProfileIntent);
-
-        } else if (id == R.id.nav_settings) {
-
-            // handles user capabilities
-            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                    UserCapabilitiesActivity.class);
-            startActivity(startUserCapabilitiesIntent);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

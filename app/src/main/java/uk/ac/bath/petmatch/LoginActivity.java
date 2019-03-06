@@ -2,6 +2,7 @@ package uk.ac.bath.petmatch;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.support.annotation.RequiresApi;
@@ -37,11 +38,10 @@ public class LoginActivity extends BaseActivity {
     private View mProgressView;
     private View mLoginFormView;
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        setupActionBar();
+        super.onCreate(savedInstanceState, R.layout.activity_login);
         // Set up the login form.
         emailTextView = (AutoCompleteTextView) findViewById(R.id.email);
 
@@ -71,14 +71,14 @@ public class LoginActivity extends BaseActivity {
 
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
+     *//*
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void setupActionBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
+    }*/
 
     /**
      * Attempts to sign in or register the account specified by the login form.
