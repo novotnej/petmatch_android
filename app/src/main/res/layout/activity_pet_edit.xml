@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PetEditActivity">
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="31dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="A picture of the dog's profile you are looking at"
         app:layout_constraintBottom_toTopOf="@+id/petTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
         tools:srcCompat="@tools:sample/avatars[2]" />
 
     <EditText
         android:id="@+id/petTitle"
-        android:layout_width="329dp"
-        android:layout_height="87dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/petname"
+        android:layout_width="225dp"
+        android:layout_height="131dp"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
+        android:text="@string/petname"
+        app:layout_constraintBottom_toTopOf="@+id/petDesc"
+        app:layout_constraintStart_toStartOf="@+id/petDesc"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:text="@tools:sample/full_names" />
 
     <EditText
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="88dp"
-        android:text="TextView"
+        android:id="@+id/petDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:inputType="text"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petTitle"
         tools:text="@tools:sample/us_phones" />
@@ -52,10 +47,8 @@
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="27dp"
         android:text="Save Changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>

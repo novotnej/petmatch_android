@@ -32,6 +32,7 @@ public class PetProfileActivity extends AppCompatActivity {
                 // Code here executes on main thread after user presses button
                 //go to pet edit activity
                 Intent petEditIntent = new Intent(getApplicationContext(), PetEditActivity.class);
+                petEditIntent.putExtra("The Pet", petClicked);
                 startActivity(petEditIntent);
             }
 
