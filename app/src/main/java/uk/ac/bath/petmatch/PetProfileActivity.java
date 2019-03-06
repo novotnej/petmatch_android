@@ -18,7 +18,7 @@ public class PetProfileActivity extends AppCompatActivity {
 
         //Get the Intent that started this activity - useful for taking stuff from other ones if needed
         Intent intent = getIntent();
-        Pet petClicked = (Pet)intent.getSerializableExtra("The Pet");
+        final Pet petClicked = (Pet)intent.getSerializableExtra("The Pet");
 
         TextView petTitle = (TextView)findViewById(R.id.petTitle);
         petTitle.setText(petClicked.getTitle(), TextView.BufferType.EDITABLE);
