@@ -1,3 +1,5 @@
+package uk.ac.bath.petmatch;
+
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 
 import java.io.IOException;

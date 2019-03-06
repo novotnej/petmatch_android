@@ -1,8 +1,8 @@
 package uk.ac.bath.petmatch;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -178,9 +178,19 @@ public class MainActivity extends BaseActivity
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_shelter_profile) {
 
-        } else if (id == R.id.nav_manage) {
+            // handles settings
+            Intent startShelterProfileIntent = new Intent(getApplicationContext(),
+                    ShelterProfileActivity.class);
+            startActivity(startShelterProfileIntent);
+
+        } else if (id == R.id.nav_settings) {
+
+            // handles user capabilities
+            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
+                    UserCapabilitiesActivity.class);
+            startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {
 
