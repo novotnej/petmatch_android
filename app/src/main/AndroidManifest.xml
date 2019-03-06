@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.ac.bath.petmatch">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -15,6 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PetProfileActivity"></activity>
+        <activity android:name=".UserCapabilitiesActivity"></activity>
+        <activity android:name=".ShelterProfileActivity"></activity>
         <activity
             android:name=".PetAddActivity"
             android:label="Add pet"
