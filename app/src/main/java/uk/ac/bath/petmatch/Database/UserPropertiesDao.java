@@ -11,6 +11,21 @@ public class UserPropertiesDao extends RuntimeExceptionDao {
         super(dao);
     }
 
+    public UserProperties findByUserId(String userId) {
+        List<UserProperties> results = this.queryForEq("user_id", userId);
+        if (results.size() == 0) {
+            return null;
+        } else {
+            return results.get(0);
+        }
+    }
+
+    public void createNewUserProperties(User user) {
+
+        new UserProperties(false, false,
+                false, false, false, user);
+    }
+
     private ArrayList<UserProperties> convertListToArrayList(List<UserProperties> list) {
         ArrayList<UserProperties> arrayList = new ArrayList<>(list.size());
         arrayList.addAll(list);
