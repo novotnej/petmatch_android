@@ -2,7 +2,9 @@ package uk.ac.bath.petmatch.Database;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.QueryBuilder;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,48 @@ public class PetDao extends RuntimeExceptionDao {
         return this.convertListToArrayList(
                 this.queryForAll()
         );
+    }
+
+    public ArrayList<Pet> loadByFilter(PetBreedDao petBreedDao, String petType, PetBreed petBreed, UserProperties userProperties) {
+        QueryBuilder<Pet, String> query = queryBuilder();
+        QueryBuilder<PetBreed, String> petBreedBuilder = petBreedDao.queryBuilder();
+        try {
+
+
+            if (petBreed != null) {
+                query.where().eq("breed_id", petBreed.getId());
+            }
+
+            if (userProperties != null) {
+                if (userProperties.hasCatAllergies()) {
+                    petBreedBuilder.where().eq("causesCatAllergies", false);
+                }
+                if (userProperties.hasDogAllergies()) {
+                    petBreedBuilder.where().eq("causesDogAllergies", false);
+                }
+                if (userProperties.hasKids()) {
+                    petBreedBuilder.where().eq("childrenFriendly", true);
+                }
+                if (!userProperties.hasFreeTime()) {
+                    petBreedBuilder.where().eq("laborIntensive", false);
+                }
+                if (!userProperties.getGreenAreas()) {
+                    petBreedBuilder.where().eq("spaceIntensive", false);
+                }
+            }
+
+            if (petType != null) {
+                petBreedBuilder.where().eq("type", petType);
+            }
+
+            query.join("breed_id", "id", petBreedBuilder);
+
+            return this.convertListToArrayList(
+                    query.query()
+            );
+        } catch (SQLException e) {
+            return null;
+        }
     }
 
     public Pet queryForId(String id) {

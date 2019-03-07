@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.DummyPetsListAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
+import uk.ac.bath.petmatch.Database.PetBreed;
 import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 import uk.ac.bath.petmatch.Utils.UIUtils;
@@ -58,7 +59,8 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        loadDummyPetList();
+        //loadDummyPetList();
+        loadPetsByFilter(PetBreed.TYPE_CAT, null);
         generateLoggedUserView();
     }
 
@@ -84,6 +86,16 @@ public class MainActivity extends BaseActivity
                 loggedUserEmail.setVisibility(View.GONE);
                 loggedUserName.setVisibility(View.GONE);
             }
+        }
+    }
+
+    private void loadPetsByFilter(String breedType, PetBreed petBreed) {
+        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreed, null);
+
+        if (dummyPetList.size() == 0) {
+            ToastAdapter.toastMessage(this, "No pets fit your filter");
+        } else {
+            this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);
         }
     }
 
