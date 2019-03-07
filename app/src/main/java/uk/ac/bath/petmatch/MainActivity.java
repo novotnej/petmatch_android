@@ -28,6 +28,7 @@ import uk.ac.bath.petmatch.Adapters.DummyPetsListAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
 import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 import uk.ac.bath.petmatch.Utils.UIUtils;
 
@@ -128,7 +129,11 @@ public class MainActivity extends BaseActivity
     }
 
     private void loadPetsByFilter(String breedType, String petBreedId) {
-        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, null);
+        UserProperties userProperties = null;
+        if (loginService.isUserLoggedIn()) {
+            userProperties = getHelper().userProperties.loadByUser(loginService.getLoggedInUser());
+        }
+        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, userProperties);
 
         if (dummyPetList.size() == 0) {
             ToastAdapter.toastMessage(this, "No pets fit your filter");
