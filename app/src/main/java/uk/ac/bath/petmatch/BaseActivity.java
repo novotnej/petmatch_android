@@ -53,8 +53,13 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
     }
 
     protected void setUpMenu() {
-        LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //View sidebarView = mInflater.inflate(R.id.cont, null);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            setupDrawerContent(navigationView);
+            navigationView.bringToFront();
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -65,6 +70,10 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
             drawer.addDrawerListener(toggle);
             toggle.syncState();
         }
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     protected void generateLoggedUserView() {
@@ -115,31 +124,30 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
         generateLoggedUserView();
     }
 
-    public void menuPetAddClicked(View view) {
-        Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
-        startActivity(petAddIntent);
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+        int menuItemId = menuItem.getItemId();
+
+        switch (menuItemId) {
+            case R.id.nav_pet_add:
+                Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+                startActivity(petAddIntent);
+                break;
+            case R.id.nav_shelter_profile:
+                Intent startShelterProfileIntent = new Intent(getApplicationContext(),
+                        ShelterProfileActivity.class);
+                startActivity(startShelterProfileIntent);
+                break;
+            case R.id.nav_user_capabilities:
+                Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
+                        UserCapabilitiesActivity.class);
+                startActivity(startUserCapabilitiesIntent);
+                break;
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-    }
 
-    public void menuShelterProfileClicked(View view) {
-        Intent startShelterProfileIntent = new Intent(getApplicationContext(),
-                ShelterProfileActivity.class);
-        startActivity(startShelterProfileIntent);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
-    public void menuUserCapabilitiesClicked(View view) {
-        Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                UserCapabilitiesActivity.class);
-        startActivity(startUserCapabilitiesIntent);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
-    public boolean onNavigationItemSelected(MenuItem var1) {
-        Log.d("NAV_Click", var1.toString());
         return true;
     }
 
@@ -148,6 +156,8 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            NavigationView nav = (NavigationView) findViewById(R.id.nav_view);
+            //nav.setCheckedItem(null);
         } else {
             super.onBackPressed();
         }
