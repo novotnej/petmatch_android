@@ -19,14 +19,14 @@ public class PetDao extends RuntimeExceptionDao {
         );
     }
 
-    public ArrayList<Pet> loadByFilter(PetBreedDao petBreedDao, String petType, PetBreed petBreed, UserProperties userProperties) {
+    public ArrayList<Pet> loadByFilter(PetBreedDao petBreedDao, String petType, String petBreedId, UserProperties userProperties) {
         QueryBuilder<Pet, String> query = queryBuilder();
         QueryBuilder<PetBreed, String> petBreedBuilder = petBreedDao.queryBuilder();
         try {
 
 
-            if (petBreed != null) {
-                query.where().eq("breed_id", petBreed.getId());
+            if (petBreedId != null) {
+                query.where().eq("breed_id", petBreedId);
             }
 
             if (userProperties != null) {

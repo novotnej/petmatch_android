@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,6 +35,11 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ArrayList<Pet> dummyPetList;
+    RadioGroup breedTypeRadioGroup;
+
+    String filterPetType;
+    String filterPetBreedId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +66,8 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //loadDummyPetList();
-        loadPetsByFilter(PetBreed.TYPE_CAT, null);
+        processSearchFilter();
+        reloadPetsList();
         generateLoggedUserView();
     }
 
@@ -89,8 +96,39 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    private void loadPetsByFilter(String breedType, PetBreed petBreed) {
-        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreed, null);
+    private void processSearchFilter() {
+        breedTypeRadioGroup = findViewById(R.id.radioGroupPetType);
+        breedTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int selectedId = breedTypeRadioGroup.getCheckedRadioButtonId();
+                switch (selectedId) {
+                    case R.id.radioButtonCatsAndDogs:
+                        filterPetType = null;
+                        Log.d("Pet breed type", "Both");
+                        break;
+                    case R.id.radioButtonCats:
+                        filterPetType = PetBreed.TYPE_CAT;
+                        Log.d("Pet breed type", "cats");
+                        break;
+                    case R.id.radioButtonDogs:
+                        filterPetType = PetBreed.TYPE_DOG;
+                        Log.d("Pet breed type", "dogs" +
+                        "");
+                        break;
+                }
+                reloadPetsList();
+            }
+        });
+
+    }
+
+    protected void reloadPetsList() {
+        loadPetsByFilter(filterPetType, filterPetBreedId);
+    }
+
+    private void loadPetsByFilter(String breedType, String petBreedId) {
+        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, null);
 
         if (dummyPetList.size() == 0) {
             ToastAdapter.toastMessage(this, "No pets fit your filter");

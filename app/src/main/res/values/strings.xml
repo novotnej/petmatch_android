@@ -65,4 +65,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="radio_cats">Cats</string>
+    <string name="radio_dogs">Dogs</string>
+    <string name="radio_cats_and_dogs">Both</string>
 </resources>

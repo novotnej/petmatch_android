@@ -8,16 +8,63 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp">
+        android:orientation="vertical"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/search_form"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+
+            <RadioGroup
+                android:id="@+id/radioGroupPetType"
+                android:layout_width="101dp"
+                android:layout_height="87dp"
+                tools:layout_editor_absoluteX="23dp"
+                tools:layout_editor_absoluteY="48dp">
+
+                <RadioButton
+                    android:id="@+id/radioButtonCatsAndDogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/radio_cats_and_dogs"
+                    tools:layout_editor_absoluteX="33dp"
+                    tools:layout_editor_absoluteY="26dp" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonCats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/radio_cats"
+                    tools:layout_editor_absoluteX="33dp"
+                    tools:layout_editor_absoluteY="26dp" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonDogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/radio_dogs"
+                    tools:layout_editor_absoluteX="33dp"
+                    tools:layout_editor_absoluteY="26dp" />
+
+
+            </RadioGroup>
+        </android.support.constraint.ConstraintLayout>
 
         <ListView
+            android:id="@+id/dummy_pets_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dummy_pets_list" />
+            android:layout_height="match_parent" />
+
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
