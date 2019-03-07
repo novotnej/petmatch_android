@@ -1,11 +1,13 @@
 package uk.ac.bath.petmatch;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -162,6 +164,22 @@ public class MainActivity extends BaseActivity
         generateLoggedUserView();
     }
 
+    public void displayNoLoginErrorAlert(){
+
+        AlertDialog.Builder errorAlert = new AlertDialog.Builder(this);
+        errorAlert.setMessage("Please log in to access My Capabilities");
+        errorAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        errorAlert.setTitle("Woops!");
+        errorAlert.setIcon(R.drawable.sad_dog);
+        errorAlert.create();
+        errorAlert.show();
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -183,10 +201,13 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_user_capabilities) {
 
-            // handles user capabilities
-            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                    UserCapabilitiesActivity.class);
-            startActivity(startUserCapabilitiesIntent);
+            if(loginService.isUserLoggedIn()) {
+                Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
+                        UserCapabilitiesActivity.class);
+                startActivity(startUserCapabilitiesIntent);
+            } else {
+                displayNoLoginErrorAlert();
+            }
 
         } else if (id == R.id.nav_share) {
 
