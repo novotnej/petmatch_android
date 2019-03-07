@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class MainActivity extends BaseActivity
 
     ArrayList<Pet> dummyPetList;
     RadioGroup breedTypeRadioGroup;
+    Spinner petBreedSpinner;
+
 
     String filterPetType;
     String filterPetBreedId;
@@ -66,10 +69,17 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
         //loadDummyPetList();
         processSearchFilter();
         reloadPetsList();
         generateLoggedUserView();
+    }
+
+    public void petBreedSpinnerChanged() {
+
     }
 
     protected void generateLoggedUserView() {
@@ -119,6 +129,20 @@ public class MainActivity extends BaseActivity
                         break;
                 }
                 reloadPetsList();
+            }
+        });
+
+
+        Spinner spinner = (Spinner) findViewById(R.id.pet_breed_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
