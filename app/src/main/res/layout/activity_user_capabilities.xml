@@ -11,19 +11,20 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_marginTop="96dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="389dp"
-        android:layout_height="73dp"
+        android:layout_width="381dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/user_capabilities_title"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

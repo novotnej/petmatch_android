@@ -12,7 +12,7 @@
 
     <string name="pref_header_general">My Capabilities</string>
     <string name="user_capabilities_title">Please fill in the following questions honestly.
-        Your answers will be used to find the perfect match for you and the pet.</string>
+        Your answers will be used to find the perfect match for you and your future pet.\n\nPress <b>Save</b> when done.</string>
 
     <string name="kids_pref">Do you have kids living at home?</string>
     <string name="kids_pref_summary">
