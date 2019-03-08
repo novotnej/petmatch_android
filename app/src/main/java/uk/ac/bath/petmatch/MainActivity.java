@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -165,6 +166,8 @@ public class MainActivity extends BaseActivity
         Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_camera) {
+            Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+            startActivity(petAddIntent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -175,7 +178,12 @@ public class MainActivity extends BaseActivity
                     ShelterProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_settings) {
+
+            // handles user capabilities
+            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
+                    UserCapabilitiesActivity.class);
+            startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {
 

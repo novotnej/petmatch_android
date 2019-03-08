@@ -39,9 +39,12 @@ public class DummyPetsListAdapter extends ArrayAdapter<Pet> {
 
         if (pet != null) {
             TextView petDetailsTextView = (TextView) convertView.findViewById(R.id.dummyPetDetails);
+            //for some reason it keeps adding a pet with all null values but I can't find where
+            if (pet.getShelter() != null){
+                Log.d("dummy Pets listview", "title, description, shelter title"  + pet.getTitle() + pet.getDescription() + pet.getShelter().getTitle());
+                petDetailsTextView.setText(pet.getTitle() + pet.getBreed().getTitle() + pet.getShelter().getTitle());
+            }
 
-            Log.d("dummy Pets listview", "title, description, shelter title"  + pet.getTitle() + pet.getDescription() + pet.getShelter().getTitle());
-            petDetailsTextView.setText(pet.getTitle() + pet.getBreed().getTitle() + pet.getShelter().getTitle());
         }
 
         return convertView;
