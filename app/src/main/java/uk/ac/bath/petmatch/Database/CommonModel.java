@@ -1,5 +1,6 @@
 package uk.ac.bath.petmatch.Database;
 
+
 import java.io.Serializable;
 
 public class CommonModel implements Serializable {

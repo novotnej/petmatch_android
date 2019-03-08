@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity
         PetDao pets = getHelper().pets;
         dummyPetList = pets.getDummy();
         if (dummyPetList.size() == 0) {
-            ToastAdapter.toastMessage(this, "Databse is empty");
+            ToastAdapter.toastMessage(this, "Database is empty");
         } else {
             this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);
         }
@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity
                 Log.i("Clicked pet", "" + petClicked.getTitle());
                 //TODO - perhaps open a new activity or something
                 Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
-                petProfIntent.putExtra("The Pet", petClicked);
+                petProfIntent.putExtra("The Pet", petClicked.getId());
                 startActivity(petProfIntent);
             }
         });
