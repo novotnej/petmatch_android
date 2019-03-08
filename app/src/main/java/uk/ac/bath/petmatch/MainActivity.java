@@ -17,11 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,10 +41,10 @@ public class MainActivity extends BaseActivity
     ArrayList<Pet> dummyPetList;
     RadioGroup breedTypeRadioGroup;
     Spinner petBreedSpinner;
-
+    String spinnerBreeds[];
 
     String filterPetType;
-    String filterPetBreedId;
+    PetBreed filterPetBreed;
 
 
     @Override
@@ -78,10 +80,10 @@ public class MainActivity extends BaseActivity
         generateLoggedUserView();
     }
 
-    public void petBreedSpinnerChanged() {
-
-    }
-
+    /**
+     * Switches login for log out button and vice-versa
+     * sets textView with user's name when user is logged in
+     */
     protected void generateLoggedUserView() {
         ImageView loginButton = (ImageView) findViewById(R.id.loginButton);
         ImageView logoutButton = (ImageView) findViewById(R.id.logoutButton);
@@ -107,6 +109,10 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    /**
+     * Sets onclick actions for pet search filter and updates filter values
+     * then reloads list of displayed pets
+     */
     private void processSearchFilter() {
         breedTypeRadioGroup = findViewById(R.id.radioGroupPetType);
         breedTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -129,27 +135,64 @@ public class MainActivity extends BaseActivity
                         break;
                 }
                 reloadPetsList();
+                setUpPetBreedSpinner();
             }
         });
 
+        setUpPetBreedSpinner();
+    }
 
-        Spinner spinner = (Spinner) findViewById(R.id.pet_breed_spinner);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    /**
+     * Creates spinner (select breed) programmatically and its onchange action
+     */
+    protected void setUpPetBreedSpinner() {
+        //Get list of breeds in a given breed type
+        String[] breeds = getHelper().petBreeds.getArrayForType(filterPetType);
+        spinnerBreeds = new String[breeds.length +1];
+        for (int i = 0; i < breeds.length; i++) {
+            spinnerBreeds[i] = breeds[i];
+        }
+        spinnerBreeds[breeds.length] = " --- ALL ---"; //add an "empty" choice option
+
+
+        petBreedSpinner = (Spinner) findViewById(R.id.pet_breed_spinner);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
+        petBreedSpinner.setAdapter(arrayAdapter);
+
+        //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
+        if (filterPetBreed != null) {
+            int spinnerPosition = arrayAdapter.getPosition(filterPetBreed.getTitle());
+            if (spinnerPosition == -1) { //if selected breed not in the options, choose "empty" value
+                petBreedSpinner.setSelection(spinnerBreeds.length - 1);
+            } else {
+                petBreedSpinner.setSelection(spinnerPosition);
+            }
+        } else {
+            petBreedSpinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
+        }
+
+        petBreedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                String selectedBreedTitle = spinnerBreeds[position];
+                //spinner contains titles of pet breeds. Find breed by title and use the PetBreed model in filter
+                filterPetBreed = getHelper().petBreeds.loadByTitle(selectedBreedTitle);
+                reloadPetsList();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
     }
 
     protected void reloadPetsList() {
-        loadPetsByFilter(filterPetType, filterPetBreedId);
+        if (filterPetBreed != null) {
+            loadPetsByFilter(filterPetType, filterPetBreed.getId());
+        } else {
+            loadPetsByFilter(filterPetType, null);
+        }
     }
 
     private void loadPetsByFilter(String breedType, String petBreedId) {
