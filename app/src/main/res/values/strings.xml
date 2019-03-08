@@ -20,6 +20,10 @@
     <string name="shelter_dummy_address_hint">enter address here</string>
     <string name="shelter_dummy_email_hint">enter email here</string>
 
+    <!-- Strings related to Pet Grid -->
+    <string name="pet_grid_picture">This is a pet</string>
+    <string name="pet_grid_title">Pet title</string>
+
     <!-- Strings related to Settings -->
 
     <!-- My Capabilities Settings -->

@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.DummyPetsListAdapter;
+import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
@@ -31,7 +33,8 @@ import uk.ac.bath.petmatch.Utils.UIUtils;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ArrayList<Pet> dummyPetList;
+    //ArrayList<Pet> dummyPetList;
+    ArrayList<Pet> petGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +60,10 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        loadDummyPetList();
+        //loadDummyPetList();
+        loadPetGrid();
         generateLoggedUserView();
+
     }
 
     protected void generateLoggedUserView() {
@@ -86,30 +91,19 @@ public class MainActivity extends BaseActivity
         }
     }
 
-
-    private void loadDummyPetList() {
+    private void loadPetGrid() {
         PetDao pets = getHelper().pets;
-        dummyPetList = pets.getDummy();
-        if (dummyPetList.size() == 0) {
-            ToastAdapter.toastMessage(this, "Databse is empty");
+        petGrid = pets.getDummy();
+        if (petGrid.size() == 0) {
+            ToastAdapter.toastMessage(this, "Database is empty");
         } else {
-            this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);
+            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), petGrid);
         }
     }
 
-    private void createDummyPetsListView(final ListView listView, ArrayList<Pet> assets) {
-        DummyPetsListAdapter adapter = new DummyPetsListAdapter(this, R.layout.list_adapter_dummy_pets, assets);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Pet petClicked = (Pet) adapterView.getItemAtPosition(position);
-                petClicked = getHelper().pets.queryForId(petClicked.getId());
-                Log.i("Clicked pet", "" + petClicked.getTitle());
-                //TODO - perhaps open a new activity or something
-            }
-        });
-        UIUtils.setListViewHeightBasedOnItems(listView);
+    private void createPetGridView(final GridView gridView, ArrayList<Pet> pets) {
+        PetGridAdapter adapter = new PetGridAdapter(this, R.layout.grid_item, pets);
+        gridView.setAdapter(adapter);
     }
 
     @Override
