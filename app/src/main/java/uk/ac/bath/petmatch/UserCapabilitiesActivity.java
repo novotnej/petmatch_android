@@ -1,9 +1,12 @@
 package uk.ac.bath.petmatch;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import java.util.Objects;
 
+import uk.ac.bath.petmatch.Database.DbHelper;
 import uk.ac.bath.petmatch.Database.User;
 import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Database.UserPropertiesDao;
@@ -28,16 +31,35 @@ public class UserCapabilitiesActivity extends BaseActivity {
                 getFragmentManager().beginTransaction().add(R.id.fragment_container, new UserCapabilitiesFragment()).commit();
             }
         }
-        createDbHelper();
         User currentUser = loginService.getLoggedInUser();
         UserPropertiesDao userPropertiesDao = db.userProperties;
         UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
 
-        // check if the user has properties in the database. Otherwise, create new properties.
+        // Create new properties entry in database for user if they do not have one already.
         if(userProperties == null) {
 
-            userPropertiesDao.createNewUserProperties(currentUser);
+            UserProperties newUserCapabilities = new UserProperties(false, false,
+                    false, false, false, currentUser);
+            userPropertiesDao.create(newUserCapabilities);
+            userProperties = userPropertiesDao.findByUserId(currentUser.getId());
         }
-        System.out.println(userProperties);
+    }
+
+    public void updateUserCapabilities() {
+
+        User currentUser = loginService.getLoggedInUser();
+        UserPropertiesDao userPropertiesDao = db.userProperties;
+        UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        userProperties.setHasKids(preferences.getBoolean("pref_kids", false));
+        userProperties.setHasCatAllergies(preferences.getBoolean("pref_cat_allergy", false));
+        userProperties.setHasDogAllergies(preferences.getBoolean("pref_dog_allergy", false));
+        userProperties.setGreenAreas(preferences.getBoolean("pref_garden", false));
+        userProperties.setFreeTime(preferences.getBoolean("pref_exercise", false));
+
+
+
+
     }
 }

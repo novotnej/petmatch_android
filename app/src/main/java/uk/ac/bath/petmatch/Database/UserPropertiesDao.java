@@ -20,12 +20,6 @@ public class UserPropertiesDao extends RuntimeExceptionDao {
         }
     }
 
-    public void createNewUserProperties(User user) {
-
-        new UserProperties(false, false,
-                false, false, false, user);
-    }
-
     private ArrayList<UserProperties> convertListToArrayList(List<UserProperties> list) {
         ArrayList<UserProperties> arrayList = new ArrayList<>(list.size());
         arrayList.addAll(list);

@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity
                 dialog.dismiss();
             }
         });
-        errorAlert.setTitle("Woops!");
+        errorAlert.setTitle("Woof!");
         errorAlert.setIcon(R.drawable.sad_dog);
         errorAlert.create();
         errorAlert.show();
