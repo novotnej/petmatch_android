@@ -27,7 +27,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -76,7 +76,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk");
 
         PetBreed tabby, russianBlue, ragdoll, siamese, japbobtail, britishshorthair, burmilla, colorhair, husky, labrador, lhasa, pekinese, beagle, airedale, chihuahua, dachshund;
-        // the cats
+        // the cat breeds
         tabby = new PetBreed("Silver Tabby", PetBreed.TYPE_CAT, true, false, true, false, false);
         russianBlue = new PetBreed("Russian Blue", PetBreed.TYPE_CAT, false, false, false, false, false);
         ragdoll = new PetBreed("Ragdoll", PetBreed.TYPE_CAT, true, false, true, true, false);
@@ -85,7 +85,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         britishshorthair = new PetBreed("British Shorthair", PetBreed.TYPE_CAT, true, false, true, false, false);
         burmilla = new PetBreed("Burmilla", PetBreed.TYPE_CAT, true, false, true, false, false);
         colorhair = new PetBreed("Colorpoint Shorthair", PetBreed.TYPE_CAT, false, false, false, false, false);
-        // the dogs
+        // the dog breeds
         husky = new PetBreed("Siberian Husky", PetBreed.TYPE_DOG, false, false, true, false, true);
         labrador = new PetBreed("Labrador Retriever", PetBreed.TYPE_DOG, false, true, true, true, true);
         lhasa = new PetBreed("Lhasa Apso", PetBreed.TYPE_DOG, false, true, false, false, false);
@@ -101,9 +101,19 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         user = new User("Dummy user", "user@petmatch.com", password, null);
         shelterUser = new User("Shelter user", "shelter@petmatch.com", password, dummyBath);
 
-        Pet goodBoy, mcGonagall;
+        Pet goodBoy, roz, artem, jan, josh, mcGonagall, hagrid, malfoy, dumbledore, snape;
+        // cats
         goodBoy = new Pet("Good boy", "He's the goodest boy", dummyBath, labrador);
+        roz = new Pet("Roz", "Is good at herding cows", bath, husky);
+        artem = new Pet("Artem", "Needs exercising often", dummyBath, beagle);
+        jan = new Pet("Jan", "Only eats pedigree food", bath, airedale);
+        josh = new Pet("Josh", "Likes it when you play soundtracks", dummyBath, chihuahua);
+        // dogs
         mcGonagall = new Pet("Minerva McGonagall", "Have a biscuit, Potter.", bath, tabby);
+        hagrid = new Pet("Hagrid", "Very hairy", dummyBath, ragdoll);
+        malfoy = new Pet("Draco Malfoy", "Weaselike in appearance", bath, siamese);
+        dumbledore = new Pet("Albus Percival Wulfric Brian Dumbledore", "Don't pity the dead, pity the living", dummyBath, britishshorthair);
+        snape = new Pet("Severus Snape", "Always", bath, burmilla);
 
         FavoritePet favoritePet = new FavoritePet(goodBoy, user);
 
@@ -133,8 +143,18 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             petBreeds.create(chihuahua);
             petBreeds.create(dachshund);
 
+            // dogs
             pets.create(goodBoy);
+            pets.create(roz);
+            pets.create(artem);
+            pets.create(jan);
+            pets.create(josh);
+            // cats
             pets.create(mcGonagall);
+            pets.create(hagrid);
+            pets.create(malfoy);
+            pets.create(dumbledore);
+            pets.create(snape);
 
             favoritePets.create(favoritePet);
 

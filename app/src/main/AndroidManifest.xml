@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PetProfileActivity"></activity>
+        <activity android:name=".UserCapabilitiesActivity"></activity>
         <activity android:name=".ShelterProfileActivity"></activity>
+        <activity
+            android:name=".PetAddActivity"
+            android:label="Add pet"
+            android:parentActivityName=".BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.ac.bath.petmatch.BaseActivity"/>
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
