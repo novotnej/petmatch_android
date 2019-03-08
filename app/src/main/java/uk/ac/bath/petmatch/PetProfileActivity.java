@@ -36,6 +36,9 @@ public class PetProfileActivity extends BaseActivity {
         TextView petDesc = (TextView)findViewById(R.id.petDesc);
         petDesc.setText(petClicked.getDescription(), TextView.BufferType.EDITABLE);
 
+        TextView webLink = (TextView)findViewById(R.id.linkText);
+        webLink.setText(petClicked.getShelter().getWebsite(), TextView.BufferType.EDITABLE);
+
         final Button button = findViewById(R.id.editButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
