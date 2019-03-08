@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -37,8 +38,10 @@ public class PetGridAdapter extends ArrayAdapter<Pet> {
 
         Pet pet = pets.get(position);
         ImageView petImageView;
+        //TextView petTitleView;
         if (pet != null) {
             petImageView = (ImageView) convertView.findViewById(R.id.gridImageView);
+            //petTitleView = (TextView) convertView.findViewById(R.id.petTitleView);
             String id = "snape";
             try {
                 int resID = (int) R.mipmap.class.getField(id).get(null);
@@ -47,6 +50,7 @@ public class PetGridAdapter extends ArrayAdapter<Pet> {
             }
 
             petImageView.setImageResource(R.mipmap.dumbledore);
+            //petTitleView.setText(pet.getTitle());
             Log.d("dummy Pets listview", "title, description, shelter title"  + pet.getTitle() + pet.getDescription() + pet.getShelter().getTitle());
         }
         else {
