@@ -11,8 +11,8 @@
     <!-- Strings related to user capabilities settings -->
 
     <string name="pref_header_general">My Capabilities</string>
-    <string name="user_capabilities_title">Please fill in the following questions honestly.
-        Your answers will be used to find the perfect match for you and your future pet.\n\nPress <b>Save</b> when done.</string>
+    <string name="user_capabilities_title">Please fill in the following questions <b>honestly</b>.
+        \nYour answers will be used to find the perfect match for you and your future pet.</string>
     <string name="user_capabilities_save_button">Save</string>
 
     <string name="kids_pref">Do you have kids living at home?</string>
