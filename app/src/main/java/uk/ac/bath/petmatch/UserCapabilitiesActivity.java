@@ -17,7 +17,7 @@ import uk.ac.bath.petmatch.Utils.UserCapabilitiesFragment;
  */
 public class UserCapabilitiesActivity extends BaseActivity {
 
-    private UserCapabilitiesFragment userCapabilitiesFragment = new UserCapabilitiesFragment();
+    private UserCapabilitiesFragment userCapabilitiesFragment;
     private User currentUser;
 
     @Override
@@ -26,15 +26,7 @@ public class UserCapabilitiesActivity extends BaseActivity {
         setContentView(R.layout.activity_user_capabilities);
         Objects.requireNonNull(getSupportActionBar()).setTitle("My Capabilities");
 
-        if(findViewById(R.id.fragment_container) != null) {
-            if(savedInstanceState != null ) {
-                return;
-            }
-            else {
-                getFragmentManager().beginTransaction().add(R.id.fragment_container, userCapabilitiesFragment).commit();
-            }
-        }
-
+        // get user properties
         currentUser = loginService.getLoggedInUser();
         UserPropertiesDao userPropertiesDao = db.userProperties;
         UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
@@ -46,6 +38,8 @@ public class UserCapabilitiesActivity extends BaseActivity {
                     false, false, false, currentUser);
             userPropertiesDao.create(newUserCapabilities);
         }
+        userCapabilitiesFragment = new UserCapabilitiesFragment();
+        getFragmentManager().beginTransaction().add(R.id.fragment_container, userCapabilitiesFragment).commit();
     }
 
     /**
