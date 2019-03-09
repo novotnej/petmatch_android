@@ -70,6 +70,8 @@ public class MainActivity extends BaseActivity
         TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
         TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
 
             if (loginService.isUserLoggedIn()) {
@@ -79,15 +81,18 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setText(loginService.getLoggedInUser().getName());
                 loggedUserEmail.setVisibility(View.VISIBLE);
                 loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
+                Menu nav_Menu = navigationView.getMenu();
+                nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
                 loggedUserEmail.setVisibility(View.GONE);
                 loggedUserName.setVisibility(View.GONE);
+                Menu nav_Menu = navigationView.getMenu();
+                nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
             }
         }
     }
-
 
     private void loadDummyPetList() {
         PetDao pets = getHelper().pets;
