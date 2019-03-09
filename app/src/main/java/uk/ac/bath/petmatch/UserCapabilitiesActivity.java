@@ -1,7 +1,11 @@
 package uk.ac.bath.petmatch;
 
+import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
 import java.util.Objects;
 
@@ -37,7 +41,7 @@ public class UserCapabilitiesActivity extends BaseActivity {
             userPropertiesDao.create(newUserCapabilities);
         }
         userCapabilitiesFragment = new UserCapabilitiesFragment();
-        getFragmentManager().beginTransaction().add(R.id.fragment_container, userCapabilitiesFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, userCapabilitiesFragment).commit();
     }
 
     /**
@@ -48,7 +52,7 @@ public class UserCapabilitiesActivity extends BaseActivity {
         currentUser = loginService.getLoggedInUser();
         UserPropertiesDao userPropertiesDao = db.userProperties;
         UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
-        SharedPreferences preferences = userCapabilitiesFragment.getPreferenceManager().getSharedPreferences();
+        SharedPreferences preferences = Objects.requireNonNull(userCapabilitiesFragment.getPreferenceManager().getSharedPreferences());
 
         userProperties.setHasKids(preferences.getBoolean("pref_kids", false));
         userProperties.setHasCatAllergies(preferences.getBoolean("pref_cat_allergy", false));

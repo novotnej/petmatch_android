@@ -3,17 +3,18 @@ package uk.ac.bath.petmatch.Fragments;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
+import android.support.v7.preference.PreferenceFragmentCompat;
 
 import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.R;
 import uk.ac.bath.petmatch.UserCapabilitiesActivity;
 
-public class UserCapabilitiesFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class UserCapabilitiesFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         SharedPreferences preferences = getPreferenceManager().getSharedPreferences();
         SharedPreferences.Editor editor = preferences.edit();
@@ -31,6 +32,10 @@ public class UserCapabilitiesFragment extends PreferenceFragment implements Shar
         editor.apply();
         addPreferencesFromResource(R.xml.user_capabilities_preferences);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle bundle, String s) {
     }
 
     @Override
