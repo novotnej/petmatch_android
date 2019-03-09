@@ -17,6 +17,9 @@ import uk.ac.bath.petmatch.Utils.UserCapabilitiesFragment;
  */
 public class UserCapabilitiesActivity extends BaseActivity {
 
+    private UserCapabilitiesFragment userCapabilitiesFragment = new UserCapabilitiesFragment();
+    private User currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +31,11 @@ public class UserCapabilitiesActivity extends BaseActivity {
                 return;
             }
             else {
-                getFragmentManager().beginTransaction().add(R.id.fragment_container, new UserCapabilitiesFragment()).commit();
+                getFragmentManager().beginTransaction().add(R.id.fragment_container, userCapabilitiesFragment).commit();
             }
         }
-        User currentUser = loginService.getLoggedInUser();
+
+        currentUser = loginService.getLoggedInUser();
         UserPropertiesDao userPropertiesDao = db.userProperties;
         UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
 
@@ -41,25 +45,31 @@ public class UserCapabilitiesActivity extends BaseActivity {
             UserProperties newUserCapabilities = new UserProperties(false, false,
                     false, false, false, currentUser);
             userPropertiesDao.create(newUserCapabilities);
-            userProperties = userPropertiesDao.findByUserId(currentUser.getId());
         }
     }
 
+    /**
+     * Updates the given user's capabilities/properties in the database.
+     */
     public void updateUserCapabilities() {
 
-        User currentUser = loginService.getLoggedInUser();
+        currentUser = loginService.getLoggedInUser();
         UserPropertiesDao userPropertiesDao = db.userProperties;
         UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences preferences = userCapabilitiesFragment.getPreferenceManager().getSharedPreferences();
 
         userProperties.setHasKids(preferences.getBoolean("pref_kids", false));
         userProperties.setHasCatAllergies(preferences.getBoolean("pref_cat_allergy", false));
         userProperties.setHasDogAllergies(preferences.getBoolean("pref_dog_allergy", false));
         userProperties.setGreenAreas(preferences.getBoolean("pref_garden", false));
         userProperties.setFreeTime(preferences.getBoolean("pref_exercise", false));
+        userPropertiesDao.update(userProperties);
+    }
 
+    public UserProperties getUserProperties(){
 
-
-
+        currentUser = loginService.getLoggedInUser();
+        UserPropertiesDao userPropertiesDao = db.userProperties;
+        return userPropertiesDao.findByUserId(currentUser.getId());
     }
 }
