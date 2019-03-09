@@ -61,7 +61,7 @@ public class PetGridAdapter extends ArrayAdapter<Pet> {
     }
 
     public int getCount() {
-        return 0;
+        return pets.size();
     }
 
     public long getItemId(int position) {
