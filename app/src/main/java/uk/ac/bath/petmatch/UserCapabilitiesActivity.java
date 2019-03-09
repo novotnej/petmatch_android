@@ -2,15 +2,13 @@ package uk.ac.bath.petmatch;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 
 import java.util.Objects;
 
-import uk.ac.bath.petmatch.Database.DbHelper;
 import uk.ac.bath.petmatch.Database.User;
 import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Database.UserPropertiesDao;
-import uk.ac.bath.petmatch.Utils.UserCapabilitiesFragment;
+import uk.ac.bath.petmatch.Fragments.UserCapabilitiesFragment;
 
 /**
  * Activity should only run when user is logged in.

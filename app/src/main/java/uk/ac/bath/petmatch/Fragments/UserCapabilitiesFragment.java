@@ -1,4 +1,4 @@
-package uk.ac.bath.petmatch.Utils;
+package uk.ac.bath.petmatch.Fragments;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
