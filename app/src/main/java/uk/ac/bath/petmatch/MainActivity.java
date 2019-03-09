@@ -164,22 +164,6 @@ public class MainActivity extends BaseActivity
         generateLoggedUserView();
     }
 
-    public void displayNoLoginErrorAlert(){
-
-        AlertDialog.Builder errorAlert = new AlertDialog.Builder(this);
-        errorAlert.setMessage("Please log in to access My Capabilities");
-        errorAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        errorAlert.setTitle("Woof!");
-        errorAlert.setIcon(R.drawable.sad_dog);
-        errorAlert.create();
-        errorAlert.show();
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -201,13 +185,8 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_user_capabilities) {
 
-            if(loginService.isUserLoggedIn()) {
-                Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                        UserCapabilitiesActivity.class);
-                startActivity(startUserCapabilitiesIntent);
-            } else {
-                displayNoLoginErrorAlert();
-            }
+            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),UserCapabilitiesActivity.class);
+            startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {
 
