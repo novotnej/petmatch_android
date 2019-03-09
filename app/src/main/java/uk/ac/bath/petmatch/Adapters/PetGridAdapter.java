@@ -38,19 +38,20 @@ public class PetGridAdapter extends ArrayAdapter<Pet> {
 
         Pet pet = pets.get(position);
         ImageView petImageView;
-        //TextView petTitleView;
+        TextView petTitleView;
         if (pet != null) {
             petImageView = (ImageView) convertView.findViewById(R.id.gridImageView);
-            //petTitleView = (TextView) convertView.findViewById(R.id.petTitleView);
+            petTitleView = (TextView) convertView.findViewById(R.id.petTitleView);
             String id = "snape";
+            int resID;
             try {
-                int resID = (int) R.mipmap.class.getField(id).get(null);
+                resID = (int) R.mipmap.class.getField(id).get(null);
             } catch (Exception e) {
-                int resID = R.mipmap.snape;
+                resID = R.mipmap.snape;
             }
-
-            petImageView.setImageResource(R.mipmap.dumbledore);
-            //petTitleView.setText(pet.getTitle());
+            petImageView.setImageResource(resID);
+            //petImageView.setImageResource(R.mipmap.dumbledore);
+            petTitleView.setText(pet.getTitle());
             Log.d("dummy Pets listview", "title, description, shelter title"  + pet.getTitle() + pet.getDescription() + pet.getShelter().getTitle());
         }
         else {
