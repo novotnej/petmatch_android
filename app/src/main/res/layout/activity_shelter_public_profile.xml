@@ -7,6 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".ShelterPublicProfileActivity">
 
+    <TextView
+        android:id="@+id/shelter_address_description"
+        android:layout_width="60dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:background="@null"
+        android:ems="10"
+        android:text="@string/shelter_address_description"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shelter_introduction" />
+
+    <TextView
+        android:id="@+id/shelter_email_description"
+        android:layout_width="50dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="25dp"
+        android:background="@null"
+        android:ems="10"
+        android:text="@string/shelter_email_description"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shelter_address" />
+
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
@@ -39,11 +70,10 @@
 
     <EditText
         android:id="@+id/shelter_address"
-        android:layout_width="360dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/shelter_dummy_address_hint"
         android:inputType="textPostalAddress"
@@ -51,8 +81,6 @@
         android:textAlignment="textStart"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
@@ -71,19 +99,16 @@
 
     <EditText
         android:id="@+id/shelter_email"
-        android:layout_width="360dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="301dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/shelter_dummy_email_hint"
         android:inputType="textEmailAddress"
         android:text="@string/shelter_dummy_email"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shelter_address" />
 
     <TextView
@@ -107,12 +132,12 @@
         android:id="@+id/charity_no_description"
         android:layout_width="110dp"
         android:layout_height="27dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="64dp"
         android:background="@null"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/shelter_dummy_charity_no_description"
+        android:text="@string/shelter_charity_no_description"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="14sp"

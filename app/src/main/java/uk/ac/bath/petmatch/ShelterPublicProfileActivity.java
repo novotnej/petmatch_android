@@ -34,15 +34,9 @@ public class ShelterPublicProfileActivity extends BaseActivity {
         charityNumber.setInputType(InputType.TYPE_NULL);
         charityNumberDescription.setInputType(InputType.TYPE_NULL);
 
-        // get current shelter
+        // get current shelter and set all fields to match it.
         boolean isUserLoggedIn = loginService.isUserLoggedIn();
         if(isUserLoggedIn && (currentShelter = loginService.getLoggedInUser().getShelter()) != null) {
-
-//            System.out.println(currentShelter);
-//            System.out.println(currentShelter.getAddress());
-//            System.out.println(currentShelter.getCharityNumber());
-//            System.out.println(currentShelter.getDescription());
-//            System.out.println(currentShelter.getEmail());
 
             shelterTitle.setText(currentShelter.getTitle());
             shelterIntroduction.setText(currentShelter.getDescription());
