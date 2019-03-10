@@ -48,6 +48,8 @@
     <string name="shelter_dummy_picture">Picture of dog</string>
     <string name="shelter_dummy_address">Claverton Down, The Avenue, Bath BA2 7AZ</string>
     <string name="shelter_dummy_phone">01225 787321</string>
+    <string name="shelter_dummy_charity_no_description">Charity number:</string>
+    <string name="shelter_dummy_charity_no">#666</string>
     <string name="shelter_dummy_email">rehoming@bcdh.org.uk</string>
     <string name="shelter_dummy_phone_hint">enter phone number here</string>
     <string name="shelter_dummy_address_hint">enter address here</string>

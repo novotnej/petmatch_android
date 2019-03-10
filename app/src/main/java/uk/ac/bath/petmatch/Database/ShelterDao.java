@@ -11,6 +11,15 @@ public class ShelterDao extends RuntimeExceptionDao {
         super(dao);
     }
 
+    public User findById(String shelterId) {
+        List<User> results = this.queryForEq("id", shelterId);
+        if (results.size() == 0) {
+            return null;
+        } else {
+            return results.get(0);
+        }
+    }
+
     private ArrayList<Shelter> convertListToArrayList(List<Shelter> list) {
         ArrayList<Shelter> arrayList = new ArrayList<>(list.size());
         arrayList.addAll(list);
