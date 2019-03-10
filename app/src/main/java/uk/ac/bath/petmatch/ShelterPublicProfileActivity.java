@@ -22,30 +22,33 @@ public class ShelterPublicProfileActivity extends BaseActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Shelter Profile");
 
-        TextView shelterIntroduction = (TextView) findViewById(R.id.shelter_introduction);
         TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title);
+        TextView shelterIntroduction = (TextView) findViewById(R.id.shelter_introduction);
         EditText shelterAddress = (EditText)findViewById(R.id.shelter_address);
         EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
-        EditText charityNumber = (EditText)findViewById(R.id.shelter_phone);
+        EditText charityNumber = (EditText)findViewById(R.id.shelter_charity_no);
+        EditText charityNumberDescription = (EditText)findViewById(R.id.charity_no_description);
 
         shelterAddress.setInputType(InputType.TYPE_NULL);
         shelterEmail.setInputType(InputType.TYPE_NULL);
         charityNumber.setInputType(InputType.TYPE_NULL);
+        charityNumberDescription.setInputType(InputType.TYPE_NULL);
 
         // get current shelter
         boolean isUserLoggedIn = loginService.isUserLoggedIn();
         if(isUserLoggedIn && (currentShelter = loginService.getLoggedInUser().getShelter()) != null) {
 
-            System.out.println(currentShelter);
-            System.out.println(currentShelter.getAddress());
-            System.out.println(currentShelter.getCharityNumber());
-            System.out.println(currentShelter.getDescription());
-            System.out.println(currentShelter.getEmail());
+//            System.out.println(currentShelter);
+//            System.out.println(currentShelter.getAddress());
+//            System.out.println(currentShelter.getCharityNumber());
+//            System.out.println(currentShelter.getDescription());
+//            System.out.println(currentShelter.getEmail());
 
-
-//            shelterAddress.setText(currentShelter.getAddress());
-//            shelterEmail.setText(currentShelter.getEmail());
-//            charityNumber.setText(currentShelter.getCharityNumber());
+            shelterTitle.setText(currentShelter.getTitle());
+            shelterIntroduction.setText(currentShelter.getDescription());
+            shelterAddress.setText(currentShelter.getAddress());
+            shelterEmail.setText(currentShelter.getEmail());
+            charityNumber.setText(currentShelter.getCharityNumber());
         }
     }
 }
