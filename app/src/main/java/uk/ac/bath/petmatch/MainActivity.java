@@ -2,8 +2,8 @@ package uk.ac.bath.petmatch;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -114,6 +115,8 @@ public class MainActivity extends BaseActivity
                 petClicked = getHelper().pets.queryForId(petClicked.getId());
                 Log.i("Clicked pet", "" + petClicked.getTitle());
                 //TODO - perhaps open a new activity or something
+                Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
+                startActivity(petProfIntent);
             }
         });
         UIUtils.setListViewHeightBasedOnItems(listView);
@@ -178,6 +181,8 @@ public class MainActivity extends BaseActivity
         Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_camera) {
+            Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+            startActivity(petAddIntent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 

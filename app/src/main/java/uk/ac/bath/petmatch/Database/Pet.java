@@ -17,6 +17,8 @@ public class Pet extends CommonModel {
     private Shelter shelter;
     @DatabaseField(foreign = true, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 3, canBeNull = true)
     private PetBreed breed;
+    @DatabaseField
+    private String image;
 
     public Pet() {
         // ORMLite needs a no-arg constructor
@@ -37,6 +39,24 @@ public class Pet extends CommonModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String[] getAvailableImages() {
+        String[] images = new String[5];
+        images[0] = "snape";
+        images[1] = "malfoy";
+        images[2] = "hagrid";
+        images[3] = "mcgonagall";
+        images[4] = "dumbledore";
+        return images;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getTitle() {
