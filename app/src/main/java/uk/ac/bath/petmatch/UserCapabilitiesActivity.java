@@ -1,27 +1,71 @@
 package uk.ac.bath.petmatch;
 
+import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
 import java.util.Objects;
 
-import uk.ac.bath.petmatch.Utils.UserCapabilitiesFragment;
+import uk.ac.bath.petmatch.Database.User;
+import uk.ac.bath.petmatch.Database.UserProperties;
+import uk.ac.bath.petmatch.Database.UserPropertiesDao;
+import uk.ac.bath.petmatch.Fragments.UserCapabilitiesFragment;
 
+/**
+ * Activity should only run when user is logged in.
+ */
 public class UserCapabilitiesActivity extends BaseActivity {
+
+    private UserCapabilitiesFragment userCapabilitiesFragment;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_capabilities);
-
         Objects.requireNonNull(getSupportActionBar()).setTitle("My Capabilities");
 
-        if(findViewById(R.id.fragment_container) != null) {
+        // get user properties
+        currentUser = loginService.getLoggedInUser();
+        UserPropertiesDao userPropertiesDao = db.userProperties;
+        UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
 
-            if(savedInstanceState != null ) {
+        // Create new properties entry in database for user if they do not have one already.
+        if(userProperties == null) {
 
-                return;
-            }
-            getFragmentManager().beginTransaction().add(R.id.fragment_container, new UserCapabilitiesFragment()).commit();
+            UserProperties newUserCapabilities = new UserProperties(false, false,
+                    false, false, false, currentUser);
+            userPropertiesDao.create(newUserCapabilities);
         }
+        userCapabilitiesFragment = new UserCapabilitiesFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, userCapabilitiesFragment).commit();
+    }
+
+    /**
+     * Updates the given user's capabilities/properties in the database.
+     */
+    public void updateUserCapabilities() {
+
+        currentUser = loginService.getLoggedInUser();
+        UserPropertiesDao userPropertiesDao = db.userProperties;
+        UserProperties userProperties = userPropertiesDao.findByUserId(currentUser.getId());
+        SharedPreferences preferences = Objects.requireNonNull(userCapabilitiesFragment.getPreferenceManager().getSharedPreferences());
+
+        userProperties.setHasKids(preferences.getBoolean("pref_kids", false));
+        userProperties.setHasCatAllergies(preferences.getBoolean("pref_cat_allergy", false));
+        userProperties.setHasDogAllergies(preferences.getBoolean("pref_dog_allergy", false));
+        userProperties.setGreenAreas(preferences.getBoolean("pref_garden", false));
+        userProperties.setFreeTime(preferences.getBoolean("pref_exercise", false));
+        userPropertiesDao.update(userProperties);
+    }
+
+    public UserProperties getUserProperties(){
+
+        currentUser = loginService.getLoggedInUser();
+        UserPropertiesDao userPropertiesDao = db.userProperties;
+        return userPropertiesDao.findByUserId(currentUser.getId());
     }
 }

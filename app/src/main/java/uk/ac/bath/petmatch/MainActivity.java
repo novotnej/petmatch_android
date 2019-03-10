@@ -1,11 +1,13 @@
 package uk.ac.bath.petmatch;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -69,6 +71,8 @@ public class MainActivity extends BaseActivity
         TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
         TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
 
             if (loginService.isUserLoggedIn()) {
@@ -78,15 +82,18 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setText(loginService.getLoggedInUser().getName());
                 loggedUserEmail.setVisibility(View.VISIBLE);
                 loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
+                Menu nav_Menu = navigationView.getMenu();
+                nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
                 loggedUserEmail.setVisibility(View.GONE);
                 loggedUserName.setVisibility(View.GONE);
+                Menu nav_Menu = navigationView.getMenu();
+                nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
             }
         }
     }
-
 
     private void loadDummyPetList() {
         PetDao pets = getHelper().pets;
@@ -186,11 +193,9 @@ public class MainActivity extends BaseActivity
                     ShelterProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_user_capabilities) {
 
-            // handles user capabilities
-            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                    UserCapabilitiesActivity.class);
+            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),UserCapabilitiesActivity.class);
             startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {

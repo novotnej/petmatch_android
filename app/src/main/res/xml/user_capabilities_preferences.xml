@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <CheckBoxPreference
         android:key="pref_kids"
         android:title="@string/kids_pref"
         android:summary="@string/kids_pref_summary"
+        app:iconSpaceReserved="false"
         android:defaultValue="false"/>
 
     <CheckBoxPreference
         android:key="pref_cat_allergy"
         android:title="@string/cat_allergy_pref"
         android:summary="@string/cat_allergy_pref_summary"
+        app:iconSpaceReserved="false"
         android:defaultValue="false"/>
 
     <CheckBoxPreference
         android:key="pref_dog_allergy"
         android:title="@string/dog_allergy_pref"
         android:summary="@string/dog_allergy_pref_summary"
+        app:iconSpaceReserved="false"
         android:defaultValue="false"/>
 
     <CheckBoxPreference
-    android:key="pref_garden"
-    android:title="@string/garden_pref"
-    android:summary="@string/garden_pref_summary"
-    android:defaultValue="false"/>
+        android:key="pref_garden"
+        android:title="@string/garden_pref"
+        android:summary="@string/garden_pref_summary"
+        app:iconSpaceReserved="false"
+        android:defaultValue="false"/>
 
     <CheckBoxPreference
         android:key="pref_exercise"
         android:title="@string/exercise_pref"
         android:summary="@string/exercise_pref_summary"
+        app:iconSpaceReserved="false"
         android:defaultValue="false"/>
 
 </PreferenceScreen>
