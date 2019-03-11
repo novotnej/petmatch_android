@@ -1,6 +1,7 @@
 package uk.ac.bath.petmatch;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -25,6 +26,12 @@ public abstract class BaseActivity<H extends OrmLiteSqliteOpenHelper> extends Ap
     protected volatile DbHelper db;
 
     protected volatile LoginService loginService;
+
+    public final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
+
+
+
+
 
     /**
      * Get a helper for this action.

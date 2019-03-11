@@ -1,11 +1,16 @@
 package uk.ac.bath.petmatch;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -46,11 +51,12 @@ public class MainActivity extends BaseActivity
     TextView distanceValueTextView;
     String spinnerBreeds[];
 
-    String userGps;
+    double userLocationLat, userLocationLon;
     int filterDistance;
     String filterPetType;
     PetBreed filterPetBreed;
-
+    public static final double DEFAULT_LOCATION_LAT = 51.389757;
+    public static final double DEFAULT_LOCATION_LON = -2.363708;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +82,6 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
 
         //loadDummyPetList();
@@ -136,7 +141,7 @@ public class MainActivity extends BaseActivity
                     case R.id.radioButtonDogs:
                         filterPetType = PetBreed.TYPE_DOG;
                         Log.d("Pet breed type", "dogs" +
-                        "");
+                                "");
                         break;
                 }
                 reloadPetsList();
@@ -146,6 +151,48 @@ public class MainActivity extends BaseActivity
 
         setUpPetBreedSpinner();
         setUpDistanceSeekBar();
+        getUserLastKnownLocation();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getUserLastKnownLocation();
+                } else {
+                    this.userLocationLat = DEFAULT_LOCATION_LAT;
+                    this.userLocationLon = DEFAULT_LOCATION_LON;
+                    ToastAdapter.toastMessage(this, "We were unable to determine your location. Results may not be accurate.");
+                }
+                return;
+            }
+        }
+    }
+
+    //FIXME - not sure but does not actually return the current location, might be just because of the emulator
+    protected void getUserLastKnownLocation() {
+        LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+            return;
+        } else {
+            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (location != null) {
+                this.userLocationLat = location.getLatitude();
+                this.userLocationLon = location.getLongitude();
+            } else {
+                this.userLocationLat = DEFAULT_LOCATION_LAT;
+                this.userLocationLon = DEFAULT_LOCATION_LON;
+            }
+        }
     }
 
     protected void setUpDistanceSeekBar() {
@@ -153,11 +200,11 @@ public class MainActivity extends BaseActivity
         distanceValueTextView = findViewById(R.id.searchDistanceValue);
 
         distanceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-           @Override
-           public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                distanceValueTextView.setText("" + progress + " km");
                filterDistance = progress;
-           }
+            }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
