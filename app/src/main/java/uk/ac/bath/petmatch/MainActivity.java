@@ -113,6 +113,19 @@ public class MainActivity extends BaseActivity
     private void createPetGridView(final GridView gridView, ArrayList<Pet> pets) {
         PetGridAdapter adapter = new PetGridAdapter(this, R.layout.grid_item, pets);
         gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Pet petClicked = (Pet) adapterView.getItemAtPosition(position);
+                petClicked = getHelper().pets.queryForId(petClicked.getId());
+                Log.i("Clicked pet", "" + petClicked.getTitle());
+                //TODO - perhaps open a new activity or something
+                Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
+                petProfIntent.putExtra("The Pet", petClicked.getId());
+                startActivity(petProfIntent);
+            }
+        });
+        //UIUtils.setListViewHeightBasedOnItems(gridView);
     }
 
     @Override
