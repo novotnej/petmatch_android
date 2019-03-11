@@ -17,7 +17,9 @@ public class Shelter extends CommonModel {
     @DatabaseField
     private String address;
     @DatabaseField
-    private String gps;
+    private double lat; //latitude
+    @DatabaseField
+    private double lon; //longitude
     @DatabaseField
     private String email;
 
@@ -31,10 +33,15 @@ public class Shelter extends CommonModel {
         this.description = description;
         this.charityNumber = charityNumber;
         this.address = address;
-        this.gps = gps;
+        setLatLonFromGps(gps);
         this.email = email;
     }
 
+    private void setLatLonFromGps(String gps) {
+        String[] latlon = gps.split(",");
+        this.lat = Double.parseDouble(latlon[0]);
+        this.lon = Double.parseDouble(latlon[1]);
+    }
 
     @Override
     public String getId() {
@@ -78,11 +85,11 @@ public class Shelter extends CommonModel {
     }
 
     public String getGps() {
-        return gps;
+        return this.lat + "," + this.lon;
     }
 
     public void setGps(String gps) {
-        this.gps = gps;
+        this.setLatLonFromGps(gps);
     }
 
     public String getEmail() {
@@ -91,5 +98,21 @@ public class Shelter extends CommonModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 }

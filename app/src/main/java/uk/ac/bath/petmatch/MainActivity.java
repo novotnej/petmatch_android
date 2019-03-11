@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity
     String spinnerBreeds[];
 
     double userLocationLat, userLocationLon;
-    int filterDistance;
+    int filterDistance = 5;
     String filterPetType;
     PetBreed filterPetBreed;
     public static final double DEFAULT_LOCATION_LAT = 51.389757;
@@ -204,6 +204,7 @@ public class MainActivity extends BaseActivity
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                distanceValueTextView.setText("" + progress + " km");
                filterDistance = progress;
+               reloadPetsList();
             }
 
             @Override
@@ -265,20 +266,20 @@ public class MainActivity extends BaseActivity
 
     protected void reloadPetsList() {
         if (filterPetBreed != null) {
-            loadPetsByFilter(filterPetType, filterPetBreed.getId());
+            loadPetsByFilter(filterPetType, filterPetBreed.getId(), userLocationLat, userLocationLon, filterDistance);
         } else {
-            loadPetsByFilter(filterPetType, null);
+            loadPetsByFilter(filterPetType, null, userLocationLat, userLocationLon, filterDistance);
         }
     }
 
-    private void loadPetsByFilter(String breedType, String petBreedId) {
+    private void loadPetsByFilter(String breedType, String petBreedId, double lat, double lon, int distance) {
         UserProperties userProperties = null;
         if (loginService.isUserLoggedIn()) {
             userProperties = getHelper().userProperties.loadByUser(loginService.getLoggedInUser());
         }
-        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, userProperties);
+        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, userProperties, lat, lon, distance);
 
-        if (dummyPetList.size() == 0) {
+        if (dummyPetList == null || dummyPetList.size() == 0) {
             ToastAdapter.toastMessage(this, "No pets fit your filter");
         } else {
             this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);

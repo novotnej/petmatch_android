@@ -27,7 +27,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -72,7 +72,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     public void generateSampleData() {
         Log.i("DBHelper", "generating sample data");
         Shelter bath, dummyBath;
-        dummyBath = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456789", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com");
+        dummyBath = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456789", "Radiator Springs, BA1 1SU", "51.414322, -2.502895", "spam@tobedeleted.com");
         bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk");
 
         PetBreed tabby, russianBlue, ragdoll, siamese, japbobtail, britishshorthair, burmilla, colorhair, husky, labrador, lhasa, pekinese, beagle, airedale, chihuahua, dachshund;
