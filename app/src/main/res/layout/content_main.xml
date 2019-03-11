@@ -13,19 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="75dp">
 
-        <android.support.constraint.ConstraintLayout
+        <RelativeLayout
             android:id="@+id/search_form"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="150dp">
 
 
             <RadioGroup
                 android:id="@+id/radioGroupPetType"
                 android:layout_width="101dp"
                 android:layout_height="87dp"
-                tools:layout_editor_absoluteX="23dp"
+                tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="48dp">
 
                 <RadioButton
@@ -60,10 +61,39 @@
 
             <Spinner
                 android:id="@+id/pet_breed_spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="174dp"
+                android:layout_height="58dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp" />
 
-        </android.support.constraint.ConstraintLayout>
+            <SeekBar
+                android:id="@+id/searchDistanceSeekbar"
+                android:min="5"
+                android:max="100"
+                android:progress="5"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="243dp"
+                android:layout_height="85dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="57dp"
+
+                android:layout_marginBottom="0dp" />
+
+            <TextView
+                android:id="@+id/searchDistanceValue"
+                android:layout_width="67dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="32dp"
+                android:layout_toStartOf="@+id/searchDistanceSeekbar"
+                android:text="5" />
+
+
+        </RelativeLayout>
 
         <ListView
             android:id="@+id/dummy_pets_list"

@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,8 +42,12 @@ public class MainActivity extends BaseActivity
     ArrayList<Pet> dummyPetList;
     RadioGroup breedTypeRadioGroup;
     Spinner petBreedSpinner;
+    SeekBar distanceSeekBar;
+    TextView distanceValueTextView;
     String spinnerBreeds[];
 
+    String userGps;
+    int filterDistance;
     String filterPetType;
     PetBreed filterPetBreed;
 
@@ -140,6 +145,30 @@ public class MainActivity extends BaseActivity
         });
 
         setUpPetBreedSpinner();
+        setUpDistanceSeekBar();
+    }
+
+    protected void setUpDistanceSeekBar() {
+        distanceSeekBar = findViewById(R.id.searchDistanceSeekbar);
+        distanceValueTextView = findViewById(R.id.searchDistanceValue);
+
+        distanceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+           @Override
+           public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+               distanceValueTextView.setText("" + progress + " km");
+               filterDistance = progress;
+           }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     /**
