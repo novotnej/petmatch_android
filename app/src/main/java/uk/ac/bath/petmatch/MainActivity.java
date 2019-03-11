@@ -63,7 +63,6 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //loadDummyPetList();
         loadPetGrid();
         generateLoggedUserView();
 
@@ -103,6 +102,7 @@ public class MainActivity extends BaseActivity
     private void loadPetGrid() {
         PetDao pets = getHelper().pets;
         petGrid = pets.getDummy();
+        int hello = petGrid.size();
         if (petGrid.size() == 0) {
             ToastAdapter.toastMessage(this, "Database is empty");
         } else {
