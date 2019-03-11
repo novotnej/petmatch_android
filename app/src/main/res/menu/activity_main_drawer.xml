@@ -11,15 +11,17 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Gallery"
+            android:visible="false" />
         <item
             android:id="@+id/nav_shelter_profile"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Shelter Profile" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_user_capabilities"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:visible="false"
+            android:title="My Capabilities" />
     </group>
 
     <item android:title="Communicate">
