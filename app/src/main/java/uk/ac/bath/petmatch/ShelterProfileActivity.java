@@ -14,3 +14,4 @@ public class ShelterProfileActivity extends BaseActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Shelter Profile");
     }
 }
+

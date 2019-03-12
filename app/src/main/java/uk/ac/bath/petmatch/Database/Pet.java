@@ -46,7 +46,7 @@ public class Pet extends CommonModel {
         images[0] = "snape";
         images[1] = "malfoy";
         images[2] = "hagrid";
-        images[3] = "mcgonagall";
+        images[3] = "mcgonagoll";
         images[4] = "dumbledore";
         return images;
     }
