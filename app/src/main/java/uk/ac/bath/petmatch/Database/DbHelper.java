@@ -27,7 +27,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -97,23 +97,28 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
 
         String password = PasswordUtils.generateSecurePassword("1234", PasswordUtils.getSalt(40));
-        User user, shelterUser; //TODO - when Login process created, add encrypted password here
+        User user, shelterUser;
         user = new User("Dummy user", "user@petmatch.com", password, null);
         shelterUser = new User("Shelter user", "shelter@petmatch.com", password, dummyBath);
 
         Pet goodBoy, roz, artem, jan, josh, mcGonagall, hagrid, malfoy, dumbledore, snape;
-        // cats
+        // dogs
         goodBoy = new Pet("Good boy", "He's the goodest boy", dummyBath, labrador);
         roz = new Pet("Roz", "Is good at herding cows", bath, husky);
         artem = new Pet("Artem", "Needs exercising often", dummyBath, beagle);
         jan = new Pet("Jan", "Only eats pedigree food", bath, airedale);
         josh = new Pet("Josh", "Likes it when you play soundtracks", dummyBath, chihuahua);
-        // dogs
+        // cats
         mcGonagall = new Pet("Minerva McGonagall", "Have a biscuit, Potter.", bath, tabby);
+        mcGonagall.setImage("mcgonagoll");
         hagrid = new Pet("Hagrid", "Very hairy", dummyBath, ragdoll);
+        hagrid.setImage("hagrid");
         malfoy = new Pet("Draco Malfoy", "Weaselike in appearance", bath, siamese);
+        malfoy.setImage("malfoy");
         dumbledore = new Pet("Albus Percival Wulfric Brian Dumbledore", "Don't pity the dead, pity the living", dummyBath, britishshorthair);
+        dumbledore.setImage("dumbledore");
         snape = new Pet("Severus Snape", "Always", bath, burmilla);
+        snape.setImage("snape");
 
         FavoritePet favoritePet = new FavoritePet(goodBoy, user);
 
