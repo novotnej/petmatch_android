@@ -1,9 +1,6 @@
 package uk.ac.bath.petmatch.Database;
 
-
-import java.io.Serializable;
-
-public class CommonModel implements Serializable {
+public class CommonModel {
     protected transient String id; //has to be transient so it is not included in GSON (API use), only the custom implementations
 
     public String getId() {
