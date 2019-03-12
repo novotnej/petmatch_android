@@ -27,7 +27,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "petmatch.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     public PetDao pets;
     public PetBreedDao petBreeds;
@@ -97,7 +97,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
 
         String password = PasswordUtils.generateSecurePassword("1234", PasswordUtils.getSalt(40));
-        User user, shelterUser; //TODO - when Login process created, add encrypted password here
+        User user, shelterUser;
         user = new User("Dummy user", "user@petmatch.com", password, null);
         shelterUser = new User("Shelter user", "shelter@petmatch.com", password, dummyBath);
 

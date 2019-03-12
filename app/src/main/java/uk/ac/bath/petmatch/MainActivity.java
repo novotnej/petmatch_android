@@ -1,17 +1,14 @@
 package uk.ac.bath.petmatch;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,22 +18,18 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import uk.ac.bath.petmatch.Adapters.DummyPetsListAdapter;
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
-import uk.ac.bath.petmatch.Utils.UIUtils;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //ArrayList<Pet> dummyPetList;
     ArrayList<Pet> petGrid;
 
     @Override
@@ -119,13 +112,11 @@ public class MainActivity extends BaseActivity
                 Pet petClicked = (Pet) adapterView.getItemAtPosition(position);
                 petClicked = getHelper().pets.queryForId(petClicked.getId());
                 Log.i("Clicked pet", "" + petClicked.getTitle());
-                //TODO - perhaps open a new activity or something
                 Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
                 petProfIntent.putExtra("The Pet", petClicked.getId());
                 startActivity(petProfIntent);
             }
         });
-        //UIUtils.setListViewHeightBasedOnItems(gridView);
     }
 
     @Override
@@ -163,10 +154,6 @@ public class MainActivity extends BaseActivity
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onLoginButtonClicked(View view) {
-        Log.d("Login", "attempt");
-        /*if (loginService.login("user@petmatch.com", "1234") != null) {
-            generateLoggedUserView();
-        }*/
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
