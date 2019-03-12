@@ -11,10 +11,10 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -29,14 +29,12 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.DummyPetsListAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
-import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 import uk.ac.bath.petmatch.Utils.UIUtils;
@@ -44,7 +42,7 @@ import uk.ac.bath.petmatch.Utils.UIUtils;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ArrayList<Pet> dummyPetList;
+    ArrayList<Pet> pets;
     RadioGroup breedTypeRadioGroup;
     Spinner petBreedSpinner;
     SeekBar distanceSeekBar;
@@ -83,8 +81,6 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        //loadDummyPetList();
         processSearchFilter();
         reloadPetsList();
         generateLoggedUserView();
@@ -101,6 +97,8 @@ public class MainActivity extends BaseActivity
         TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
         TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
 
             if (loginService.isUserLoggedIn()) {
@@ -110,11 +108,15 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setText(loginService.getLoggedInUser().getName());
                 loggedUserEmail.setVisibility(View.VISIBLE);
                 loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
+                Menu nav_Menu = navigationView.getMenu();
+                nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
                 loggedUserEmail.setVisibility(View.GONE);
                 loggedUserName.setVisibility(View.GONE);
+                Menu nav_Menu = navigationView.getMenu();
+                nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
             }
         }
     }
@@ -277,23 +279,12 @@ public class MainActivity extends BaseActivity
         if (loginService.isUserLoggedIn()) {
             userProperties = getHelper().userProperties.loadByUser(loginService.getLoggedInUser());
         }
-        dummyPetList = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, userProperties, lat, lon, distance);
+        pets = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, userProperties, lat, lon, distance);
 
-        if (dummyPetList == null || dummyPetList.size() == 0) {
+        if (pets == null || pets.size() == 0) {
             ToastAdapter.toastMessage(this, "No pets fit your filter");
         } else {
-            this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);
-        }
-    }
-
-
-    private void loadDummyPetList() {
-        PetDao pets = getHelper().pets;
-        dummyPetList = pets.getDummy();
-        if (dummyPetList.size() == 0) {
-            ToastAdapter.toastMessage(this, "Databse is empty");
-        } else {
-            this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), dummyPetList);
+            this.createDummyPetsListView((ListView) findViewById(R.id.dummy_pets_list), pets);
         }
     }
 
@@ -350,9 +341,6 @@ public class MainActivity extends BaseActivity
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onLoginButtonClicked(View view) {
         Log.d("Login", "attempt");
-        /*if (loginService.login("user@petmatch.com", "1234") != null) {
-            generateLoggedUserView();
-        }*/
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -364,7 +352,6 @@ public class MainActivity extends BaseActivity
         generateLoggedUserView();
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -385,11 +372,9 @@ public class MainActivity extends BaseActivity
                     ShelterProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_user_capabilities) {
 
-            // handles user capabilities
-            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),
-                    UserCapabilitiesActivity.class);
+            Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),UserCapabilitiesActivity.class);
             startActivity(startUserCapabilitiesIntent);
 
         } else if (id == R.id.nav_share) {
