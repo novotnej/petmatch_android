@@ -1,6 +1,64 @@
 #
-# generated on 2019/03/08 10:41:46
+# generated on 2019/03/11 04:39:55
 #
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.FavoritePet
+tableName=favorite_pets
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=pet
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=user
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=uk.ac.bath.petmatch.Database.Pet
+tableName=pets
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=shelter
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=3
+# --field-end--
+# --field-start--
+fieldName=breed
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=3
+# --field-end--
+# --field-start--
+fieldName=image
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
 # --table-start--
 dataClass=uk.ac.bath.petmatch.Database.PetBreed
 tableName=pet_breeds
@@ -59,71 +117,8 @@ fieldName=gps
 # --field-start--
 fieldName=email
 # --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.Pet
-tableName=pets
-# --table-fields-start--
 # --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=title
-# --field-end--
-# --field-start--
-fieldName=description
-# --field-end--
-# --field-start--
-fieldName=shelter
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=3
-# --field-end--
-# --field-start--
-fieldName=breed
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=3
-# --field-end--
-# --field-start--
-fieldName=image
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=uk.ac.bath.petmatch.Database.UserProperties
-tableName=user_properties
-# --table-fields-start--
-# --field-start--
-fieldName=id
-id=true
-# --field-end--
-# --field-start--
-fieldName=hasDogAllergies
-# --field-end--
-# --field-start--
-fieldName=hasCatAllergies
-# --field-end--
-# --field-start--
-fieldName=hasKids
-# --field-end--
-# --field-start--
-fieldName=freeTime
-# --field-end--
-# --field-start--
-fieldName=greenAreas
-# --field-end--
-# --field-start--
-fieldName=user
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
+fieldName=website
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -155,19 +150,27 @@ maxForeignAutoRefreshLevel=2
 # --table-end--
 #################################
 # --table-start--
-dataClass=uk.ac.bath.petmatch.Database.FavoritePet
-tableName=favorite_pets
+dataClass=uk.ac.bath.petmatch.Database.UserProperties
+tableName=user_properties
 # --table-fields-start--
 # --field-start--
 fieldName=id
 id=true
 # --field-end--
 # --field-start--
-fieldName=pet
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
+fieldName=hasDogAllergies
+# --field-end--
+# --field-start--
+fieldName=hasCatAllergies
+# --field-end--
+# --field-start--
+fieldName=hasKids
+# --field-end--
+# --field-start--
+fieldName=freeTime
+# --field-end--
+# --field-start--
+fieldName=greenAreas
 # --field-end--
 # --field-start--
 fieldName=user
