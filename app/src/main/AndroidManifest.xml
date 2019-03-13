@@ -24,8 +24,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".PetProfileActivity"></activity>
-        <activity android:name=".UserCapabilitiesActivity"></activity>
         <activity android:name=".ShelterPublicProfileActivity"></activity>
         <activity
             android:name=".PetProfileActivity"
