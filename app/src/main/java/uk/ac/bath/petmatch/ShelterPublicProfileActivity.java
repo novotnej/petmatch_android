@@ -67,7 +67,10 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
                 .findFragmentById(R.id.shelter_map);
         ViewGroup.LayoutParams params = mapFragment.getView().getLayoutParams();
         params.height = 850;
+        mapFragment.setHasOptionsMenu(true);
+        mapFragment.setMenuVisibility(true);
         mapFragment.getView().setLayoutParams(params);
+        mapFragment.setMenuVisibility(true);
         ShelterDao shelterDao = db.shelters;
         currentShelter = shelterDao.findByTitle("Bath Cats and dogs home");
 
