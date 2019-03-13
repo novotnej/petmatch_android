@@ -2,6 +2,7 @@ package uk.ac.bath.petmatch;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.method.KeyListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,6 +15,10 @@ public class ShelterPublicProfileActivity extends BaseActivity {
 
     private Shelter currentShelter;
     private User currentUser;
+    private KeyListener listenerAddress;
+    private KeyListener listenerEmail;
+    private KeyListener listenerCharityNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +31,17 @@ public class ShelterPublicProfileActivity extends BaseActivity {
         TextView shelterIntroduction = (TextView) findViewById(R.id.shelter_introduction);
         EditText shelterAddress = (EditText)findViewById(R.id.shelter_address);
         EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
-        EditText charityNumber = (EditText)findViewById(R.id.shelter_charity_no);
+        EditText shelterCharityNumber = (EditText)findViewById(R.id.shelter_charity_no);
 
+        // assign listeners to the variables to be able to make the fields editable later.
+        listenerAddress = shelterAddress.getKeyListener();
+        listenerEmail = shelterEmail.getKeyListener();
+        listenerCharityNumber = shelterCharityNumber.getKeyListener();
+
+        // set the listeners to null making the fields uneditable.
         shelterAddress.setKeyListener(null);
         shelterEmail.setKeyListener(null);
-        charityNumber.setKeyListener(null);
+        shelterCharityNumber.setKeyListener(null);
 
         // get current shelter and set all fields to match it.
         boolean isUserLoggedIn = loginService.isUserLoggedIn();
@@ -40,7 +51,19 @@ public class ShelterPublicProfileActivity extends BaseActivity {
             shelterIntroduction.setText(currentShelter.getDescription());
             shelterAddress.setText(currentShelter.getAddress());
             shelterEmail.setText(currentShelter.getEmail());
-            charityNumber.setText(currentShelter.getCharityNumber());
+            shelterCharityNumber.setText(currentShelter.getCharityNumber());
         }
+    }
+
+    public KeyListener getListenerAddress() {
+        return listenerAddress;
+    }
+
+    public KeyListener getListenerEmail() {
+        return listenerEmail;
+    }
+
+    public KeyListener getListenerCharityNumber() {
+        return listenerCharityNumber;
     }
 }
