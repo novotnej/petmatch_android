@@ -41,6 +41,9 @@ public class PetAddActivity extends BaseActivity {
             @Override
             public void onClick(View arg0) {
 
+                //doesn't do anything for now
+
+
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -103,8 +106,9 @@ public class PetAddActivity extends BaseActivity {
 
                 Shelter dummyBath = (Shelter) shelters.queryForId(0);
 
-                PetBreed dummy = new PetBreed("dummy", PetBreed.TYPE_DOG, false, false, false, false, false);
+                PetBreed dummy = filterPetBreed;
                 Pet newPet = new Pet(name, email, dummyBath, dummy);
+                newPet.setImage("snape");
                 db.pets.create(newPet);
 
                 Log.d("import", "adding new pet");
