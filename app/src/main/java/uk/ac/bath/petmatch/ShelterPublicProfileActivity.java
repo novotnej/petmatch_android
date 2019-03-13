@@ -6,6 +6,8 @@ import android.text.method.KeyListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.MapView;
+
 import java.util.Objects;
 
 import uk.ac.bath.petmatch.Database.Shelter;
@@ -32,6 +34,7 @@ public class ShelterPublicProfileActivity extends BaseActivity {
         EditText shelterAddress = (EditText)findViewById(R.id.shelter_address);
         EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
         EditText shelterCharityNumber = (EditText)findViewById(R.id.shelter_charity_no);
+        MapView shelterMap = (MapView)findViewById(R.id.mapShelter);
 
         // assign listeners to the variables to be able to make the fields editable later.
         listenerAddress = shelterAddress.getKeyListener();
