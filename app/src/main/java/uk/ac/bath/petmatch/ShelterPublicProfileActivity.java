@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 import uk.ac.bath.petmatch.Database.Shelter;
+import uk.ac.bath.petmatch.Database.ShelterDao;
 import uk.ac.bath.petmatch.Database.User;
 
 public class ShelterPublicProfileActivity extends BaseActivity implements OnMapReadyCallback {
@@ -67,20 +68,17 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         ViewGroup.LayoutParams params = mapFragment.getView().getLayoutParams();
         params.height = 850;
         mapFragment.getView().setLayoutParams(params);
+        ShelterDao shelterDao = db.shelters;
+        currentShelter = shelterDao.findByTitle("Bath Cats and dogs home");
 
-        // get current shelter and set all fields to match it.
-        boolean isUserLoggedIn = loginService.isUserLoggedIn();
-        if(isUserLoggedIn && (currentShelter = loginService.getLoggedInUser().getShelter()) != null) {
+        mapFragment.getMapAsync(this);
 
-            mapFragment.getMapAsync(this);
-
-            shelterTitle.setText(currentShelter.getTitle());
-            shelterIntroduction.setText(currentShelter.getDescription());
-            shelterAddress.setText(currentShelter.getAddress());
-            shelterEmail.setText(currentShelter.getEmail());
-            shelterCharityNumber.setText(currentShelter.getCharityNumber());
-            shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
-        }
+        shelterTitle.setText(currentShelter.getTitle());
+        shelterIntroduction.setText(currentShelter.getDescription());
+        shelterAddress.setText(currentShelter.getAddress());
+        shelterEmail.setText(currentShelter.getEmail());
+        shelterCharityNumber.setText(currentShelter.getCharityNumber());
+        shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
     }
 
     public KeyListener getListenerAddress() {
