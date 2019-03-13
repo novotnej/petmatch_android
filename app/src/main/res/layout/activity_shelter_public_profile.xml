@@ -130,14 +130,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shelter_email_description" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapShelter"
-        android:layout_width="378dp"
-        android:layout_height="436dp"
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/shelter_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="390dp"
+        android:layout_height="437dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shelter_charity_no" />
+        app:layout_constraintTop_toBottomOf="@+id/shelter_charity_no"
+        app:layout_constraintVertical_bias="0.15"
+        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
+
 </android.support.constraint.ConstraintLayout>
