@@ -14,6 +14,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import uk.ac.bath.petmatch.Database.Shelter;
@@ -41,10 +44,6 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
         EditText shelterCharityNumber = (EditText)findViewById(R.id.shelter_charity_no);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.shelter_map);
-        mapFragment.getMapAsync(this);
-
         // assign listeners to the variables to be able to make the fields editable later.
         listenerAddress = shelterAddress.getKeyListener();
         listenerEmail = shelterEmail.getKeyListener();
@@ -64,6 +63,10 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
             shelterAddress.setText(currentShelter.getAddress());
             shelterEmail.setText(currentShelter.getEmail());
             shelterCharityNumber.setText(currentShelter.getCharityNumber());
+
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.shelter_map);
+            mapFragment.getMapAsync(this);
         }
     }
 
@@ -91,11 +94,18 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        // Add a marker in Sydney, Australia,
-        // and move the map's camera to the same location.
-        LatLng shelter_location = new LatLng(-33.852, 151.211);
+        List<String> gps_coordinates = Arrays.asList(currentShelter.getGps().split(",[ ]*"));
+//        System.out.println(gps_coordinates.size());
+//        System.out.println(gps_coordinates.get(0));
+//        System.out.println(gps_coordinates.get(1));
+
+        double latitude = Double.parseDouble(gps_coordinates.get(0));
+        double longitude = Double.parseDouble(gps_coordinates.get(1));
+
+        // Add a marker for the given shelter's coordinates and move the map's camera to the same location.
+        LatLng shelter_location = new LatLng(latitude, longitude);
         googleMap.addMarker(new MarkerOptions().position(shelter_location)
-                .title("Marker in Sydney"));
+                .title("Shelter"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(shelter_location));
     }
 }
