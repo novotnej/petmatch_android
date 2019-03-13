@@ -1,8 +1,11 @@
 package uk.ac.bath.petmatch;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.KeyListener;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -53,7 +56,9 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
 
         // set the listeners to null making the fields uneditable.
         shelterAddress.setKeyListener(null);
-        shelterEmail.setKeyListener(null);
+        shelterEmail.setFocusable(false);
+        shelterEmail.setLongClickable(true);
+        shelterEmail.setOnClickListener(emailClick);
         shelterCharityNumber.setKeyListener(null);
         shelterPhoneNumber.setKeyListener(null);
 
@@ -74,6 +79,7 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
             shelterAddress.setText(currentShelter.getAddress());
             shelterEmail.setText(currentShelter.getEmail());
             shelterCharityNumber.setText(currentShelter.getCharityNumber());
+            shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
         }
     }
 
@@ -118,4 +124,24 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         googleMap.animateCamera(CameraUpdateFactory.zoomIn());
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
     }
+
+    public final EditText.OnClickListener emailClick = new EditText.OnClickListener() {
+
+
+        @Override
+        public void onClick(View v) {
+
+            EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
+            Intent mailIntent = new Intent(Intent.ACTION_SENDTO);
+            mailIntent.setData(Uri.parse("mailto:"));
+            mailIntent.putExtra(Intent.EXTRA_EMAIL, shelterEmail.getText());
+            mailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
+            mailIntent.putExtra(Intent.EXTRA_TEXT, "");
+            if (mailIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mailIntent);
+            } else {
+                // no e-mail app installed
+            }
+        }
+    };
 }
