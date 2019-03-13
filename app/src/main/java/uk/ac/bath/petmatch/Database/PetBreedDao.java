@@ -11,6 +11,12 @@ public class PetBreedDao extends RuntimeExceptionDao {
         super(dao);
     }
 
+    public ArrayList<PetBreed> getDummy() {
+        return this.convertListToArrayList(
+                this.queryForAll()
+        );
+    }
+
     private ArrayList<PetBreed> convertListToArrayList(List<PetBreed> list) {
         ArrayList<PetBreed> arrayList = new ArrayList<>(list.size());
         arrayList.addAll(list);

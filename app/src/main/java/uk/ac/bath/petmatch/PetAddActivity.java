@@ -7,8 +7,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -47,6 +49,18 @@ public class PetAddActivity extends BaseActivity {
 
         });
 
+        Spinner spinner = (Spinner) findViewById(R.id.breeds_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        final ShelterDao shelters = getHelper().shelters;
+        PetBreedDao breeds = getHelper().petBreeds;
+        ArrayList<PetBreed> types = breeds.getDummy();
+        PetBreed[] breedsarray = (PetBreed[]) types.toArray();
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, breedsarray);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
         Button sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +71,7 @@ public class PetAddActivity extends BaseActivity {
                 final EditText emailField = (EditText) findViewById(R.id.descText);
                 String email = emailField.getText().toString();
 
-                ShelterDao shelters = getHelper().shelters;
+
                 Shelter dummyBath = (Shelter) shelters.queryForId(0);
 
                 PetBreed dummy = new PetBreed("dummy", PetBreed.TYPE_DOG, false, false, false, false, false);

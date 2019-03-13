@@ -4,18 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PetAddActivity"
-    tools:showIn="@layout/activity_pet_add">
-
-    <Button
-    android:id="@+id/imButton"
-    android:layout_width="fill_parent"
-    android:layout_height="200px"
-    android:layout_marginTop="36dp"
-    android:text="Add an image of your pet"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".PetProfileActivity">
 
     <EditText
         android:id="@+id/nameText"
@@ -40,10 +29,30 @@
 
     <Button
         android:id="@+id/sendButton"
+        android:layout_width="373dp"
+        android:layout_height="200px"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="636dp"
+        android:layout_marginBottom="19dp"
+        android:text="Add pet to db"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/breeds_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="559dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/imButton"
         android:layout_width="fill_parent"
         android:layout_height="200px"
-        android:layout_marginBottom="36dp"
-        android:text="Add pet to db"
+        android:layout_marginTop="112dp"
+        android:text="Add an image of your pet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
