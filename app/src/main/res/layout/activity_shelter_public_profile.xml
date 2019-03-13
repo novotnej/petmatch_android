@@ -128,7 +128,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
+    <TextView
         android:id="@+id/charity_no_description"
         android:layout_width="110dp"
         android:layout_height="27dp"
@@ -142,6 +142,7 @@
         android:textAllCaps="false"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shelter_email" />
 </android.support.constraint.ConstraintLayout>
