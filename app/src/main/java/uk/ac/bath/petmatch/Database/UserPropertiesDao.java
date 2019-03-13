@@ -25,4 +25,16 @@ public class UserPropertiesDao extends RuntimeExceptionDao {
         arrayList.addAll(list);
         return arrayList;
     }
+
+    public UserProperties loadByUser(User user) {
+        if (user != null) {
+            List<UserProperties> results = this.queryForEq("user_id", user.getId());
+            if (results.size() == 0) {
+                return null;
+            } else {
+                return results.get(0);
+            }
+        }
+        return null;
+    }
 }

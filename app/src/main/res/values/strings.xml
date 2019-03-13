@@ -6,14 +6,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_user_capabilities">My Settings</string>
 
     <!-- Strings related to user capabilities settings -->
 
-    <string name="pref_header_general">My Capabilities</string>
     <string name="user_capabilities_title">Please fill in the following questions <b>honestly</b>.
         \nYour answers will be used to find the perfect match for you and your future pet.</string>
-    <string name="user_capabilities_save_button">Save</string>
 
     <string name="kids_pref">Do you have kids living at home?</string>
     <string name="kids_pref_summary">
@@ -60,17 +57,30 @@
     <string name="shelter_dummy_address_hint">enter address here</string>
     <string name="shelter_dummy_email_hint">enter email here</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to Pet Grid -->
+    <string name="pet_grid_picture">This is a pet</string>
+    <string name="pet_grid_title">Pet title</string>
+
+    <!-- Strings related to Settings -->
     <string name="title_activity_login">Sign in</string>
+
+    <!-- My Capabilities Settings -->
+
+    <!-- Example settings for Data & Sync -->
+
+    <!-- Example settings for Notifications -->
+
+    <!-- Strings related to login -->
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+
+    <string name="radio_cats">Cats</string>
+    <string name="radio_dogs">Dogs</string>
+    <string name="radio_cats_and_dogs">Both</string>
 </resources>
