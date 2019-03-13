@@ -16,4 +16,5 @@ public class ShelterDao extends RuntimeExceptionDao {
         arrayList.addAll(list);
         return arrayList;
     }
+
 }

@@ -114,7 +114,6 @@ public class MainActivity extends BaseActivity
                 Pet petClicked = (Pet) adapterView.getItemAtPosition(position);
                 petClicked = getHelper().pets.queryForId(petClicked.getId());
                 Log.i("Clicked pet", "" + petClicked.getTitle());
-                //TODO - perhaps open a new activity or something
                 Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
                 petProfIntent.putExtra("The Pet", petClicked.getId());
                 startActivity(petProfIntent);

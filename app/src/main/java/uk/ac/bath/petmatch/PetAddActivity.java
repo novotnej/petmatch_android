@@ -10,12 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 import uk.ac.bath.petmatch.Database.DbHelper;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
 import uk.ac.bath.petmatch.Database.PetBreedDao;
 import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Database.Shelter;
+import uk.ac.bath.petmatch.Database.ShelterDao;
 
 public class PetAddActivity extends BaseActivity {
 
@@ -54,10 +57,11 @@ public class PetAddActivity extends BaseActivity {
                 final EditText emailField = (EditText) findViewById(R.id.descText);
                 String email = emailField.getText().toString();
 
-                Shelter whoCares = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456780", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com");
+                ShelterDao shelters = getHelper().shelters;
+                Shelter dummyBath = (Shelter) shelters.queryForId(0);
 
                 PetBreed dummy = new PetBreed("dummy", PetBreed.TYPE_DOG, false, false, false, false, false);
-                Pet newPet = new Pet(name, email, whoCares, dummy);
+                Pet newPet = new Pet(name, email, dummyBath, dummy);
                 db.pets.create(newPet);
 
                 Log.d("import", "adding new pet");
