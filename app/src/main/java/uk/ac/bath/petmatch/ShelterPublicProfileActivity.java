@@ -26,11 +26,10 @@ import uk.ac.bath.petmatch.Database.User;
 public class ShelterPublicProfileActivity extends BaseActivity implements OnMapReadyCallback {
 
     private Shelter currentShelter;
-    private User currentUser;
     private KeyListener listenerAddress;
     private KeyListener listenerEmail;
     private KeyListener listenerCharityNumber;
-
+    private KeyListener listenerPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +43,19 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         EditText shelterAddress = (EditText)findViewById(R.id.shelter_address);
         EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
         EditText shelterCharityNumber = (EditText)findViewById(R.id.shelter_charity_no);
+        EditText shelterPhoneNumber = (EditText)findViewById(R.id.shelter_phone);
 
         // assign listeners to the variables to be able to make the fields editable later.
         listenerAddress = shelterAddress.getKeyListener();
         listenerEmail = shelterEmail.getKeyListener();
         listenerCharityNumber = shelterCharityNumber.getKeyListener();
+        listenerPhoneNumber = shelterPhoneNumber.getKeyListener();
 
         // set the listeners to null making the fields uneditable.
         shelterAddress.setKeyListener(null);
         shelterEmail.setKeyListener(null);
         shelterCharityNumber.setKeyListener(null);
+        shelterPhoneNumber.setKeyListener(null);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.shelter_map);
@@ -85,6 +87,10 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
 
     public KeyListener getListenerCharityNumber() {
         return listenerCharityNumber;
+    }
+
+    public KeyListener getListenerPhoneNumber() {
+        return listenerPhoneNumber;
     }
 
     /**
