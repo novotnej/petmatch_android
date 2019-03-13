@@ -3,6 +3,7 @@ package uk.ac.bath.petmatch;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.KeyListener;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -54,19 +55,23 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         shelterEmail.setKeyListener(null);
         shelterCharityNumber.setKeyListener(null);
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.shelter_map);
+        ViewGroup.LayoutParams params = mapFragment.getView().getLayoutParams();
+        params.height = 850;
+        mapFragment.getView().setLayoutParams(params);
+
         // get current shelter and set all fields to match it.
         boolean isUserLoggedIn = loginService.isUserLoggedIn();
         if(isUserLoggedIn && (currentShelter = loginService.getLoggedInUser().getShelter()) != null) {
+
+            mapFragment.getMapAsync(this);
 
             shelterTitle.setText(currentShelter.getTitle());
             shelterIntroduction.setText(currentShelter.getDescription());
             shelterAddress.setText(currentShelter.getAddress());
             shelterEmail.setText(currentShelter.getEmail());
             shelterCharityNumber.setText(currentShelter.getCharityNumber());
-
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.shelter_map);
-            mapFragment.getMapAsync(this);
         }
     }
 
@@ -95,9 +100,6 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
     public void onMapReady(GoogleMap googleMap) {
 
         List<String> gps_coordinates = Arrays.asList(currentShelter.getGps().split(",[ ]*"));
-//        System.out.println(gps_coordinates.size());
-//        System.out.println(gps_coordinates.get(0));
-//        System.out.println(gps_coordinates.get(1));
 
         double latitude = Double.parseDouble(gps_coordinates.get(0));
         double longitude = Double.parseDouble(gps_coordinates.get(1));
@@ -106,6 +108,8 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         LatLng shelter_location = new LatLng(latitude, longitude);
         googleMap.addMarker(new MarkerOptions().position(shelter_location)
                 .title("Shelter"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(shelter_location));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(shelter_location, 15));
+        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
     }
 }
