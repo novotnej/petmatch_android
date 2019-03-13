@@ -1,11 +1,17 @@
 package uk.ac.bath.petmatch;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,21 +22,39 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
-import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Database.PetBreed;
+import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ArrayList<Pet> petGrid;
+    ArrayList<Pet> pets;
+    RadioGroup breedTypeRadioGroup;
+    Spinner petBreedSpinner;
+    SeekBar distanceSeekBar;
+    TextView distanceValueTextView;
+    String spinnerBreeds[];
+
+    double userLocationLat, userLocationLon;
+    int filterDistance = 5;
+    String filterPetType;
+    PetBreed filterPetBreed;
+    public static final double DEFAULT_LOCATION_LAT = 51.389757;
+    public static final double DEFAULT_LOCATION_LON = -2.363708;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +80,17 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        loadPetGrid();
+
+        processSearchFilter();
+        reloadPetsList();
         generateLoggedUserView();
 
     }
 
+    /**
+     * Switches login for log out button and vice-versa
+     * sets textView with user's name when user is logged in
+     */
     protected void generateLoggedUserView() {
         ImageView loginButton = (ImageView) findViewById(R.id.loginButton);
         ImageView logoutButton = (ImageView) findViewById(R.id.logoutButton);
@@ -92,14 +122,170 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    private void loadPetGrid() {
-        PetDao pets = getHelper().pets;
-        petGrid = pets.getDummy();
-        int hello = petGrid.size();
-        if (petGrid.size() == 0) {
-            ToastAdapter.toastMessage(this, "Database is empty");
+    /**
+     * Sets onclick actions for pet search filter and updates filter values
+     * then reloads list of displayed pets
+     */
+    private void processSearchFilter() {
+        breedTypeRadioGroup = findViewById(R.id.radioGroupPetType);
+        breedTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int selectedId = breedTypeRadioGroup.getCheckedRadioButtonId();
+                switch (selectedId) {
+                    case R.id.radioButtonCatsAndDogs:
+                        filterPetType = null;
+                        Log.d("Pet breed type", "Both");
+                        break;
+                    case R.id.radioButtonCats:
+                        filterPetType = PetBreed.TYPE_CAT;
+                        Log.d("Pet breed type", "cats");
+                        break;
+                    case R.id.radioButtonDogs:
+                        filterPetType = PetBreed.TYPE_DOG;
+                        Log.d("Pet breed type", "dogs" +
+                                "");
+                        break;
+                }
+                reloadPetsList();
+                setUpPetBreedSpinner();
+            }
+        });
+
+        setUpPetBreedSpinner();
+        setUpDistanceSeekBar();
+        getUserLastKnownLocation();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getUserLastKnownLocation();
+                } else {
+                    this.userLocationLat = DEFAULT_LOCATION_LAT;
+                    this.userLocationLon = DEFAULT_LOCATION_LON;
+                    ToastAdapter.toastMessage(this, "We were unable to determine your location. Results may not be accurate.");
+                }
+                return;
+            }
+        }
+    }
+
+    //FIXME - not sure but does not actually return the current location, might be just because of the emulator
+    protected void getUserLastKnownLocation() {
+        LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+            return;
         } else {
-            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), petGrid);
+            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (location != null) {
+                this.userLocationLat = location.getLatitude();
+                this.userLocationLon = location.getLongitude();
+            } else {
+                this.userLocationLat = DEFAULT_LOCATION_LAT;
+                this.userLocationLon = DEFAULT_LOCATION_LON;
+            }
+        }
+    }
+
+    protected void setUpDistanceSeekBar() {
+        distanceSeekBar = findViewById(R.id.searchDistanceSeekbar);
+        distanceValueTextView = findViewById(R.id.searchDistanceValue);
+
+        distanceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+               distanceValueTextView.setText("" + progress + " km");
+               filterDistance = progress;
+               reloadPetsList();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    /**
+     * Creates spinner (select breed) programmatically and its onchange action
+     */
+    protected void setUpPetBreedSpinner() {
+        //Get list of breeds in a given breed type
+        String[] breeds = getHelper().petBreeds.getArrayForType(filterPetType);
+        spinnerBreeds = new String[breeds.length +1];
+        for (int i = 0; i < breeds.length; i++) {
+            spinnerBreeds[i] = breeds[i];
+        }
+        spinnerBreeds[breeds.length] = " --- ALL ---"; //add an "empty" choice option
+
+
+        petBreedSpinner = (Spinner) findViewById(R.id.pet_breed_spinner);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
+        petBreedSpinner.setAdapter(arrayAdapter);
+
+        //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
+        if (filterPetBreed != null) {
+            int spinnerPosition = arrayAdapter.getPosition(filterPetBreed.getTitle());
+            if (spinnerPosition == -1) { //if selected breed not in the options, choose "empty" value
+                petBreedSpinner.setSelection(spinnerBreeds.length - 1);
+            } else {
+                petBreedSpinner.setSelection(spinnerPosition);
+            }
+        } else {
+            petBreedSpinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
+        }
+
+        petBreedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedBreedTitle = spinnerBreeds[position];
+                //spinner contains titles of pet breeds. Find breed by title and use the PetBreed model in filter
+                filterPetBreed = getHelper().petBreeds.loadByTitle(selectedBreedTitle);
+                reloadPetsList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    protected void reloadPetsList() {
+        if (filterPetBreed != null) {
+            loadPetsByFilter(filterPetType, filterPetBreed.getId(), userLocationLat, userLocationLon, filterDistance);
+        } else {
+            loadPetsByFilter(filterPetType, null, userLocationLat, userLocationLon, filterDistance);
+        }
+    }
+
+    private void loadPetsByFilter(String breedType, String petBreedId, double lat, double lon, int distance) {
+        UserProperties userProperties = null;
+        if (loginService.isUserLoggedIn()) {
+            userProperties = getHelper().userProperties.loadByUser(loginService.getLoggedInUser());
+        }
+        pets = getHelper().pets.loadByFilter(getHelper().petBreeds, breedType, petBreedId, userProperties, lat, lon, distance);
+
+        if (pets == null || pets.size() == 0) {
+            ToastAdapter.toastMessage(this, "No pets fit your filter");
+        } else {
+            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
         }
     }
 
@@ -165,7 +351,6 @@ public class MainActivity extends BaseActivity
         generateLoggedUserView();
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
