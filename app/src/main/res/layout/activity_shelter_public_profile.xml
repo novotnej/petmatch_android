@@ -11,8 +11,8 @@
         android:id="@+id/shelter_address_description"
         android:layout_width="60dp"
         android:layout_height="22dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@null"
         android:ems="10"
         android:text="@string/shelter_address_description"
@@ -28,52 +28,38 @@
         android:id="@+id/shelter_email_description"
         android:layout_width="50dp"
         android:layout_height="22dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@null"
         android:ems="10"
         android:text="@string/shelter_email_description"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shelter_address" />
-
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@string/shelter_dummy_picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/shelter_address_description" />
 
     <TextView
         android:id="@+id/shelter_profile_title"
         android:layout_width="347dp"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         android:text="@string/shelter_dummy_profile"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_primary_dark"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/shelter_address"
-        android:layout_width="300dp"
+        android:layout_width="329dp"
         android:layout_height="35dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/shelter_dummy_address_hint"
         android:inputType="textPostalAddress"
@@ -81,14 +67,14 @@
         android:textAlignment="textStart"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/shelter_introduction" />
 
     <EditText
         android:id="@+id/shelter_charity_no"
-        android:layout_width="200dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="76dp"
+        android:layout_width="276dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@null"
         android:ems="10"
         android:inputType="phone"
@@ -99,10 +85,10 @@
 
     <EditText
         android:id="@+id/shelter_email"
-        android:layout_width="301dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="329dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/shelter_dummy_email_hint"
         android:inputType="textEmailAddress"
@@ -113,36 +99,34 @@
 
     <TextView
         android:id="@+id/shelter_introduction"
-        android:layout_width="360dp"
+        android:layout_width="388dp"
         android:layout_height="59dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:text="@string/shelter_dummy_introduction"
         android:textAlignment="viewStart"
         android:textSize="14sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/shelter_address"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/shelter_profile_title" />
 
     <TextView
         android:id="@+id/charity_no_description"
         android:layout_width="110dp"
         android:layout_height="27dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:background="@null"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/shelter_charity_no_description"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shelter_email" />
+        app:layout_constraintTop_toBottomOf="@+id/shelter_email_description" />
 </android.support.constraint.ConstraintLayout>
