@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import uk.ac.bath.petmatch.Database.ShelterDao;
 public class PetAddActivity extends BaseActivity {
 
     int RESULT_LOAD_IMAGE = 1;
+    PetBreed filterPetBreed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +54,42 @@ public class PetAddActivity extends BaseActivity {
         Spinner spinner = (Spinner) findViewById(R.id.breeds_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         final ShelterDao shelters = getHelper().shelters;
-        PetBreedDao breeds = getHelper().petBreeds;
-        ArrayList<PetBreed> types = breeds.getDummy();
-        PetBreed[] breedsarray = (PetBreed[]) types.toArray();
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, breedsarray);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        //Get list of breeds in a given breed type
+        String[] breeds = getHelper().petBreeds.getArrayForType(PetBreed.TYPE_DOG);
+        final String[] spinnerBreeds = new String[breeds.length +1];
+        for (int i = 0; i < breeds.length; i++) {
+            spinnerBreeds[i] = breeds[i];
+        }
+        spinnerBreeds[breeds.length] = " --- ALL ---"; //add an "empty" choice option
 
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
+        spinner.setAdapter(arrayAdapter);
+
+
+        //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
+        if (filterPetBreed != null) {
+            int spinnerPosition = arrayAdapter.getPosition(filterPetBreed.getTitle());
+            if (spinnerPosition == -1) { //if selected breed not in the options, choose "empty" value
+                spinner.setSelection(spinnerBreeds.length - 1);
+            } else {
+                spinner.setSelection(spinnerPosition);
+            }
+        } else {
+            spinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
+        }
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedBreedTitle = spinnerBreeds[position];
+                //spinner contains titles of pet breeds. Find breed by title and use the PetBreed model in filter
+                filterPetBreed = getHelper().petBreeds.loadByTitle(selectedBreedTitle);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
         Button sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
