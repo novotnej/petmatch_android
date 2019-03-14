@@ -22,12 +22,14 @@ public class Shelter extends CommonModel {
     private double lon; //longitude
     @DatabaseField
     private String email;
+    @DatabaseField
+    private String phoneNumber;
 
     public Shelter() {
         // ORMLite needs a no-arg constructor
     }
 
-    public Shelter(String title, String description, String charityNumber, String address, String gps, String email) {
+    public Shelter(String title, String description, String charityNumber, String address, String gps, String email, String phoneNumber) {
         this.id = generateId();
         this.title = title;
         this.description = description;
@@ -35,6 +37,7 @@ public class Shelter extends CommonModel {
         this.address = address;
         setLatLonFromGps(gps);
         this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     private void setLatLonFromGps(String gps) {
@@ -98,6 +101,14 @@ public class Shelter extends CommonModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public double getLat() {
