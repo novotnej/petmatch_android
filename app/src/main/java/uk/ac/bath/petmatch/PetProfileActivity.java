@@ -48,21 +48,16 @@ public class PetProfileActivity extends BaseActivity {
         });
 
         ImageView petImage = (ImageView)findViewById(R.id.petImage);
-        if (petClicked.getImage().equals("snape")){
-            petImage.setImageResource(R.mipmap.snape);
+        String id = petClicked.getImage();
+        int resID;
+        try {
+            resID = (int) R.mipmap.class.getField(id).get(null);
+        } catch (Exception e) {
+            Log.e("PetGridAdapter", e.getMessage());
+            resID = R.mipmap.dumbledore;
         }
-        /*else if (petClicked.getImage().equals("hagrid")){
-            petImage.setImageResource(R.mipmap.hagrid);
-        }
-        else if (petClicked.getImage().equals("mcgonagoll")){
-            petImage.setImageResource(R.mipmap.mcgonagoll);
-        }
-        else if (petClicked.getImage().equals("malfoy")){
-            petImage.setImageResource(R.mipmap.malfoy);
-        }
-        else if (petClicked.getImage().equals("dumbledore")){
-            petImage.setImageResource(R.mipmap.dumbledore);
-        }*/
+        petImage.setImageResource(resID);
+        //petImageView.setImageResource(R.mipmap.dumbledore);
 
 
 
