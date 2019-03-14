@@ -30,10 +30,6 @@ import uk.ac.bath.petmatch.Database.User;
 public class ShelterPublicProfileActivity extends BaseActivity implements OnMapReadyCallback {
 
     private Shelter currentShelter;
-    private KeyListener listenerAddress;
-    private KeyListener listenerEmail;
-    private KeyListener listenerCharityNumber;
-    private KeyListener listenerPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,24 +40,11 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
 
         TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title);
         TextView shelterIntroduction = (TextView) findViewById(R.id.shelter_introduction);
-        EditText shelterAddress = (EditText)findViewById(R.id.shelter_address);
-        EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
-        EditText shelterCharityNumber = (EditText)findViewById(R.id.shelter_charity_no);
-        EditText shelterPhoneNumber = (EditText)findViewById(R.id.shelter_phone);
+        TextView shelterAddress = (TextView)findViewById(R.id.shelter_address);
+        TextView shelterEmail = (TextView)findViewById(R.id.shelter_email);
+        TextView shelterCharityNumber = (TextView)findViewById(R.id.shelter_charity_no);
+        TextView shelterPhoneNumber = (TextView)findViewById(R.id.shelter_phone);
 
-        // assign listeners to the variables to be able to make the fields editable later.
-        listenerAddress = shelterAddress.getKeyListener();
-        listenerEmail = shelterEmail.getKeyListener();
-        listenerCharityNumber = shelterCharityNumber.getKeyListener();
-        listenerPhoneNumber = shelterPhoneNumber.getKeyListener();
-
-        // set the listeners to null making the fields uneditable.
-        shelterAddress.setKeyListener(null);
-        shelterEmail.setFocusable(false);
-        shelterEmail.setLongClickable(true);
-        shelterEmail.setOnClickListener(emailClick);
-        shelterCharityNumber.setKeyListener(null);
-        shelterPhoneNumber.setKeyListener(null);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.shelter_map);
@@ -72,7 +55,7 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         mapFragment.getView().setLayoutParams(params);
         mapFragment.setMenuVisibility(true);
         ShelterDao shelterDao = db.shelters;
-        currentShelter = shelterDao.findByTitle("Bath Cats and dogs home");
+        currentShelter = shelterDao.loadOneRandom();
 
         mapFragment.getMapAsync(this);
 
@@ -80,24 +63,9 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         shelterIntroduction.setText(currentShelter.getDescription());
         shelterAddress.setText(currentShelter.getAddress());
         shelterEmail.setText(currentShelter.getEmail());
+        shelterEmail.setOnClickListener(emailClick);
         shelterCharityNumber.setText(currentShelter.getCharityNumber());
         shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
-    }
-
-    public KeyListener getListenerAddress() {
-        return listenerAddress;
-    }
-
-    public KeyListener getListenerEmail() {
-        return listenerEmail;
-    }
-
-    public KeyListener getListenerCharityNumber() {
-        return listenerCharityNumber;
-    }
-
-    public KeyListener getListenerPhoneNumber() {
-        return listenerPhoneNumber;
     }
 
     /**
@@ -131,11 +99,9 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
 
         @Override
         public void onClick(View v) {
-
-            EditText shelterEmail = (EditText)findViewById(R.id.shelter_email);
             Intent mailIntent = new Intent(Intent.ACTION_SENDTO);
             mailIntent.setData(Uri.parse("mailto:"));
-            mailIntent.putExtra(Intent.EXTRA_EMAIL, shelterEmail.getText());
+            mailIntent.putExtra(Intent.EXTRA_EMAIL, currentShelter.getEmail());
             mailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
             mailIntent.putExtra(Intent.EXTRA_TEXT, "");
             if (mailIntent.resolveActivity(getPackageManager()) != null) {

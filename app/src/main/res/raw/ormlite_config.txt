@@ -1,5 +1,5 @@
 #
-# generated on 2019/03/11 09:19:13
+# generated on 2019/03/14 12:09:43
 #
 # --table-start--
 dataClass=uk.ac.bath.petmatch.Database.PetBreed
@@ -61,6 +61,9 @@ fieldName=lon
 # --field-end--
 # --field-start--
 fieldName=email
+# --field-end--
+# --field-start--
+fieldName=phoneNumber
 # --field-end--
 # --table-fields-end--
 # --table-end--
