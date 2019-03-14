@@ -43,7 +43,6 @@ public class PetAddActivity extends BaseActivity {
 
                 //doesn't do anything for now
 
-
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -56,7 +55,7 @@ public class PetAddActivity extends BaseActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.breeds_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        final ShelterDao shelters = getHelper().shelters;
+
         //Get list of breeds in a given breed type
         String[] breeds = getHelper().petBreeds.getArrayForType(PetBreed.TYPE_DOG);
         final String[] spinnerBreeds = new String[breeds.length +1];
@@ -103,8 +102,9 @@ public class PetAddActivity extends BaseActivity {
                 final EditText emailField = (EditText) findViewById(R.id.descText);
                 String email = emailField.getText().toString();
 
-
-                Shelter dummyBath = (Shelter) shelters.queryForId(0);
+                ShelterDao shelters = getHelper().shelters;
+                ArrayList<Shelter> shelterArrayList = shelters.getDummy();
+                Shelter dummyBath = shelterArrayList.get(0);
 
                 PetBreed dummy = filterPetBreed;
                 Pet newPet = new Pet(name, email, dummyBath, dummy);

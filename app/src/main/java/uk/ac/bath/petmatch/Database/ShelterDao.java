@@ -17,4 +17,14 @@ public class ShelterDao extends RuntimeExceptionDao {
         return arrayList;
     }
 
+    public ArrayList<Shelter> getDummy() {
+        return this.convertListToArrayList(
+                this.queryForAll()
+        );
+    }
+
+    public Shelter queryForId(String id) {
+        return (Shelter) super.queryForId(id);
+    }
+
 }
