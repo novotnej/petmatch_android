@@ -54,7 +54,7 @@ public class PetAddActivity extends BaseActivity {
                 final EditText emailField = (EditText) findViewById(R.id.descText);
                 String email = emailField.getText().toString();
 
-                Shelter whoCares = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456780", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com");
+                Shelter whoCares = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456780", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com", "09642217796");
 
                 PetBreed dummy = new PetBreed("dummy", PetBreed.TYPE_DOG, false, false, false, false, false);
                 Pet newPet = new Pet(name, email, whoCares, dummy);

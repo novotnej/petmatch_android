@@ -11,7 +11,6 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -368,7 +367,7 @@ public class MainActivity extends BaseActivity
 
             // handles settings
             Intent startShelterProfileIntent = new Intent(getApplicationContext(),
-                    ShelterProfileActivity.class);
+                    ShelterPublicProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
         } else if (id == R.id.nav_user_capabilities) {
