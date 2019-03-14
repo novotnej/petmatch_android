@@ -16,4 +16,20 @@ public class FavoritePetDao extends RuntimeExceptionDao {
         arrayList.addAll(list);
         return arrayList;
     }
+
+    public boolean isFavorite(User user, Pet pet) {
+        return false;
+    }
+
+    public void addToVaforites(User user, Pet pet) {
+
+    }
+
+    public void removeFromFavorites(User user, Pet pet) {
+
+    }
+
+    public ArrayList<FavoritePet> getFavorites(User user) {
+        return null;
+    }
 }
