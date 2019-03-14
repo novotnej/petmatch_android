@@ -42,7 +42,7 @@ public class PetProfileActivity extends BaseActivity {
         webLink.setText(petClicked.getShelter().getTitle(), TextView.BufferType.EDITABLE);
         webLink.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent shelterProfIntent = new Intent(getApplicationContext(), ShelterProfileActivity.class);
+                Intent shelterProfIntent = new Intent(getApplicationContext(), ShelterPublicProfileActivity.class);
                 startActivity(shelterProfIntent);
             }
         });
