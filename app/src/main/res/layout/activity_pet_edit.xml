@@ -12,12 +12,13 @@
         android:layout_width="283dp"
         android:layout_height="234dp"
         android:layout_marginTop="26dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="A picture of the dog's profile you are looking at"
         app:layout_constraintBottom_toTopOf="@+id/petTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="spread"
         tools:srcCompat="@tools:sample/avatars[2]" />
 
@@ -27,21 +28,22 @@
         android:layout_height="65dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="20dp"
         android:inputType="text"
         android:text="@string/petname"
         app:layout_constraintBottom_toTopOf="@+id/petDesc"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="@tools:sample/full_names" />
 
     <EditText
         android:id="@+id/petDesc"
-        android:layout_width="319dp"
+        android:layout_width="327dp"
         android:layout_height="142dp"
         android:layout_marginStart="46dp"
         android:layout_marginEnd="46dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="20dp"
         android:inputType="text"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/breeds_spinner"
@@ -54,15 +56,12 @@
         android:layout_width="fill_parent"
         android:layout_height="91dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="560dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/saveButton"
