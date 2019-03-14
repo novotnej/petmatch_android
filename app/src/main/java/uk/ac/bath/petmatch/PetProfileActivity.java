@@ -3,8 +3,10 @@ package uk.ac.bath.petmatch;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,6 +46,24 @@ public class PetProfileActivity extends BaseActivity {
                 startActivity(shelterProfIntent);
             }
         });
+
+        ImageView petImage = (ImageView)findViewById(R.id.petImage);
+        if (petClicked.getImage().equals("snape")){
+            petImage.setImageResource(R.mipmap.snape);
+        }
+        /*else if (petClicked.getImage().equals("hagrid")){
+            petImage.setImageResource(R.mipmap.hagrid);
+        }
+        else if (petClicked.getImage().equals("mcgonagoll")){
+            petImage.setImageResource(R.mipmap.mcgonagoll);
+        }
+        else if (petClicked.getImage().equals("malfoy")){
+            petImage.setImageResource(R.mipmap.malfoy);
+        }
+        else if (petClicked.getImage().equals("dumbledore")){
+            petImage.setImageResource(R.mipmap.dumbledore);
+        }*/
+
 
 
         final Button button = findViewById(R.id.editButton);
