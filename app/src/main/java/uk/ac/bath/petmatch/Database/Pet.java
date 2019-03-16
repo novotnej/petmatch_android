@@ -3,6 +3,8 @@ package uk.ac.bath.petmatch.Database;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Random;
+
 @DatabaseTable(tableName = "pets")
 public class Pet extends CommonModel {
 
@@ -41,7 +43,13 @@ public class Pet extends CommonModel {
         this.id = id;
     }
 
-    public String[] getAvailableImages() {
+    public static String getRandomImage() {
+        String[] images = getAvailableImages();
+        int randomNumber = (new Random()).nextInt(images.length);
+        return images[randomNumber];
+    }
+
+    public static String[] getAvailableImages() {
         String[] images = new String[5];
         images[0] = "snape";
         images[1] = "malfoy";

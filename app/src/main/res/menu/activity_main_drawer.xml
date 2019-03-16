@@ -5,14 +5,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_pet_add"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"
-            android:visible="false" />
+            android:title="Add pet" />
         <item
             android:id="@+id/nav_shelter_profile"
             android:icon="@drawable/ic_menu_slideshow"
