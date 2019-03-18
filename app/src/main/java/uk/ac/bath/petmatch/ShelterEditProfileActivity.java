@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import java.util.Objects;
 
-public class ShelterProfileActivity extends BaseActivity {
+public class ShelterEditProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

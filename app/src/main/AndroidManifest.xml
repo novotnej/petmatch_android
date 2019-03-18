@@ -32,7 +32,7 @@
             android:name=".UserCapabilitiesActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
-            android:name=".ShelterProfileActivity"
+            android:name=".ShelterEditProfileActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".PetAddActivity"
