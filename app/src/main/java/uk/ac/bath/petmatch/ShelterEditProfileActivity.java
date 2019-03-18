@@ -20,6 +20,7 @@ public class ShelterEditProfileActivity extends BaseActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Edit Shelter Profile");
 
+        EditText shelterIntroduction = (EditText) findViewById(R.id.shelter_introduction);
         EditText shelterAddress = (EditText) findViewById(R.id.shelter_address);
         EditText shelterEmail = (EditText) findViewById(R.id.shelter_email);
         EditText shelterCharityNumber = (EditText) findViewById(R.id.shelter_charity_no);
