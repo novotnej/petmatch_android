@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShelterPublicProfileActivity">
+
+    <TextView
+        android:id="@+id/shelter_profile_title"
+        android:layout_width="347dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/shelter_dummy_profile"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/shelter_introduction"
+        android:layout_width="347dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/shelter_dummy_introduction"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shelter_profile_title" />
+
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="100dp">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp">
+
+            <android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/shelter_address_description"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:width="110dp"
+                    android:text="@string/shelter_address_description"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/shelter_address"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    android:text="@string/shelter_dummy_address"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/shelter_address_description" />
+            </android.support.constraint.ConstraintLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp">
+
+            <android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/shelter_email_description"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:width="110dp"
+                    android:text="@string/shelter_email_description"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/shelter_email"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    android:autoLink="email"
+                    android:clickable="true"
+                    android:text="@string/shelter_dummy_email"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/shelter_email_description" />
+            </android.support.constraint.ConstraintLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp">
+
+            <android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/shelter_phone_description"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:width="110dp"
+                    android:text="@string/shelter_phone_description"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/shelter_phone"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    android:text="@string/shelter_dummy_phone"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/shelter_phone_description" />
+            </android.support.constraint.ConstraintLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp">
+
+            <android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/charity_no_description"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:width="110dp"
+                    android:text="@string/shelter_charity_no_description"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textStyle="bold"
+
+                    />
+
+                <EditText
+                    android:id="@+id/shelter_charity_no"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    android:text="@string/shelter_dummy_charity_no"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/charity_no_description" />
+            </android.support.constraint.ConstraintLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/shelter_map"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="390dp"
+                android:layout_height="350dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" />
+
+        </TableRow>
+    </TableLayout>
+
+
+</android.support.constraint.ConstraintLayout>
