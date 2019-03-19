@@ -101,9 +101,8 @@ public class PetEditActivity extends BaseActivity {
                 petClicked.setTitle(editTitle.getText().toString());
                 petClicked.setDescription(editDesc.getText().toString());
                 pets.update(petClicked);
-                Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
-                petProfIntent.putExtra("The Pet", petClickedId);
-                startActivity(petProfIntent);
+                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainIntent);
             }
 
         });
