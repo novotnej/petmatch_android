@@ -26,7 +26,7 @@ import uk.ac.bath.petmatch.Database.ShelterDao;
 public class PetAddActivity extends BaseActivity {
 
     int RESULT_LOAD_IMAGE = 1;
-    PetBreed filterPetBreed;
+    PetBreed petBreed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,35 +57,18 @@ public class PetAddActivity extends BaseActivity {
         // Create an ArrayAdapter using the string array and a default spinner layout
 
         //Get list of breeds in a given breed type
-        String[] breeds = getHelper().petBreeds.getArrayForType(PetBreed.TYPE_DOG);
-        final String[] spinnerBreeds = new String[breeds.length +1];
-        for (int i = 0; i < breeds.length; i++) {
-            spinnerBreeds[i] = breeds[i];
-        }
-        spinnerBreeds[breeds.length] = " --- ALL ---"; //add an "empty" choice option
+        final String[] breeds = getHelper().petBreeds.getArrayForType();
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, breeds);
         spinner.setAdapter(arrayAdapter);
 
-
-        //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
-        if (filterPetBreed != null) {
-            int spinnerPosition = arrayAdapter.getPosition(filterPetBreed.getTitle());
-            if (spinnerPosition == -1) { //if selected breed not in the options, choose "empty" value
-                spinner.setSelection(spinnerBreeds.length - 1);
-            } else {
-                spinner.setSelection(spinnerPosition);
-            }
-        } else {
-            spinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
-        }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedBreedTitle = spinnerBreeds[position];
+                String selectedBreedTitle = breeds[position];
                 //spinner contains titles of pet breeds. Find breed by title and use the PetBreed model in filter
-                filterPetBreed = getHelper().petBreeds.loadByTitle(selectedBreedTitle);
+                petBreed = getHelper().petBreeds.loadByTitle(selectedBreedTitle);
             }
 
             @Override
@@ -99,23 +82,20 @@ public class PetAddActivity extends BaseActivity {
                 final EditText nameField = (EditText) findViewById(R.id.nameText);
                 String name = nameField.getText().toString();
 
-                final EditText emailField = (EditText) findViewById(R.id.descText);
-                String email = emailField.getText().toString();
+                final EditText descTextField = (EditText) findViewById(R.id.descText);
+                String description = descTextField.getText().toString();
 
-                ShelterDao shelters = getHelper().shelters;
-                ArrayList<Shelter> shelterArrayList = shelters.getDummy();
-                Shelter dummyBath = shelterArrayList.get(0);
+                Shelter shelter = getHelper().shelters.loadOneRandom();
 
-                PetBreed dummy = filterPetBreed;
-                Pet newPet = new Pet(name, email, dummyBath, dummy);
-                newPet.setImage("snape");
-                db.pets.create(newPet);
+                Pet newPet = new Pet(name, description, shelter, petBreed);
+                newPet.setImage(Pet.getRandomImage());
+                getHelper().pets.create(newPet);
+
+                //redirect back to main screen
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
 
                 Log.d("import", "adding new pet");
-
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
     }

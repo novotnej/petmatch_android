@@ -358,11 +358,10 @@ public class MainActivity extends BaseActivity
 
         Log.d("navigClick", "" + id);
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_pet_add) {
             Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
             startActivity(petAddIntent);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
         } else if (id == R.id.nav_shelter_profile) {
 
             // handles settings
@@ -374,10 +373,6 @@ public class MainActivity extends BaseActivity
 
             Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),UserCapabilitiesActivity.class);
             startActivity(startUserCapabilitiesIntent);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

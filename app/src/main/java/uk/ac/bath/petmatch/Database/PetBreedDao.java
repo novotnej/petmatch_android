@@ -49,4 +49,8 @@ public class PetBreedDao extends RuntimeExceptionDao {
         arrayList.addAll(list);
         return arrayList;
     }
+
+    public String[] getArrayForType() {
+        return getArrayForType(null);
+    }
 }
