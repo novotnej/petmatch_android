@@ -13,6 +13,9 @@ import java.util.Objects;
 
 import uk.ac.bath.petmatch.Database.Shelter;
 import uk.ac.bath.petmatch.Database.ShelterDao;
+import uk.ac.bath.petmatch.Database.User;
+import uk.ac.bath.petmatch.Database.UserProperties;
+import uk.ac.bath.petmatch.Database.UserPropertiesDao;
 
 public class ShelterEditProfileActivity extends BaseActivity implements View.OnClickListener {
 
@@ -32,6 +35,17 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
 
         ShelterDao shelterDao = db.shelters;
         currentShelter = shelterDao.loadOneRandom();
+
+
+
+        User currentUser = loginService.getLoggedInUser();
+        UserPropertiesDao userPropertiesDao = db.userProperties;
+
+
+        if((currentUser == null) || !(currentUser.getShelter().equals(currentShelter))) {
+
+            showPermissionError();
+        }
 
         TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title_edit);
         shelterIntroduction = (EditText) findViewById(R.id.shelter_introduction_edit);
@@ -66,11 +80,11 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
             currentShelter.setCharityNumber(shelterCharityNumber.getText().toString());
             currentShelter.setPhoneNumber(shelterPhoneNumber.getText().toString());
             shelterDao.update(currentShelter);
-            showAlert(v);
+            showSuccessAlert(v);
         }
     }
 
-    public void showAlert(View view) {
+    public void showSuccessAlert(View view) {
 
         AlertDialog.Builder successSave = new AlertDialog.Builder(this);
         successSave.setTitle("Success");
@@ -87,6 +101,24 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
         successSave.create();
         successSave.show();
 
+    }
+
+    public void showPermissionError() {
+
+        AlertDialog.Builder permissionError = new AlertDialog.Builder(this);
+        permissionError.setTitle("Permission Error");
+        permissionError.setMessage("You do not have permission to edit the details of this shelter");
+        permissionError.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent goBackToMainActivity = new Intent(getApplicationContext(),
+                        MainActivity.class);
+                startActivity(goBackToMainActivity);
+            }
+        });
+        permissionError.create();
+        permissionError.show();
     }
 }
 
