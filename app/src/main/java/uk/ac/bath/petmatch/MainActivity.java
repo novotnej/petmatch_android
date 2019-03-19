@@ -283,9 +283,9 @@ public class MainActivity extends BaseActivity
 
         if (pets == null || pets.size() == 0) {
             ToastAdapter.toastMessage(this, "No pets fit your filter");
-        } else {
-            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
         }
+
+        this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
     }
 
     private void createPetGridView(final GridView gridView, ArrayList<Pet> pets) {
