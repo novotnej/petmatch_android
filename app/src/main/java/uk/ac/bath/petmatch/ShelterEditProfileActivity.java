@@ -1,5 +1,8 @@
 package uk.ac.bath.petmatch;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +66,27 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
             currentShelter.setCharityNumber(shelterCharityNumber.getText().toString());
             currentShelter.setPhoneNumber(shelterPhoneNumber.getText().toString());
             shelterDao.update(currentShelter);
+            showAlert(v);
         }
+    }
+
+    public void showAlert(View view) {
+
+        AlertDialog.Builder successSave = new AlertDialog.Builder(this);
+        successSave.setTitle("Success");
+        successSave.setMessage("Your changes have been successfully saved");
+        successSave.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent goBackToMainActivity = new Intent(getApplicationContext(),
+                        MainActivity.class);
+                startActivity(goBackToMainActivity);
+            }
+        });
+        successSave.create();
+        successSave.show();
+
     }
 }
 
