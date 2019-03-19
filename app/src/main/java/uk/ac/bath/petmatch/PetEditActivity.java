@@ -16,9 +16,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
 import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
 public class PetEditActivity extends BaseActivity {
 
@@ -28,6 +31,7 @@ public class PetEditActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_edit);
+        //setTitle("Edit Pet");
 
         Intent intent = getIntent();
         final String petClickedId = (String)intent.getStringExtra("The Pet");
@@ -98,11 +102,17 @@ public class PetEditActivity extends BaseActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 //go to pet edit activity
-                petClicked.setTitle(editTitle.getText().toString());
-                petClicked.setDescription(editDesc.getText().toString());
-                pets.update(petClicked);
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
+                if (petClicked.getBreed() == null){
+                    ToastAdapter.toastMessage(getApplicationContext(), "SELECT A BREED M8");
+                }
+                else{
+                    petClicked.setTitle(editTitle.getText().toString());
+                    petClicked.setDescription(editDesc.getText().toString());
+                    pets.update(petClicked);
+                    Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(mainIntent);
+                }
+
             }
 
         });
