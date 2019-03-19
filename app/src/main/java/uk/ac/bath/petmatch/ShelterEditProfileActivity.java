@@ -32,9 +32,9 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
 
         User currentUser = loginService.getLoggedInUser();
         ShelterDao shelterDao = db.shelters;
-        currentShelter = shelterDao.loadOneRandom();
+        currentShelter = shelterDao.findByTitle("Dummy shelter");
 
-        if((currentUser == null) || !(currentUser.getShelter().equals(currentShelter))) {
+        if((currentUser == null) || !(currentUser.getShelter().toString().equals(currentShelter.toString()))) {
 
             showPermissionError();
             return;
