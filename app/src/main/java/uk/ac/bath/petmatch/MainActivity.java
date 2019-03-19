@@ -366,7 +366,7 @@ public class MainActivity extends BaseActivity
 
             // handles settings
             Intent startShelterProfileIntent = new Intent(getApplicationContext(),
-                    ShelterPublicProfileActivity.class);
+                    ShelterEditProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
         } else if (id == R.id.nav_user_capabilities) {

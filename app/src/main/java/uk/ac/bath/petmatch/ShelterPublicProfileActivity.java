@@ -45,7 +45,6 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         TextView shelterCharityNumber = (TextView)findViewById(R.id.shelter_charity_no);
         TextView shelterPhoneNumber = (TextView)findViewById(R.id.shelter_phone);
 
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.shelter_map);
         ViewGroup.LayoutParams params = mapFragment.getView().getLayoutParams();
