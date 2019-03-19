@@ -56,7 +56,7 @@ public class PetEditActivity extends BaseActivity {
         // Create an ArrayAdapter using the string array and a default spinner layout
 
         //Get list of breeds in a given breed type
-        String[] breeds = getHelper().petBreeds.getArrayForType(PetBreed.TYPE_DOG);
+        String[] breeds = getHelper().petBreeds.getArrayForType();
         final String[] spinnerBreeds = new String[breeds.length +1];
         for (int i = 0; i < breeds.length; i++) {
             spinnerBreeds[i] = breeds[i];
