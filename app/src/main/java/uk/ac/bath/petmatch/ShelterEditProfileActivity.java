@@ -29,23 +29,18 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shelter_edit_profile);
 
+        User currentUser = loginService.getLoggedInUser();
+        if((currentUser == null) || !(currentUser.getShelter().equals(currentShelter))) {
+
+            showPermissionError();
+            return;
+        }
+        setContentView(R.layout.activity_shelter_edit_profile);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Edit Shelter Profile");
 
         ShelterDao shelterDao = db.shelters;
         currentShelter = shelterDao.loadOneRandom();
-
-
-
-        User currentUser = loginService.getLoggedInUser();
-        UserPropertiesDao userPropertiesDao = db.userProperties;
-
-
-        if((currentUser == null) || !(currentUser.getShelter().equals(currentShelter))) {
-
-            showPermissionError();
-        }
 
         TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title_edit);
         shelterIntroduction = (EditText) findViewById(R.id.shelter_introduction_edit);
