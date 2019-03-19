@@ -31,6 +31,9 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
         super.onCreate(savedInstanceState);
 
         User currentUser = loginService.getLoggedInUser();
+        ShelterDao shelterDao = db.shelters;
+        currentShelter = shelterDao.loadOneRandom();
+
         if((currentUser == null) || !(currentUser.getShelter().equals(currentShelter))) {
 
             showPermissionError();
@@ -38,9 +41,6 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
         }
         setContentView(R.layout.activity_shelter_edit_profile);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Edit Shelter Profile");
-
-        ShelterDao shelterDao = db.shelters;
-        currentShelter = shelterDao.loadOneRandom();
 
         TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title_edit);
         shelterIntroduction = (EditText) findViewById(R.id.shelter_introduction_edit);
