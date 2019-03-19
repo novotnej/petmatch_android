@@ -51,6 +51,8 @@
     <string name="shelter_phone_description">Phone number:</string>
     <string name="shelter_address_description">Address:</string>
 
+    <string name="shelter_edit_profile_button">Save</string>
+
     <string name="shelter_dummy_charity_no">Charity number</string>
     <string name="shelter_dummy_email">Shelter e-mail</string>
     <string name="shelter_dummy_phone_hint">enter phone number here</string>
