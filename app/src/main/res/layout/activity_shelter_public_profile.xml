@@ -7,7 +7,7 @@
     tools:context=".ShelterPublicProfileActivity">
 
     <TextView
-        android:id="@+id/shelter_profile_title"
+        android:id="@+id/shelter_profile_title_edit"
         android:layout_width="347dp"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
@@ -24,7 +24,7 @@
 
 
     <TextView
-        android:id="@+id/shelter_introduction"
+        android:id="@+id/shelter_introduction_edit"
         android:layout_width="347dp"
         android:layout_height="59dp"
         android:layout_marginStart="8dp"
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/shelter_profile_title" />
+        app:layout_constraintTop_toTopOf="@+id/shelter_profile_title_edit" />
 
 
     <TableLayout

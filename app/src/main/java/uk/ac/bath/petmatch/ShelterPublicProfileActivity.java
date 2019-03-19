@@ -3,8 +3,6 @@ package uk.ac.bath.petmatch;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
-import android.text.method.KeyListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -12,20 +10,17 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import uk.ac.bath.petmatch.Database.Shelter;
 import uk.ac.bath.petmatch.Database.ShelterDao;
-import uk.ac.bath.petmatch.Database.User;
 
 public class ShelterPublicProfileActivity extends BaseActivity implements OnMapReadyCallback {
 
@@ -38,8 +33,8 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Shelter Profile");
 
-        TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title);
-        TextView shelterIntroduction = (TextView) findViewById(R.id.shelter_introduction);
+        TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title_edit);
+        TextView shelterIntroduction = (TextView) findViewById(R.id.shelter_introduction_edit);
         TextView shelterAddress = (TextView)findViewById(R.id.shelter_address);
         TextView shelterEmail = (TextView)findViewById(R.id.shelter_email);
         TextView shelterCharityNumber = (TextView)findViewById(R.id.shelter_charity_no);

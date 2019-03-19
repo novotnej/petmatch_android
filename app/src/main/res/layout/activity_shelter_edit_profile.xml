@@ -7,7 +7,7 @@
     tools:context=".ShelterPublicProfileActivity">
 
     <TextView
-        android:id="@+id/shelter_profile_title"
+        android:id="@+id/shelter_profile_title_edit"
         android:layout_width="347dp"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
@@ -24,7 +24,7 @@
 
 
     <EditText
-        android:id="@+id/shelter_introduction"
+        android:id="@+id/shelter_introduction_edit"
         android:layout_width="347dp"
         android:layout_height="76dp"
         android:layout_marginStart="8dp"
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/shelter_profile_title" />
+        app:layout_constraintTop_toTopOf="@+id/shelter_profile_title_edit" />
 
 
     <TableLayout
@@ -66,7 +66,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/shelter_address"
+                    android:id="@+id/shelter_address_edit"
                     android:layout_width="280dp"
                     android:layout_height="40dp"
                     android:text="@string/shelter_dummy_address"
@@ -93,7 +93,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/shelter_email"
+                    android:id="@+id/shelter_email_edit"
                     android:layout_width="280dp"
                     android:layout_height="40dp"
                     android:clickable="true"
@@ -120,11 +120,11 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/shelter_phone"
+                    android:id="@+id/shelter_phone_edit"
                     android:layout_width="280dp"
                     android:layout_height="40dp"
-                    android:text="@string/shelter_dummy_phone"
                     android:inputType="number"
+                    android:text="@string/shelter_dummy_phone"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/shelter_phone_description" />
             </android.support.constraint.ConstraintLayout>
@@ -149,7 +149,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/shelter_charity_no"
+                    android:id="@+id/shelter_charity_no_edit"
                     android:layout_width="280dp"
                     android:layout_height="40dp"
                     android:text="@string/shelter_dummy_charity_no"
@@ -175,7 +175,7 @@
         android:text="@string/shelter_edit_profile_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shelter_introduction" />
+        app:layout_constraintTop_toBottomOf="@+id/shelter_introduction_edit" />
 
 
 </android.support.constraint.ConstraintLayout>

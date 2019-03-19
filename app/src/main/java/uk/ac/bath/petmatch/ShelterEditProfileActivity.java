@@ -2,12 +2,9 @@ package uk.ac.bath.petmatch;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.Objects;
 
@@ -33,14 +30,16 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
         ShelterDao shelterDao = db.shelters;
         currentShelter = shelterDao.loadOneRandom();
 
-        shelterIntroduction = (EditText) findViewById(R.id.shelter_introduction);
-        shelterAddress = (EditText) findViewById(R.id.shelter_address);
-        shelterEmail = (EditText) findViewById(R.id.shelter_email);
-        shelterCharityNumber = (EditText) findViewById(R.id.shelter_charity_no);
-        shelterPhoneNumber = (EditText) findViewById(R.id.shelter_phone);
+        TextView shelterTitle = (TextView) findViewById(R.id.shelter_profile_title_edit);
+        shelterIntroduction = (EditText) findViewById(R.id.shelter_introduction_edit);
+        shelterAddress = (EditText) findViewById(R.id.shelter_address_edit);
+        shelterEmail = (EditText) findViewById(R.id.shelter_email_edit);
+        shelterCharityNumber = (EditText) findViewById(R.id.shelter_charity_no_edit);
+        shelterPhoneNumber = (EditText) findViewById(R.id.shelter_phone_edit);
 
         if(currentShelter != null) {
 
+            shelterTitle.setText(currentShelter.getTitle());
             shelterIntroduction.setText(currentShelter.getDescription());
             shelterAddress.setText(currentShelter.getAddress());
             shelterEmail.setText(currentShelter.getEmail());
@@ -50,34 +49,25 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
 
         Button saveButton = (Button) findViewById(R.id.save_button_shelter);
         saveButton.setOnClickListener(this);
-
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.shelter_map);
-//        ViewGroup.LayoutParams params = mapFragment.getView().getLayoutParams();
-//        params.height = 850;
-//        mapFragment.setHasOptionsMenu(true);
-//        mapFragment.setMenuVisibility(true);
-//        mapFragment.getView().setLayoutParams(params);
-//        mapFragment.setMenuVisibility(true);
-//        ShelterDao shelterDao = db.shelters;
-//        currentShelter = shelterDao.loadOneRandom();
-//
-//        mapFragment.getMapAsync(this);
-//
-//        shelterTitle.setText(currentShelter.getTitle());
-//        shelterIntroduction.setText(currentShelter.getDescription());
-//        shelterAddress.setText(currentShelter.getAddress());
-//        shelterEmail.setText(currentShelter.getEmail());
-//        shelterEmail.setOnClickListener(emailClick);
-//        shelterCharityNumber.setText(currentShelter.getCharityNumber());
-//        shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
     }
 
     @Override
     public void onClick(View v) {
 
+        if(currentShelter != null) {
 
+//            System.out.println(shelterIntroduction.getText().toString());
+//            System.out.println(shelterAddress.getText().toString());
+//            System.out.println(shelterEmail.getText().toString());
+//            System.out.println(shelterCharityNumber.getText().toString());
+//            System.out.println(shelterPhoneNumber.getText().toString());
 
+            currentShelter.setDescription(shelterIntroduction.getText().toString());
+            currentShelter.setAddress(shelterAddress.getText().toString());
+            currentShelter.setEmail(shelterEmail.getText().toString());
+            currentShelter.setCharityNumber(shelterCharityNumber.getText().toString());
+            currentShelter.setPhoneNumber(shelterPhoneNumber.getText().toString());
+        }
     }
 }
 
