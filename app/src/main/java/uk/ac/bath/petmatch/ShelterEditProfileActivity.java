@@ -46,7 +46,6 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
             shelterCharityNumber.setText(currentShelter.getCharityNumber());
             shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
         }
-
         Button saveButton = (Button) findViewById(R.id.save_button_shelter);
         saveButton.setOnClickListener(this);
     }
@@ -54,19 +53,16 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
     @Override
     public void onClick(View v) {
 
+        ShelterDao shelterDao = db.shelters;
+        currentShelter = shelterDao.findByTitle(currentShelter.getTitle());
         if(currentShelter != null) {
-
-//            System.out.println(shelterIntroduction.getText().toString());
-//            System.out.println(shelterAddress.getText().toString());
-//            System.out.println(shelterEmail.getText().toString());
-//            System.out.println(shelterCharityNumber.getText().toString());
-//            System.out.println(shelterPhoneNumber.getText().toString());
 
             currentShelter.setDescription(shelterIntroduction.getText().toString());
             currentShelter.setAddress(shelterAddress.getText().toString());
             currentShelter.setEmail(shelterEmail.getText().toString());
             currentShelter.setCharityNumber(shelterCharityNumber.getText().toString());
             currentShelter.setPhoneNumber(shelterPhoneNumber.getText().toString());
+            shelterDao.update(currentShelter);
         }
     }
 }
