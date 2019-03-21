@@ -17,9 +17,11 @@ import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.BaseActivity;
+import uk.ac.bath.petmatch.Database.FavoritePet;
 import uk.ac.bath.petmatch.Database.FavoritePetDao;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Database.User;
 import uk.ac.bath.petmatch.R;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
@@ -34,25 +36,26 @@ public class FavouritesActivity extends BaseActivity {
 //        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 //        navigationView.setNavigationItemSelectedListener(this);
 
-//        processSearchFilter();
-//        reloadPetsList();
-//        generateLoggedUserView();
+
 
         loadFavouritePetGrid();
     }
 
     private void loadFavouritePetGrid() {
-        FavoritePetDao favPets = getHelper().favoritePets;
+        User currentUser = loginService.getLoggedInUser();
 
+        FavoritePetDao allFavPets = getHelper().favoritePets;
+        ArrayList<FavoritePet> favPets = allFavPets.getFavourites(currentUser);
+        ArrayList<Pet> pets = new ArrayList<Pet>();
+        int noOfPets = favPets.size();
+        for (int i=0; i<noOfPets; i++) {
+            pets.add(favPets.get(i).getPet());
+        }
 
-        //PetDao pets = getHelper().pets;
-        //ArrayList<Pet> petGrid = pets.getDummy();
-        ArrayList<Pet> favPets = favPets.;
-        // get the favourite pets for a user
         if (favPets.size() == 0) {
             ToastAdapter.toastMessage(this, "Database is empty");
         } else {
-            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), favPets);
+            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
         }
     }
 
