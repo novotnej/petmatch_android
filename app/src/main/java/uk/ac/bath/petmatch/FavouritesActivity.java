@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.BaseActivity;
@@ -31,12 +32,11 @@ public class FavouritesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.favourite_activity);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("My Favourite Pets");
 
 //        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 //        navigationView.setNavigationItemSelectedListener(this);
-
-
 
         loadFavouritePetGrid();
     }
@@ -53,7 +53,7 @@ public class FavouritesActivity extends BaseActivity {
         }
 
         if (favPets.size() == 0) {
-            ToastAdapter.toastMessage(this, "Database is empty");
+            ToastAdapter.toastMessage(this, "You have no favourite pets");
         } else {
             this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
         }

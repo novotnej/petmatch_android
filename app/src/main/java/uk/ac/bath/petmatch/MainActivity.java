@@ -110,6 +110,7 @@ public class MainActivity extends BaseActivity
                 loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
+                nav_Menu.findItem(R.id.nav_user_favourite_pets).setVisible(true);
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
@@ -117,6 +118,7 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setVisibility(View.GONE);
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
+                nav_Menu.findItem(R.id.nav_user_favourite_pets).setVisible(false);
             }
         }
     }
@@ -374,6 +376,10 @@ public class MainActivity extends BaseActivity
             Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),UserCapabilitiesActivity.class);
             startActivity(startUserCapabilitiesIntent);
 
+        } else if (id == R.id.nav_user_favourite_pets) {
+
+            Intent startUserFavPetsIntent = new Intent(getApplicationContext(),FavouritesActivity.class);
+            startActivity(startUserFavPetsIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
