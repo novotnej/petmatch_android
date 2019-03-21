@@ -33,8 +33,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
+import uk.ac.bath.petmatch.Database.FavoritePetDao;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
+import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Database.User;
+import uk.ac.bath.petmatch.Database.UserDao;
 import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
@@ -82,8 +86,21 @@ public class MainActivity extends BaseActivity
 
         processSearchFilter();
         reloadPetsList();
+        giveDummyUserFavPets();
         generateLoggedUserView();
 
+    }
+
+    protected void giveDummyUserFavPets() {
+        UserDao users = getHelper().users;
+        PetDao petDao = getHelper().pets;
+        ArrayList<Pet> pets = petDao.getDummy();
+        User user = users.findByEmail("user@petmatch.com");
+        FavoritePetDao allFavPets = getHelper().favoritePets;
+       // allFavPets.addToFavourites(user, pets.get(0));
+        allFavPets.addToFavourites(user, pets.get(1));
+        allFavPets.addToFavourites(user, pets.get(2));
+        allFavPets.addToFavourites(user, pets.get(3));
     }
 
     /**
