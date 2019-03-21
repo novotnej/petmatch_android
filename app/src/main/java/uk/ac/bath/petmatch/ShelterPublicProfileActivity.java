@@ -54,8 +54,10 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         mapFragment.setMenuVisibility(true);
         mapFragment.getView().setLayoutParams(params);
         mapFragment.setMenuVisibility(true);
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("shelter_id");
         ShelterDao shelterDao = db.shelters;
-        currentShelter = shelterDao.loadOneRandom();
+        currentShelter = shelterDao.queryForId(id);
 
         mapFragment.getMapAsync(this);
 
