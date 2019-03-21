@@ -82,7 +82,7 @@ public class PetEditActivity extends BaseActivity {
         } else {
             spinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
         }
-        
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

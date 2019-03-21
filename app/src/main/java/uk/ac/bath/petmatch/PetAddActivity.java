@@ -85,7 +85,7 @@ public class PetAddActivity extends BaseActivity {
                 final EditText descTextField = (EditText) findViewById(R.id.descText);
                 String description = descTextField.getText().toString();
 
-                Shelter shelter = getHelper().shelters.loadOneRandom();
+                Shelter shelter = loginService.getLoggedInUser().getShelter();
 
                 Pet newPet = new Pet(name, description, shelter, petBreed);
                 newPet.setImage(Pet.getRandomImage());
