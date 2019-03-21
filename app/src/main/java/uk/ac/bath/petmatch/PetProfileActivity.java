@@ -43,6 +43,7 @@ public class PetProfileActivity extends BaseActivity {
         webLink.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent shelterProfIntent = new Intent(getApplicationContext(), ShelterPublicProfileActivity.class);
+                shelterProfIntent.putExtra("shelter_id", petClicked.getShelter().getId());
                 startActivity(shelterProfIntent);
             }
         });
