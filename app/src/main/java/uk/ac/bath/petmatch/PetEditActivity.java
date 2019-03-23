@@ -65,7 +65,7 @@ public class PetEditActivity extends BaseActivity {
         for (int i = 0; i < breeds.length; i++) {
             spinnerBreeds[i] = breeds[i];
         }
-        spinnerBreeds[breeds.length] = " --- ALL ---"; //add an "empty" choice option
+        spinnerBreeds[breeds.length] = petClicked.getBreed().getTitle(); //add an "empty" choice option
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
         spinner.setAdapter(arrayAdapter);
