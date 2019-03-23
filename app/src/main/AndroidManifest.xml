@@ -43,7 +43,7 @@
         <activity
             android:name=".PetEditActivity"
             android:label="@string/title_activity_pet_edit"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            ></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
