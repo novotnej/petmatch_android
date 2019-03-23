@@ -103,7 +103,7 @@ public class PetEditActivity extends BaseActivity {
                 // Code here executes on main thread after user presses button
                 //go to pet edit activity
                 if (petClicked.getBreed() == null){
-                    ToastAdapter.toastMessage(getApplicationContext(), "SELECT A BREED M8");
+                    ToastAdapter.toastMessage(getApplicationContext(), "Please select a breed");
                 }
                 else{
                     petClicked.setTitle(editTitle.getText().toString());
