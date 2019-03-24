@@ -35,7 +35,9 @@ import java.util.ArrayList;
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
+import uk.ac.bath.petmatch.Database.User;
 import uk.ac.bath.petmatch.Database.UserProperties;
+import uk.ac.bath.petmatch.Services.LoginService;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
 public class MainActivity extends BaseActivity
@@ -97,7 +99,11 @@ public class MainActivity extends BaseActivity
         TextView loggedUserName = (TextView) findViewById(R.id.loggedUserName);
         TextView loggedUserEmail = (TextView) findViewById(R.id.loggedUserEmail);
 
+        MenuItem item = (MenuItem) findViewById(R.id.nav_pet_add);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
 
         if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
 
@@ -359,14 +365,25 @@ public class MainActivity extends BaseActivity
         Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_pet_add) {
-            Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
-            startActivity(petAddIntent);
+            if (loginService.getLoggedInUser() != null){
+                if (loginService.getLoggedInUser().getShelter() != null){
+                    Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+                    startActivity(petAddIntent);
+                }
+                else{
+                    ToastAdapter.toastMessage(this, "You do not have the permission to do this");
+                }
+            }
+            else{
+                ToastAdapter.toastMessage(this, "You do not have the permission to do this");
+            }
+
             // Handle the camera action
         } else if (id == R.id.nav_shelter_profile) {
 
             // handles settings
             Intent startShelterProfileIntent = new Intent(getApplicationContext(),
-                    ShelterPublicProfileActivity.class);
+                    ShelterEditProfileActivity.class);
             startActivity(startShelterProfileIntent);
 
         } else if (id == R.id.nav_user_capabilities) {
