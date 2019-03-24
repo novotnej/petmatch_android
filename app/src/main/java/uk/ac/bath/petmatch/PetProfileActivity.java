@@ -65,7 +65,13 @@ public class PetProfileActivity extends BaseActivity {
         final Button button = findViewById(R.id.editButton);
         if (loginService.getLoggedInUser() != null){
             if (loginService.getLoggedInUser().getShelter() !=null){
-                button.setVisibility(View.VISIBLE);
+                if(loginService.getLoggedInUser().getShelter() == petClicked.getShelter()){
+                    button.setVisibility(View.VISIBLE);
+                }
+                else{
+                    button.setVisibility(View.GONE);
+                }
+
             }
             else{
                 button.setVisibility(View.GONE);
