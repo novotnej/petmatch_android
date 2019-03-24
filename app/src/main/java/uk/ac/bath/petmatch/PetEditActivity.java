@@ -70,7 +70,6 @@ public class PetEditActivity extends BaseActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
         spinner.setAdapter(arrayAdapter);
         int pos = arrayAdapter.getPosition(petClicked.getBreed().getTitle());
-        spinner.setSelection(pos);
 
         //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
         if (filterPetBreed != null) {
@@ -81,7 +80,7 @@ public class PetEditActivity extends BaseActivity {
                 spinner.setSelection(spinnerPosition);
             }
         } else {
-            spinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
+            spinner.setSelection(pos); //if no breed selected, choose "empty" valu
         }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
