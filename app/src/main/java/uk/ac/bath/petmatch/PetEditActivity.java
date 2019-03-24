@@ -69,7 +69,7 @@ public class PetEditActivity extends BaseActivity {
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
         spinner.setAdapter(arrayAdapter);
-        int pos = arrayAdapter.getPosition(petClicked.getBreed());
+        int pos = arrayAdapter.getPosition(petClicked.getBreed().getTitle());
         spinner.setSelection(pos);
 
         //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
