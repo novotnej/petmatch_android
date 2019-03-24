@@ -116,6 +116,12 @@ public class MainActivity extends BaseActivity
                 loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
+                if(loginService.getLoggedInUser().getShelter() != null){
+                    nav_Menu.findItem(R.id.nav_pet_add).setVisible(true);
+                }
+                else {
+                    nav_Menu.findItem(R.id.nav_pet_add).setVisible(false);
+                }
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
@@ -123,6 +129,7 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setVisibility(View.GONE);
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
+                nav_Menu.findItem(R.id.nav_pet_add).setVisible(false);
             }
         }
     }
