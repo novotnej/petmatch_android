@@ -89,4 +89,5 @@
     <string name="radio_cats">Cats</string>
     <string name="radio_dogs">Dogs</string>
     <string name="radio_cats_and_dogs">Both</string>
+    <string name="title_activity_welcome_screen">WelcomeScreenActivity</string>
 </resources>
