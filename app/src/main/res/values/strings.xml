@@ -72,6 +72,11 @@
 
     <!-- Example settings for Notifications -->
 
+    <!-- Strings related to Welcome Screen -->
+    <string name="welcome_login_button">login</string>
+    <string name="welcome_register_button">register</string>
+    <string name="welcome_browse_button">just browse</string>
+
     <!-- Strings related to login -->
 
     <string name="prompt_email">Email</string>
