@@ -43,6 +43,17 @@ public class Pet extends CommonModel {
         this.id = id;
     }
 
+    public static String getRandomImage(PetBreed breed) {
+        String[] images;
+        if (breed.getType().equals(PetBreed.TYPE_CAT)) {
+            images = Pet.getCatImages();
+        } else {
+            images = Pet.getDogImages();
+        }
+        int randomNumber = (new Random()).nextInt(images.length);
+        return images[randomNumber];
+    }
+
     public static String getRandomImage() {
         String[] images = getAvailableImages();
         int randomNumber = (new Random()).nextInt(images.length);
