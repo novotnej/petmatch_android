@@ -12,8 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.ac.bath.petmatch.Database.FavoritePetDao;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Database.User;
+import uk.ac.bath.petmatch.Database.UserDao;
 
 public class PetProfileActivity extends BaseActivity {
     List<Pet> dummyPetList;
@@ -85,5 +88,23 @@ public class PetProfileActivity extends BaseActivity {
 
         });
 
+        final Button favButton = findViewById(R.id.addToFavouritesButton);
+        if (loginService.getLoggedInUser() != null){
+            favButton.setVisibility(View.VISIBLE);
+        }
+        else{
+            favButton.setVisibility(View.GONE);
+        }
+        favButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // add pet to the users favourite pet list
+                if (loginService.getLoggedInUser() != null) {
+                    User user = loginService.getLoggedInUser();
+                    FavoritePetDao allFavPets = getHelper().favoritePets;
+                    allFavPets.addToFavourites(user, petClicked);
+                }
+            }
+
+        });
     }
 }
