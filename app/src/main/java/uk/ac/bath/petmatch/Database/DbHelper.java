@@ -105,21 +105,26 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         Pet goodBoy, roz, artem, jan, josh, mcGonagall, hagrid, malfoy, dumbledore, snape;
         // dogs
         goodBoy = new Pet("Good boy", "He's the goodest boy", dummyBath, labrador);
+        goodBoy.setImage("labrador");
         roz = new Pet("Roz", "Is good at herding cows", bath, husky);
+        roz.setImage("husky");
         artem = new Pet("Artem", "Needs exercising often", dummyBath, beagle);
+        artem.setImage("beagle");
         jan = new Pet("Jan", "Only eats pedigree food", bath, airedale);
+        jan.setImage("terrier");
         josh = new Pet("Josh", "Likes it when you play soundtracks", dummyBath, chihuahua);
+        josh.setImage("chihuahua");
         // cats
         mcGonagall = new Pet("Minerva McGonagall", "Have a biscuit, Potter.", bath, tabby);
-        mcGonagall.setImage("mcgonagoll");
+        mcGonagall.setImage("tabbycat");
         hagrid = new Pet("Hagrid", "Very hairy", dummyBath, ragdoll);
-        hagrid.setImage("hagrid");
+        hagrid.setImage("ragdoll");
         malfoy = new Pet("Draco Malfoy", "Weaselike in appearance", bath, siamese);
-        malfoy.setImage("malfoy");
+        malfoy.setImage("siamese");
         dumbledore = new Pet("Albus Percival Wulfric Brian Dumbledore", "Don't pity the dead, pity the living", dummyBath, britishshorthair);
-        dumbledore.setImage("dumbledore");
+        dumbledore.setImage("british_shorthair");
         snape = new Pet("Severus Snape", "Always", bath, burmilla);
-        snape.setImage("snape");
+        snape.setImage("burmilla");
 
         FavoritePet favoritePet = new FavoritePet(goodBoy, user);
 

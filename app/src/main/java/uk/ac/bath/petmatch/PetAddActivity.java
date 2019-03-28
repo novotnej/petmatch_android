@@ -88,7 +88,7 @@ public class PetAddActivity extends BaseActivity {
                 Shelter shelter = loginService.getLoggedInUser().getShelter();
 
                 Pet newPet = new Pet(name, description, shelter, petBreed);
-                newPet.setImage(Pet.getRandomImage());
+                newPet.setImage(Pet.getRandomImage(petBreed));
                 getHelper().pets.create(newPet);
 
                 //redirect back to main screen

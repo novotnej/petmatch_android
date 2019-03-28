@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
+import uk.ac.bath.petmatch.Database.Shelter;
+import uk.ac.bath.petmatch.Database.ShelterDao;
 import uk.ac.bath.petmatch.Database.User;
 import uk.ac.bath.petmatch.Database.UserProperties;
 import uk.ac.bath.petmatch.Services.LoginService;
@@ -116,6 +118,12 @@ public class MainActivity extends BaseActivity
                 loggedUserEmail.setText(loginService.getLoggedInUser().getEmail());
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
+
+                if(loginService.getLoggedInUser().getShelter() != null) {
+
+                    System.out.println("PUNANI");
+                    nav_Menu.findItem(R.id.nav_shelter_profile).setVisible(true);
+                }
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
@@ -123,6 +131,7 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setVisibility(View.GONE);
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
+                nav_Menu.findItem(R.id.nav_shelter_profile).setVisible(false);
             }
         }
     }
