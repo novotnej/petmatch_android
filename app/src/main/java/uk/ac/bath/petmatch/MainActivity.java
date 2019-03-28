@@ -45,6 +45,7 @@ import uk.ac.bath.petmatch.Utils.ToastAdapter;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FloatingActionButton fab;
     ArrayList<Pet> pets;
     RadioGroup breedTypeRadioGroup;
     Spinner petBreedSpinner;
@@ -66,12 +67,14 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (loginService.getLoggedInUser() != null && loginService.getLoggedInUser().getShelter() != null) {
+                    Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+                    startActivity(petAddIntent);
+                }
             }
         });
 
@@ -105,6 +108,13 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        if (fab != null) {
+            if (loginService.getLoggedInUser() != null && loginService.getLoggedInUser().getShelter() != null) {
+                fab.show();
+            } else {
+                fab.hide();
+            }
+        }
 
 
         if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
