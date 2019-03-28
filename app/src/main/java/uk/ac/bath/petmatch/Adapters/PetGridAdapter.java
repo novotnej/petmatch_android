@@ -48,7 +48,7 @@ public class PetGridAdapter extends ArrayAdapter<Pet> {
                 resID = (int) R.mipmap.class.getField(id).get(null);
             } catch (Exception e) {
                 Log.e("PetGridAdapter", e.getMessage());
-                resID = R.mipmap.dumbledore;
+                resID = R.mipmap.paws;
             }
             petImageView.setImageResource(resID);
             //petImageView.setImageResource(R.mipmap.dumbledore);

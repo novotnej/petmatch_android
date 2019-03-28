@@ -49,13 +49,18 @@ public class Pet extends CommonModel {
         return images[randomNumber];
     }
 
+    public static String[] getCatImages() {
+        String[] cat_images = {"japanese_bobtail", "burmilla", "russian_blue", "ragdoll", "tabbycat", "shorthair", "siamese", "british_shorthair"};
+        return cat_images;
+    }
+
+    public static String[] getDogImages() {
+        String[] dog_images = {"lhasa", "labrador", "terrier", "beagle", "pekingese", "husky", "chihuahua", "daschshunds"};
+        return dog_images;
+    }
+
     public static String[] getAvailableImages() {
-        String[] images = new String[5];
-        images[0] = "snape";
-        images[1] = "malfoy";
-        images[2] = "hagrid";
-        images[3] = "mcgonagoll";
-        images[4] = "dumbledore";
+        String[] images = {"japanese_bobtail", "pekingese", "russian_blue", "ragdoll", "tabbycat", "shorthair", "siamese", "british_shorthair", "lhasa", "labrador", "terrier", "beagle", "burmilla", "husky", "chihuahua", "daschshunds"};
         return images;
     }
 
