@@ -339,6 +339,13 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        generateLoggedUserView();
+        return true;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onLoginButtonClicked(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
