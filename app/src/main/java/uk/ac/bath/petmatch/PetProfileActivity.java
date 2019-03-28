@@ -42,7 +42,8 @@ public class PetProfileActivity extends BaseActivity {
         webLink.setText(petClicked.getShelter().getTitle(), TextView.BufferType.EDITABLE);
         webLink.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent shelterProfIntent = new Intent(getApplicationContext(), ShelterProfileActivity.class);
+                Intent shelterProfIntent = new Intent(getApplicationContext(), ShelterPublicProfileActivity.class);
+                shelterProfIntent.putExtra("shelter_id", petClicked.getShelter().getId());
                 startActivity(shelterProfIntent);
             }
         });
@@ -54,7 +55,7 @@ public class PetProfileActivity extends BaseActivity {
             resID = (int) R.mipmap.class.getField(id).get(null);
         } catch (Exception e) {
             Log.e("PetGridAdapter", e.getMessage());
-            resID = R.mipmap.dumbledore;
+            resID = R.mipmap.paws;
         }
         petImage.setImageResource(resID);
         //petImageView.setImageResource(R.mipmap.dumbledore);
@@ -62,6 +63,17 @@ public class PetProfileActivity extends BaseActivity {
 
 
         final Button button = findViewById(R.id.editButton);
+        if (loginService.getLoggedInUser() != null){
+            if (loginService.getLoggedInUser().getShelter() !=null){
+                button.setVisibility(View.VISIBLE);
+            }
+            else{
+                button.setVisibility(View.GONE);
+            }
+        }
+        else{
+            button.setVisibility(View.GONE);
+        }
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
@@ -73,15 +85,5 @@ public class PetProfileActivity extends BaseActivity {
 
         });
 
-        final Button bbutton = findViewById(R.id.backButton);
-        bbutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                //go to pet edit activity
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
-            }
-
-        });
     }
 }

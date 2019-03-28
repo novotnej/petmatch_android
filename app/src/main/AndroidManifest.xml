@@ -32,10 +32,14 @@
             android:name=".UserCapabilitiesActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
+
             android:name=".FavouritesActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".ShelterProfileActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ShelterEditProfileActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".PetAddActivity"
@@ -46,7 +50,7 @@
         <activity
             android:name=".PetEditActivity"
             android:label="@string/title_activity_pet_edit"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            ></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
