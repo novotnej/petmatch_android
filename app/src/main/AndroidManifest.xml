@@ -32,6 +32,10 @@
             android:name=".UserCapabilitiesActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
+
+            android:name=".FavouritesActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".ShelterEditProfileActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity

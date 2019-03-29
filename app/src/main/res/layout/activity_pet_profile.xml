@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/petImage"
-        android:layout_width="283dp"
+        android:layout_width="253dp"
         android:layout_height="203dp"
         android:layout_marginStart="43dp"
         android:layout_marginTop="44dp"
@@ -17,8 +17,10 @@
         android:contentDescription="A picture of the dog's profile you are looking at"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed"
         tools:srcCompat="@tools:sample/avatars[2]" />
 
@@ -81,4 +83,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage" />
+
+    <Button
+        android:id="@+id/addToFavouritesButton"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="206dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
+        android:text="Add to Favourites"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/linkText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/petImage"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

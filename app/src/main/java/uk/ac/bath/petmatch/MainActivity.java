@@ -33,8 +33,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
+import uk.ac.bath.petmatch.Database.FavoritePetDao;
 import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetBreed;
+import uk.ac.bath.petmatch.Database.PetDao;
+import uk.ac.bath.petmatch.Database.User;
+import uk.ac.bath.petmatch.Database.UserDao;
 import uk.ac.bath.petmatch.Database.Shelter;
 import uk.ac.bath.petmatch.Database.ShelterDao;
 import uk.ac.bath.petmatch.Database.User;
@@ -45,6 +49,7 @@ import uk.ac.bath.petmatch.Utils.ToastAdapter;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FloatingActionButton fab;
     ArrayList<Pet> pets;
     RadioGroup breedTypeRadioGroup;
     Spinner petBreedSpinner;
@@ -66,12 +71,14 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (loginService.getLoggedInUser() != null && loginService.getLoggedInUser().getShelter() != null) {
+                    Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+                    startActivity(petAddIntent);
+                }
             }
         });
 
@@ -86,8 +93,21 @@ public class MainActivity extends BaseActivity
 
         processSearchFilter();
         reloadPetsList();
+        giveDummyUserFavPets();
         generateLoggedUserView();
 
+    }
+
+    protected void giveDummyUserFavPets() {
+        UserDao users = getHelper().users;
+        PetDao petDao = getHelper().pets;
+        ArrayList<Pet> pets = petDao.getDummy();
+        User user = users.findByEmail("user@petmatch.com");
+        FavoritePetDao allFavPets = getHelper().favoritePets;
+       // allFavPets.addToFavourites(user, pets.get(0));
+        allFavPets.addToFavourites(user, pets.get(1));
+        allFavPets.addToFavourites(user, pets.get(2));
+        allFavPets.addToFavourites(user, pets.get(3));
     }
 
     /**
@@ -105,6 +125,13 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        if (fab != null) {
+            if (loginService.getLoggedInUser() != null && loginService.getLoggedInUser().getShelter() != null) {
+                fab.show();
+            } else {
+                fab.hide();
+            }
+        }
 
 
         if (loginButton != null && loggedUserEmail != null && loggedUserName != null && logoutButton != null) {
@@ -125,11 +152,14 @@ public class MainActivity extends BaseActivity
                     nav_Menu.findItem(R.id.nav_pet_add).setVisible(false);
                 }
 
+                nav_Menu.findItem(R.id.nav_user_favourite_pets).setVisible(true);
+
                 if(loginService.getLoggedInUser().getShelter() != null) {
 
                     System.out.println("PUNANI");
                     nav_Menu.findItem(R.id.nav_shelter_profile).setVisible(true);
                 }
+
             } else {
                 loginButton.setVisibility(View.VISIBLE);
                 logoutButton.setVisibility(View.GONE);
@@ -137,7 +167,11 @@ public class MainActivity extends BaseActivity
                 loggedUserName.setVisibility(View.GONE);
                 Menu nav_Menu = navigationView.getMenu();
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(false);
+
+                nav_Menu.findItem(R.id.nav_user_favourite_pets).setVisible(false);
+
                 nav_Menu.findItem(R.id.nav_shelter_profile).setVisible(false);
+
                 nav_Menu.findItem(R.id.nav_pet_add).setVisible(false);
             }
         }
@@ -305,9 +339,9 @@ public class MainActivity extends BaseActivity
 
         if (pets == null || pets.size() == 0) {
             ToastAdapter.toastMessage(this, "No pets fit your filter");
-        } else {
-            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
         }
+
+        this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
     }
 
     private void createPetGridView(final GridView gridView, ArrayList<Pet> pets) {
@@ -339,29 +373,16 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
         generateLoggedUserView();
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onLoginButtonClicked(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        /*Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);*/
+        loginService.login("shelter@petmatch.com", "1234");
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -407,6 +428,10 @@ public class MainActivity extends BaseActivity
             Intent startUserCapabilitiesIntent = new Intent(getApplicationContext(),UserCapabilitiesActivity.class);
             startActivity(startUserCapabilitiesIntent);
 
+        } else if (id == R.id.nav_user_favourite_pets) {
+
+            Intent startUserFavPetsIntent = new Intent(getApplicationContext(),FavouritesActivity.class);
+            startActivity(startUserFavPetsIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

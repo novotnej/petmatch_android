@@ -27,7 +27,7 @@ public class FavoritePetDao extends RuntimeExceptionDao {
         try {
             return (FavoritePet) this.queryBuilder()
                     .where().eq("user_id", user.getId())
-                    .eq("pet_id", pet.getId())
+                    .and().eq("pet_id", pet.getId())
                     .queryForFirst();
         } catch (SQLException e) {
             Log.e("RemoveFromFavorites", e.getMessage());

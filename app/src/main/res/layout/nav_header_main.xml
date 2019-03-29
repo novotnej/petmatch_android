@@ -14,23 +14,23 @@
 
     <ImageView
         android:id="@+id/loginButton"
-        android:onClick="onLoginButtonClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="217dp"
+        android:layout_height="81dp"
         android:contentDescription="@string/nav_header_desc"
+        android:onClick="onLoginButtonClicked"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@mipmap/login_button" />
 
     <ImageView
         android:id="@+id/logoutButton"
-        android:onClick="onLogoutButtonClicked"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="91dp"
         android:contentDescription="@string/nav_header_desc"
+        android:onClick="onLogoutButtonClicked"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:visibility="gone"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@mipmap/logout_button" />
 
     <TextView
         android:id="@+id/loggedUserName"
