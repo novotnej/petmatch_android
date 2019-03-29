@@ -73,7 +73,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         Log.i("DBHelper", "generating sample data");
         Shelter bath, dummyBath;
 
-        dummyBath = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456789", "Radiator Springs, BA1 1SU", "51.377954, -2.356484", "spam@tobedeleted.com", "08663923288");
+        dummyBath = new Shelter("Dummy shelter", "This is the best shelter ever", "#3456789", "Radiator Springs, BA1 1SU", "51.383188, -2.710242", "spam@tobedeleted.com", "08663923288");
         bath = new Shelter("Bath Cats and dogs home", "This is the best shelter ever", "#123456", "Claverton Down, The Avenue, Bath BA2 7AZ", "51.375359, -2.321639", "rehoming@bcdh.org.uk", "09642217796");
 
         PetBreed tabby, russianBlue, ragdoll, siamese, japbobtail, britishshorthair, burmilla, colorhair, husky, labrador, lhasa, pekinese, beagle, airedale, chihuahua, dachshund;
