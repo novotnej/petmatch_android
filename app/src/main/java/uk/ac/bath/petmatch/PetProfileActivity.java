@@ -55,7 +55,7 @@ public class PetProfileActivity extends BaseActivity {
             resID = (int) R.mipmap.class.getField(id).get(null);
         } catch (Exception e) {
             Log.e("PetGridAdapter", e.getMessage());
-            resID = R.mipmap.dumbledore;
+            resID = R.mipmap.paws;
         }
         petImage.setImageResource(resID);
         //petImageView.setImageResource(R.mipmap.dumbledore);
