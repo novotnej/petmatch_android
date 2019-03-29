@@ -201,8 +201,6 @@ public class ShelterEditProfileActivity extends BaseActivity implements View.OnC
         placesListAdatper.notifyDataSetChanged();
     }
 
-
-
     public void getAddressLatLong(String addressString) {
         Geocoder coder = new Geocoder(getBaseActivity());
         List<Address> address;
