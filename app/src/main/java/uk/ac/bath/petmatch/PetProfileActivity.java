@@ -17,6 +17,7 @@ import uk.ac.bath.petmatch.Database.Pet;
 import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Database.User;
 import uk.ac.bath.petmatch.Database.UserDao;
+import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
 public class PetProfileActivity extends BaseActivity {
     List<Pet> dummyPetList;
@@ -102,6 +103,7 @@ public class PetProfileActivity extends BaseActivity {
                     User user = loginService.getLoggedInUser();
                     FavoritePetDao allFavPets = getHelper().favoritePets;
                     allFavPets.addToFavourites(user, petClicked);
+                    ToastAdapter.toastMessage(getApplicationContext(), "Added to Favourites");
                 }
             }
 
