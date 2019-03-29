@@ -399,18 +399,23 @@ public class MainActivity extends BaseActivity
         Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_pet_add) {
-            if (loginService.getLoggedInUser() != null){
-                if (loginService.getLoggedInUser().getShelter() != null){
-                    Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
-                    startActivity(petAddIntent);
-                }
-                else{
-                    ToastAdapter.toastMessage(this, "You do not have the permission to do this");
-                }
-            }
-            else{
-                ToastAdapter.toastMessage(this, "You do not have the permission to do this");
-            }
+
+            Intent startWelcomeScreen = new Intent(getApplicationContext(),
+                    WelcomeScreenActivity.class);
+            startActivity(startWelcomeScreen);
+
+//            if (loginService.getLoggedInUser() != null){
+//                if (loginService.getLoggedInUser().getShelter() != null){
+//                    Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
+//                    startActivity(petAddIntent);
+//                }
+//                else{
+//                    ToastAdapter.toastMessage(this, "You do not have the permission to do this");
+//                }
+//            }
+//            else{
+//                ToastAdapter.toastMessage(this, "You do not have the permission to do this");
+//            }
 
             // Handle the camera action
         } else if (id == R.id.nav_shelter_profile) {
