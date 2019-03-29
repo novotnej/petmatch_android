@@ -348,7 +348,10 @@ public class MainActivity extends BaseActivity
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onLoginButtonClicked(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        /*Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);*/
+        loginService.login("shelter@petmatch.com", "1234");
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
