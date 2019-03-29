@@ -65,7 +65,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textStyle="bold" />
 
-                <AutoCompleteTextView
+                <EditText
                     android:id="@+id/shelter_address_edit"
                     android:layout_width="280dp"
                     android:layout_height="40dp"
