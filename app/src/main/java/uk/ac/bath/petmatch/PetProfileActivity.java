@@ -89,21 +89,44 @@ public class PetProfileActivity extends BaseActivity {
 
         });
 
-        final Button favButton = findViewById(R.id.addToFavouritesButton);
+        final Button addToFavButton = findViewById(R.id.addToFavouritesButton);
+        final Button removeFromFavButton = findViewById(R.id.removeFromFavouritesButton);
+        final FavoritePetDao allFavPets = getHelper().favoritePets;
         if (loginService.getLoggedInUser() != null){
-            favButton.setVisibility(View.VISIBLE);
+            User user = loginService.getLoggedInUser();
+            if (allFavPets.isFavourite(user, petClicked)) {
+                removeFromFavButton.setVisibility(View.VISIBLE);
+                addToFavButton.setVisibility(View.GONE);
+            }
+            else {
+                addToFavButton.setVisibility(View.VISIBLE);
+                removeFromFavButton.setVisibility(View.GONE);
+            }
         }
         else{
-            favButton.setVisibility(View.GONE);
+            addToFavButton.setVisibility(View.GONE);
+            removeFromFavButton.setVisibility(View.GONE);
         }
-        favButton.setOnClickListener(new View.OnClickListener() {
+        addToFavButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // add pet to the users favourite pet list
                 if (loginService.getLoggedInUser() != null) {
                     User user = loginService.getLoggedInUser();
-                    FavoritePetDao allFavPets = getHelper().favoritePets;
+                    //FavoritePetDao allFavPets = getHelper().favoritePets;
                     allFavPets.addToFavourites(user, petClicked);
                     ToastAdapter.toastMessage(getApplicationContext(), "Added to Favourites");
+                }
+            }
+
+        });
+        removeFromFavButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // add pet to the users favourite pet list
+                if (loginService.getLoggedInUser() != null) {
+                    User user = loginService.getLoggedInUser();
+                    //FavoritePetDao allFavPets = getHelper().favoritePets;
+                    allFavPets.removeFromFavourites(user, petClicked);
+                    ToastAdapter.toastMessage(getApplicationContext(), "Removed from Favourites");
                 }
             }
 
