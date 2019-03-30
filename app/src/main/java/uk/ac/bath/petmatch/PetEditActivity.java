@@ -65,11 +65,11 @@ public class PetEditActivity extends BaseActivity {
         for (int i = 0; i < breeds.length; i++) {
             spinnerBreeds[i] = breeds[i];
         }
-        spinnerBreeds[breeds.length] = petClicked.getBreed().getTitle(); //add an "empty" choice option
+        spinnerBreeds[breeds.length] = " ---ALL---"; //add an "empty" choice option
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
         spinner.setAdapter(arrayAdapter);
-
+        int pos = arrayAdapter.getPosition(petClicked.getBreed().getTitle());
 
         //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
         if (filterPetBreed != null) {
@@ -80,7 +80,7 @@ public class PetEditActivity extends BaseActivity {
                 spinner.setSelection(spinnerPosition);
             }
         } else {
-            spinner.setSelection(spinnerBreeds.length - 1); //if no breed selected, choose "empty" valu
+            spinner.setSelection(pos); //if no breed selected, choose "empty" valu
         }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -103,7 +103,7 @@ public class PetEditActivity extends BaseActivity {
                 // Code here executes on main thread after user presses button
                 //go to pet edit activity
                 if (petClicked.getBreed() == null){
-                    ToastAdapter.toastMessage(getApplicationContext(), "SELECT A BREED M8");
+                    ToastAdapter.toastMessage(getApplicationContext(), "Please select a breed");
                 }
                 else{
                     petClicked.setTitle(editTitle.getText().toString());
