@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -95,8 +96,8 @@ public class PetProfileActivity extends BaseActivity {
 
         });
 
-        final Button addToFavButton = findViewById(R.id.addToFavouritesButton);
-        final Button removeFromFavButton = findViewById(R.id.removeFromFavouritesButton);
+        final ImageButton addToFavButton =  findViewById(R.id.addToFavouritesButton);
+        final ImageButton removeFromFavButton = findViewById(R.id.removeFromFavouritesButton);
         final FavoritePetDao allFavPets = getHelper().favoritePets;
 
         setVisibilityOfFavButtons(allFavPets, petClicked, removeFromFavButton, addToFavButton);
@@ -132,7 +133,7 @@ public class PetProfileActivity extends BaseActivity {
 
     }
 
-    private void setVisibilityOfFavButtons(FavoritePetDao allFavPets, Pet petClicked, Button removeFromFavButton, Button addToFavButton) {
+    private void setVisibilityOfFavButtons(FavoritePetDao allFavPets, Pet petClicked, ImageButton removeFromFavButton, ImageButton addToFavButton) {
         if (loginService.getLoggedInUser() != null){
             User user = loginService.getLoggedInUser();
             if (allFavPets.isFavourite(user, petClicked)) {

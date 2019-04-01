@@ -13,9 +13,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="10dp"
         android:contentDescription="A picture of the dog's profile you are looking at"
-        app:layout_constraintBottom_toTopOf="@+id/addToFavouritesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +22,7 @@
     <TextView
         android:id="@+id/petTitle"
         android:layout_width="323dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginStart="42dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="46dp"
@@ -34,8 +32,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/petDesc"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linkText"
+        app:layout_constraintVertical_bias="0.711"
         tools:text="@tools:sample/full_names" />
 
     <TextView
@@ -43,11 +43,12 @@
         android:layout_width="326dp"
         android:layout_height="166dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="43dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petTitle"
         tools:text="@tools:sample/us_phones" />
@@ -71,9 +72,9 @@
         android:layout_width="322dp"
         android:layout_height="42dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="101dp"
         android:layout_marginEnd="47dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/background"
         android:clickable="true"
         android:text="TextView"
@@ -83,36 +84,36 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/petTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addToFavouritesButton" />
-
-    <Button
-        android:id="@+id/addToFavouritesButton"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="149dp"
-        android:layout_marginBottom="10dp"
-        android:text="Add to Favourites"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/linkText"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage" />
 
-    <Button
+    <ImageButton
         android:id="@+id/removeFromFavouritesButton"
-        android:layout_width="113dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="149dp"
-        android:layout_marginBottom="10dp"
-        android:text="Remove From Favourites"
-        android:textSize="10sp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="29dp"
         app:layout_constraintBottom_toTopOf="@+id/linkText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petImage" />
+        app:layout_constraintTop_toBottomOf="@+id/petImage"
+        app:srcCompat="@drawable/ic_favorite_red_500_18dp" />
+
+    <ImageButton
+        android:id="@+id/addToFavouritesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="29dp"
+        app:layout_constraintBottom_toTopOf="@+id/linkText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petImage"
+        app:srcCompat="@drawable/ic_favorite_border_red_500_18dp" />
+
 </android.support.constraint.ConstraintLayout>
