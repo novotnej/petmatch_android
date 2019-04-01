@@ -12,17 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".WelcomeScreenActivity"
-            android:label="@string/title_activity_welcome_screen"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -35,7 +24,20 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ShelterPublicProfileActivity" />
+        <activity
+            android:name=".WelcomeScreenActivity"
+            android:label="@string/title_activity_welcome_screen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ShelterPublicProfileActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PetProfileActivity"
             android:parentActivityName=".MainActivity" />
@@ -52,7 +54,7 @@
         <activity
             android:name=".PetAddActivity"
             android:label="Add pet"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PetEditActivity"
             android:label="@string/title_activity_pet_edit" />

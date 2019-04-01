@@ -292,7 +292,7 @@ public class MainActivity extends BaseActivity
 
         petBreedSpinner = (Spinner) findViewById(R.id.pet_breed_spinner);
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerBreeds);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.breed_spinner_item, spinnerBreeds);
         petBreedSpinner.setAdapter(arrayAdapter);
 
         //Validate that the currently chosen filter value is a valid breed and is in the chosen breed type
