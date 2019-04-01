@@ -147,9 +147,11 @@ public class MainActivity extends BaseActivity
                 nav_Menu.findItem(R.id.nav_user_capabilities).setVisible(true);
                 if(loginService.getLoggedInUser().getShelter() != null){
                     nav_Menu.findItem(R.id.nav_pet_add).setVisible(true);
+                    nav_Menu.findItem(R.id.nav_shelter_pets).setVisible(true);
                 }
                 else {
                     nav_Menu.findItem(R.id.nav_pet_add).setVisible(false);
+                    nav_Menu.findItem(R.id.nav_shelter_pets).setVisible(false);
                 }
 
                 nav_Menu.findItem(R.id.nav_user_favourite_pets).setVisible(true);
@@ -171,6 +173,8 @@ public class MainActivity extends BaseActivity
                 nav_Menu.findItem(R.id.nav_user_favourite_pets).setVisible(false);
 
                 nav_Menu.findItem(R.id.nav_shelter_profile).setVisible(false);
+
+                nav_Menu.findItem(R.id.nav_shelter_pets).setVisible(false);
 
                 nav_Menu.findItem(R.id.nav_pet_add).setVisible(false);
             }
@@ -430,6 +434,15 @@ public class MainActivity extends BaseActivity
 
             Intent startUserFavPetsIntent = new Intent(getApplicationContext(),FavouritesActivity.class);
             startActivity(startUserFavPetsIntent);
+
+        } else if (id == R.id.nav_shelter_pets) {
+            if (loginService.getLoggedInUser() != null) {
+                if (loginService.getLoggedInUser().getShelter() != null) {
+                    Intent startShelterPetsIntent = new Intent(getApplicationContext(), ShelterPetsActivity.class);
+                    startShelterPetsIntent.putExtra("shelter_id", loginService.getLoggedInUser().getShelter().getId());
+                    startActivity(startShelterPetsIntent);
+                }
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

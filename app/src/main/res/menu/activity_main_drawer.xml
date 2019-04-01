@@ -23,6 +23,11 @@
             android:icon="@drawable/ic_menu_gallery"
             android:visible="false"
             android:title="My Favourite Pets" />
+        <item
+            android:id="@+id/nav_shelter_pets"
+            android:icon="@drawable/ic_menu_gallery"
+            android:visible="false"
+            android:title="Shelter Pets" />
     </group>
 
    <!-- <item android:title="Communicate">
