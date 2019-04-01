@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,8 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import uk.ac.bath.petmatch.Database.FavoritePetDao;
 import uk.ac.bath.petmatch.Database.Shelter;
 import uk.ac.bath.petmatch.Database.ShelterDao;
+import uk.ac.bath.petmatch.Database.User;
 
 public class ShelterPublicProfileActivity extends BaseActivity implements OnMapReadyCallback {
 
@@ -62,6 +65,18 @@ public class ShelterPublicProfileActivity extends BaseActivity implements OnMapR
         shelterEmail.setOnClickListener(emailClick);
         shelterCharityNumber.setText(currentShelter.getCharityNumber());
         shelterPhoneNumber.setText(currentShelter.getPhoneNumber());
+
+        final Button viewPetsButton = findViewById(R.id.viewShelterPets);
+        viewPetsButton.setVisibility(View.VISIBLE);
+        viewPetsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // take to shelter pets activity
+                Intent startShelterPetsActivity = new Intent(getApplicationContext(),ShelterPetsActivity.class);
+                startShelterPetsActivity.putExtra("shelter_id", currentShelter.getId());
+                startActivity(startShelterPetsActivity);
+            }
+
+        });
     }
 
     /**
