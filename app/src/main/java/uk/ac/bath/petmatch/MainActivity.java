@@ -399,6 +399,7 @@ public class MainActivity extends BaseActivity
         Log.d("navigClick", "" + id);
 
         if (id == R.id.nav_pet_add) {
+
             if (loginService.getLoggedInUser() != null){
                 if (loginService.getLoggedInUser().getShelter() != null){
                     Intent petAddIntent = new Intent(getApplicationContext(), PetAddActivity.class);
