@@ -204,7 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
         android:layout_marginEnd="162dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="20dp"
         android:text="View Shelter's Pets"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
