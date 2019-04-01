@@ -94,19 +94,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="184dp"
         android:layout_marginTop="30dp"
+        android:background="#0000"
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="29dp"
         app:layout_constraintBottom_toTopOf="@+id/linkText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage"
-        app:srcCompat="@drawable/ic_favorite_red_500_18dp" />
+        app:srcCompat="@drawable/ic_favorite_red_500_48dp" />
 
     <ImageButton
         android:id="@+id/addToFavouritesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="184dp"
+        android:background="#0000"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="185dp"
         android:layout_marginBottom="29dp"
@@ -114,6 +116,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage"
-        app:srcCompat="@drawable/ic_favorite_border_red_500_18dp" />
+        app:srcCompat="@drawable/ic_favorite_border_red_500_48dp" />
 
 </android.support.constraint.ConstraintLayout>
