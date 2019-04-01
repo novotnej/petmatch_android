@@ -78,7 +78,7 @@
                 android:layout_height="45dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="57dp"
+                android:layout_marginEnd="2dp"
                 android:layout_marginBottom="15dp"
                 android:max="100"
                 android:min="5"
@@ -87,12 +87,12 @@
 
             <TextView
                 android:id="@+id/searchDistanceValue"
-                android:layout_width="67dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="21dp"
                 android:layout_marginEnd="23dp"
+                android:layout_marginStart="4dp"
                 android:textSize="24sp"
                 android:layout_marginBottom="22dp"
                 android:layout_toStartOf="@+id/searchDistanceSeekbar"
