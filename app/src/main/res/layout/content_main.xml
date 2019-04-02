@@ -80,6 +80,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="15dp"
+                android:thumbTint="@color/dark_red"
                 android:max="100"
                 android:min="5"
 

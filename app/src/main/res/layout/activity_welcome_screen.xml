@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
 
     <Button
         android:id="@+id/welcome_browse_button"
@@ -15,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/darker_gray"
+        android:backgroundTint="@color/light_red"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/welcome_browse_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +32,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="@color/dark_green"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/welcome_register_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="@color/dark_green"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/welcome_login_button"
         android:textSize="24sp"
