@@ -52,6 +52,9 @@
             android:name=".ShelterEditProfileActivity"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".ShelterPetsActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".PetAddActivity"
             android:label="Add pet"
             android:parentActivityName=".MainActivity" />

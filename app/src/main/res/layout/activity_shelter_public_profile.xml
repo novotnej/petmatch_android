@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/shelter_profile_title_edit"
         android:layout_width="347dp"
-        android:layout_height="51dp"
+        android:layout_height="27dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -41,9 +41,14 @@
 
 
     <TableLayout
+        android:id="@+id/tableLayout2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shelter_introduction_edit">
 
 
         <TableRow
@@ -62,14 +67,20 @@
                     android:width="110dp"
                     android:text="@string/shelter_address_description"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/shelter_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/shelter_address"
                     android:layout_width="280dp"
                     android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/shelter_dummy_address"
-                    app:layout_constraintStart_toEndOf="@+id/shelter_address_description" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/shelter_address_description"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </TableRow>
 
@@ -88,16 +99,22 @@
                     android:width="110dp"
                     android:text="@string/shelter_email_description"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/shelter_email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/shelter_email"
                     android:layout_width="280dp"
                     android:layout_height="30dp"
-                    android:text="@string/shelter_dummy_email"
+                    android:layout_marginEnd="8dp"
                     android:autoLink="email"
                     android:clickable="true"
-                    app:layout_constraintStart_toEndOf="@+id/shelter_email_description" />
+                    android:text="@string/shelter_dummy_email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/shelter_email_description"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </TableRow>
 
@@ -115,14 +132,21 @@
                     android:width="110dp"
                     android:text="@string/shelter_phone_description"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/shelter_phone"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/shelter_phone"
                     android:layout_width="280dp"
                     android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/shelter_dummy_phone"
-                    app:layout_constraintStart_toEndOf="@+id/shelter_phone_description" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/shelter_phone_description"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </TableRow>
 
@@ -142,14 +166,19 @@
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textStyle="bold"
 
-                    />
+                    app:layout_constraintEnd_toStartOf="@+id/shelter_charity_no"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/shelter_charity_no"
                     android:layout_width="280dp"
                     android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/shelter_dummy_charity_no"
-                    app:layout_constraintStart_toEndOf="@+id/charity_no_description" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/charity_no_description"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </TableRow>
 
@@ -168,6 +197,19 @@
 
         </TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/viewShelterPets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="20dp"
+        android:text="View Shelter's Pets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

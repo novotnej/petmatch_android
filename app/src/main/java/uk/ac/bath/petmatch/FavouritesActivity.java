@@ -2,12 +2,6 @@ package uk.ac.bath.petmatch;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,13 +11,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import uk.ac.bath.petmatch.Adapters.PetGridAdapter;
-import uk.ac.bath.petmatch.BaseActivity;
 import uk.ac.bath.petmatch.Database.FavoritePet;
 import uk.ac.bath.petmatch.Database.FavoritePetDao;
 import uk.ac.bath.petmatch.Database.Pet;
-import uk.ac.bath.petmatch.Database.PetDao;
 import uk.ac.bath.petmatch.Database.User;
-import uk.ac.bath.petmatch.R;
 import uk.ac.bath.petmatch.Utils.ToastAdapter;
 
 public class FavouritesActivity extends BaseActivity {
@@ -32,7 +23,7 @@ public class FavouritesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.favourite_activity);
+        setContentView(R.layout.pet_grid_only);
         Objects.requireNonNull(getSupportActionBar()).setTitle("My Favourite Pets");
 
 //        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
