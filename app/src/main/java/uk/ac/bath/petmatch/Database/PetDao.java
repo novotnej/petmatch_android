@@ -22,6 +22,12 @@ public class PetDao extends RuntimeExceptionDao {
         );
     }
 
+    public ArrayList<Pet> loadByShelterId(String shelterId) {
+        List<Pet> results = this.queryForEq("shelter_id", shelterId);
+        return this.convertListToArrayList(results);
+    }
+
+
     public ArrayList<Pet> loadByFilter(PetBreedDao petBreedDao, String petType, String petBreedId, UserProperties userProperties, double lat, double lon, int distance) {
         QueryBuilder<Pet, String> query = queryBuilder();
         QueryBuilder<PetBreed, String> petBreedBuilder = petBreedDao.queryBuilder();

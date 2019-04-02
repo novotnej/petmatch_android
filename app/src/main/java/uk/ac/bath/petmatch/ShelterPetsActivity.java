@@ -37,23 +37,14 @@ public class ShelterPetsActivity extends BaseActivity {
     }
 
     private void loadSheltersPetsGrid() {
-
         PetDao petDao = getHelper().pets;
-        ArrayList<Pet> pets = petDao.getDummy();
-        ArrayList<Pet> shelterPets = new ArrayList<Pet>();
-
-        for (int i=0; i<pets.size(); i++) {
-            if (pets.get(i).getShelter().getId().equals(currentShelter.getId())) {
-                shelterPets.add(pets.get(i));
-            }
-        }
+        ArrayList<Pet> shelterPets = petDao.loadByShelterId(currentShelter.getId());
 
         if (shelterPets.size() == 0) {
             ToastAdapter.toastMessage(this, "This shelter has no pets");
         } else {
             this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), shelterPets);
         }
-
     }
 
     private void createPetGridView(final GridView gridView, ArrayList<Pet> pets) {
@@ -63,7 +54,6 @@ public class ShelterPetsActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Pet petClicked = (Pet) adapterView.getItemAtPosition(position);
-                petClicked = getHelper().pets.queryForId(petClicked.getId());
                 Log.i("Clicked pet", "" + petClicked.getTitle());
                 Intent petProfIntent = new Intent(getApplicationContext(), PetProfileActivity.class);
                 petProfIntent.putExtra("The Pet", petClicked.getId());
