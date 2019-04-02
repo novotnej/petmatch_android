@@ -33,21 +33,27 @@ public class FavouritesActivity extends BaseActivity {
     }
 
     private void loadFavouritePetGrid() {
-        User currentUser = loginService.getLoggedInUser();
+        if (loginService.getLoggedInUser() != null) {
+            User currentUser = loginService.getLoggedInUser();
 
-        FavoritePetDao allFavPets = getHelper().favoritePets;
-        ArrayList<FavoritePet> favPets = allFavPets.getFavourites(currentUser);
-        ArrayList<Pet> pets = new ArrayList<Pet>();
-        int noOfPets = favPets.size();
-        for (int i=0; i<noOfPets; i++) {
-            pets.add(favPets.get(i).getPet());
+            FavoritePetDao allFavPets = getHelper().favoritePets;
+            ArrayList<FavoritePet> favPets = allFavPets.getFavourites(currentUser);
+            ArrayList<Pet> pets = new ArrayList<Pet>();
+            int noOfPets = favPets.size();
+            for (int i=0; i<noOfPets; i++) {
+                pets.add(favPets.get(i).getPet());
+            }
+
+            if (favPets.size() == 0) {
+                ToastAdapter.toastMessage(this, "You have no favourite pets");
+            } else {
+                this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
+            }
+        }
+        else {
+            ToastAdapter.toastMessage(this, "Please login");
         }
 
-        if (favPets.size() == 0) {
-            ToastAdapter.toastMessage(this, "You have no favourite pets");
-        } else {
-            this.createPetGridView((GridView) findViewById(R.id.pet_grid_layout), pets);
-        }
     }
 
     private void createPetGridView(final GridView gridView, ArrayList<Pet> pets) {

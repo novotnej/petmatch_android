@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class FavoritePetDao extends RuntimeExceptionDao {
                     .and().eq("pet_id", pet.getId())
                     .queryForFirst();
         } catch (SQLException e) {
-            Log.e("RemoveFromFavorites", e.getMessage());
+            Log.e("FindFavorite", e.getMessage());
         }
         return null;
     }
@@ -63,7 +64,17 @@ public class FavoritePetDao extends RuntimeExceptionDao {
         FavoritePet favorite = findFavorite(user, pet);
 
         if (favorite != null) {
-            this.delete(favorite);
+            Log.d("Favorites_Remove_pet", pet.getTitle());
+            DeleteBuilder deleteBuilder = deleteBuilder();
+            try {
+                deleteBuilder.where().eq("user_id", favorite.getUser().getId())
+                .and().eq("pet_id", favorite.getPet().getId());
+                Log.d("deleteSQL", deleteBuilder.prepare().toString());
+                deleteBuilder.delete();
+            } catch (SQLException e) {
+                Log.e("FavoritePet_Delete", e.getMessage());
+            }
+            //this.delete(favorite);
         }
     }
 

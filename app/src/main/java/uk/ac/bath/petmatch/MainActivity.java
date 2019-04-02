@@ -93,21 +93,8 @@ public class MainActivity extends BaseActivity
 
         processSearchFilter();
         reloadPetsList();
-        giveDummyUserFavPets();
         generateLoggedUserView();
 
-    }
-
-    protected void giveDummyUserFavPets() {
-        UserDao users = getHelper().users;
-        PetDao petDao = getHelper().pets;
-        ArrayList<Pet> pets = petDao.getDummy();
-        User user = users.findByEmail("user@petmatch.com");
-        FavoritePetDao allFavPets = getHelper().favoritePets;
-       // allFavPets.addToFavourites(user, pets.get(0));
-        allFavPets.addToFavourites(user, pets.get(1));
-        allFavPets.addToFavourites(user, pets.get(2));
-        allFavPets.addToFavourites(user, pets.get(3));
     }
 
     /**

@@ -126,7 +126,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
         snape = new Pet("Severus Snape", "Always", bath, burmilla);
         snape.setImage("burmilla");
 
-        FavoritePet favoritePet = new FavoritePet(goodBoy, user);
+        favoritePets.addToFavourites(user, goodBoy);
 
         try {
             shelters.create(bath);
@@ -167,7 +167,8 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             pets.create(dumbledore);
             pets.create(snape);
 
-            favoritePets.create(favoritePet);
+
+            //favoritePets.create(favoritePet); - do not use this. Use favoritePets.addToFavorites
 
         } catch (Exception e) {
             Log.e(DbHelper.class.getName(), e.getMessage());
