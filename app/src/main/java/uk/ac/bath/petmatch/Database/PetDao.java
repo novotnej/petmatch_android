@@ -36,7 +36,7 @@ public class PetDao extends RuntimeExceptionDao {
         try {
             w.isNotNull("id");
             if (petBreedId != null) {
-                w.and().eq("breed_id", petBreedId);
+                query.where().eq("breed_id", petBreedId);
             }
 
             if (userProperties != null) {
