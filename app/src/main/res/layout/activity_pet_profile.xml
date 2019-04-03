@@ -65,6 +65,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="27dp"
         android:text="Edit Petton"
+        style="@style/Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,12 +79,12 @@
         android:layout_marginTop="101dp"
         android:layout_marginEnd="47dp"
         android:layout_marginBottom="14dp"
-        android:background="@drawable/background"
+        android:background="@drawable/rounded_button"
         android:clickable="true"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:backgroundTint="@color/light_red"
+        android:backgroundTint="@color/dark_green"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/petTitle"
@@ -105,7 +106,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage"
-        app:srcCompat="@drawable/ic_favorite_red_500_48dp" />
+        app:srcCompat="@drawable/ic_favorite_darkred_48dp" />
 
     <ImageButton
         android:id="@+id/addToFavouritesButton"
@@ -120,6 +121,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage"
-        app:srcCompat="@drawable/ic_favorite_border_red_500_48dp" />
+        app:srcCompat="@drawable/ic_favorite_border_dark_red_48dp" />
 
 </android.support.constraint.ConstraintLayout>

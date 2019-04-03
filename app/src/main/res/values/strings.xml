@@ -73,15 +73,15 @@
     <!-- Example settings for Notifications -->
 
     <!-- Strings related to Welcome Screen -->
-    <string name="welcome_login_button">login</string>
-    <string name="welcome_register_button">register</string>
-    <string name="welcome_browse_button">just browse</string>
+    <string name="welcome_login_button">LOG IN</string>
+    <string name="welcome_register_button">REGISTER</string>
+    <string name="welcome_browse_button">Just browse</string>
 
     <!-- Strings related to login -->
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in_short">Log in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
