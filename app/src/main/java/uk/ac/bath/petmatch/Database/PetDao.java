@@ -6,6 +6,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,35 +32,39 @@ public class PetDao extends RuntimeExceptionDao {
     public ArrayList<Pet> loadByFilter(PetBreedDao petBreedDao, String petType, String petBreedId, UserProperties userProperties, double lat, double lon, int distance) {
         QueryBuilder<Pet, String> query = queryBuilder();
         QueryBuilder<PetBreed, String> petBreedBuilder = petBreedDao.queryBuilder();
+        final Where<PetBreed, String> w = petBreedBuilder.where();
         try {
-
+            w.isNotNull("id");
             if (petBreedId != null) {
-                query.where().eq("breed_id", petBreedId);
+                w.and().eq("breed_id", petBreedId);
             }
 
             if (userProperties != null) {
+                //Where<PetBreed, String> where = petBreedBuilder.where();
                 if (userProperties.hasCatAllergies()) {
-                    petBreedBuilder.where().eq("causesCatAllergies", false);
+                    w.and().eq("causesCatAllergies", false);
                 }
                 if (userProperties.hasDogAllergies()) {
-                    petBreedBuilder.where().eq("causesDogAllergies", false);
+                    w.and().eq("causesDogAllergies", false);
                 }
                 if (userProperties.hasKids()) {
-                    petBreedBuilder.where().eq("childrenFriendly", true);
+                    w.and().eq("childrenFriendly", true);
                 }
                 if (!userProperties.hasFreeTime()) {
-                    petBreedBuilder.where().eq("laborIntensive", false);
+                    w.and().eq("laborIntensive", false);
                 }
                 if (!userProperties.getGreenAreas()) {
-                    petBreedBuilder.where().eq("spaceIntensive", false);
+                    w.and().eq("spaceIntensive", false);
                 }
             }
 
             if (petType != null) {
-                petBreedBuilder.where().eq("type", petType);
+                w.and().eq("type", petType);
             }
 
+            petBreedBuilder.setWhere(w);
             query.join("breed_id", "id", petBreedBuilder);
+
 
             List<Pet> queryResults = query.query();
             ArrayList<Pet> arrayList = new ArrayList<>();
